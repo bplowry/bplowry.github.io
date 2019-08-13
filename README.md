@@ -4,11 +4,10 @@ My personal website, built with [Gatsby](https://www.gatsbyjs.org) using [gatsby
 
 ## 🚀 Quick start
 
-```sh
-yarn develop
-```
+- Built assets go on `master` because GitHub pages ¯\\\_(ツ)\_/¯
+- Work happens on the `develop` branch.
+- Running locally
 
-<dl>
-<dt>Website: </dt><dd>`http://localhost:8000`</dd>
-<dt>GraphQL: </dt><dd>`http://localhost:8000/___graphql`</dd>
-</dl>
+  ```sh
+  yarn develop
+  ```
