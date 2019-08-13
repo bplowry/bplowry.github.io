@@ -49,6 +49,9 @@
   },
   "homepage": "https://github.com/bplowry/bplowry.github.io",
   "keywords": [
+    "personal",
+    "website",
+    "blog",
     "gatsby"
   ],
   "license": "MIT",
