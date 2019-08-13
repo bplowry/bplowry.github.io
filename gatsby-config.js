@@ -57,8 +57,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Six of one`,
+        short_name: `Six of one`,
+        description: `Personal website and blog for Ben Lowry`,
+        lang: `en-AU`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
