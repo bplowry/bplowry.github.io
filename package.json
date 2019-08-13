@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "bplowry.github.io",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "Personal website",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Ben Lowry <bplowry@gmail.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/bplowry/bplowry.github.io/issues"
   },
   "dependencies": {
     "gatsby": "^2.13.61",
@@ -39,7 +39,7 @@
     "gh-pages": "^2.1.1",
     "prettier": "^1.18.2"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/bplowry/bplowry.github.io",
   "keywords": [
     "gatsby"
   ],
@@ -47,10 +47,11 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/bplowry/bplowry.github.io.git"
   },
   "scripts": {
     "build": "gatsby build",
+    "deploy": "gatsby build && gh-pages -d public -b master",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
