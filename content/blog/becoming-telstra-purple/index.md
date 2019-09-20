@@ -7,7 +7,7 @@ and different parts of Telstra
 to form Telstra Purple,
 the largest Australian-owned technology services business.
 
-In this post, I'll give my thoughts on the changes,
+I'll give my thoughts on the changes,
 and why I'm excited for the future."
 ---
 
@@ -15,14 +15,13 @@ I started at Readify in 2017,
 after my previous employer closed their Perth office.
 I'd been a developer for just under a year
 and in the software industry for just under 3 years.
-I've had amazing opportunities for growth since starting at Readify,
-making use of our professional development time to learn new skills
-(both technical and core skills)
-and learning from some really smart and encouraging people.
+I've had amazing opportunities for growth since starting at Readify.
+We get 20 days per year of professional development time to learn new skills,
+both technical and core skills.
+And I'm surrounded by smart and encouraging people who are always willing to help.
 These learning opportunities were the biggest reason for me joining Readify in the first place.
 
-Fast-forwarding to the present day,
-Readify is now part of [Telstra Purple](https://purple.telstra.com).
+Now Readify is now part of [Telstra Purple](https://purple.telstra.com).
 The Readify company name will live on in our hearts and minds,
 but not on paper.
 The connections I'd built with the people around me,
@@ -39,21 +38,21 @@ and Kloud -- a sister-company of sorts, also part of Telsta Purple -- has around
 We run a quarterly Back2Base in Readify,
 but we wanted to include Kloud as well,
 as part of our WA "fam".
-So, rather than having "Readify Back2Base",
-which we felt would be exclusionary,
+So, rather than having "Readify Back2Base" and excluding the Kloudies,
 it was just "Back2Base".
 In trying to include more people, we'd actually lost some of our identity.
 Earlier this month, we had our first Back2Base since becoming Telstra Purple,
 and this time we _could_ use branding while remaining inclusive --
 the Telstra Purple brand.
+We were together again.
 
 Readify had become part of my identity.
-The polo was basically a uniform.
-It was a little scary to be losing that,
+The polo was basically a uniform to me and many others.
+It was a little scary to lose that,
 and I think it's normal to be scared of changing your identity.
 But all the things that I liked about Readify are still there.
 
 The perks are the same, the work is the same
-(for now -- exciting things to come!),
+(for now -- joining forces opens some exciting new avenues),
 the people are the same,
 and the shirts are coming!
