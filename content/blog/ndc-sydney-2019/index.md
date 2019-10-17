@@ -11,10 +11,49 @@ I'll be updating this post over the next few days, fleshing out notes and adding
 
 <nav id="nav">
 <ul>
-<li><a href="#the-care-and-feeding-of-software-developers-keynote"><em>The care and feeding of software developers [Keynote]</em> by Heather Downing</a></li>
-<li><a href="#kubernetes-0-to-100"><em>Kubernetes 0 to 100</em> by Scott Holden</a></li>
-<li><a href="#modern-javascript-for-web-dinosaurs"><em>Modern JavaScript for web dinosaurs</em> by Scott Holden</a></li>
-<li><a href="#lightning-talks-day-one"><em>Lightning talks (day one)</em></a></li>
+<li><a href="#the-care-and-feeding-of-software-developers-keynote">
+<em>The care and feeding of software developers [Keynote]</em>
+by Heather Downing
+</a></li>
+<li><a href="#kubernetes-0-to-100">
+<em>Kubernetes 0 to 100</em>
+by Scott Holden
+</a></li>
+<li><a href="#modern-javascript-for-web-dinosaurs">
+<em>Modern JavaScript for web dinosaurs</em>
+by Scott Holden
+</a></li>
+<li><a href="#lightning-talks-day-one">
+<em>Lightning talks (day one)</em>
+</a></li>
+<li><a href="chinafy-your-apps">
+<em>Chinafy your apps + Lessons you can steal from China</em>
+by Adam Cogan
+</a></li>
+<li><a href="using-flutter-to-develop-cloud-enabled-mobile-applications">
+<em>Using Flutter to develop cloud enabled mobile applications</em>
+by Nick Randolph and Pooja Bhaumik
+</a></li>
+<li><a href="whats-going-on-with-project-fugu">
+<em>What's going on with Project Fugu?</em>
+by Phil Nash
+</a></li>
+<li><a href="how-to-do-in-app-chaos-testing">
+<em>How to do in-app chaos testing</em>
+by Wesley Cabus
+</a></li>
+<li><a href="bank-grade-security">
+<em>Bank Grade Security</em>
+by Kieran Jacobsen
+</a></li>
+<li><a href="beyond-infrastructure-as-code-dsls">
+<em>Beyond infrastructure as code DSLs</em>
+by Jake Ginnivan
+</a></li>
+<li><a href="thousands-of-concurrent-connections-with-azure-signalr-service">
+<em>Thousands of concurrent connections with Azure SignalR Service</em>
+by Nelly Sattari and Stafford Williams
+</a></li>
 </ul>
 </nav>
 
@@ -78,7 +117,7 @@ Challenge; learn new tech. See how you can apply it. That's cool. But also learn
 
 <a href="#nav">Back to top</a>
 
-# Kubernetes 0 to 100 <a id="kubernetes-0-to-100"></a>
+## Kubernetes 0 to 100 <a id="kubernetes-0-to-100"></a>
 
 Scott Holden <twitter-handle />
 
@@ -241,5 +280,210 @@ Nelly went from ~20% attendance to ~80% within a year, and now her company even 
 Might seem like a lot of effort, but it's probably not as much as you think
 
 People will appreciate you making the effort, and they'll make an effort, too.
+
+<a href="#nav">Back to top</a>
+
+## Chinafy your apps + Lessons you can steal from China <a id="chinafy-your-apps">
+
+Adam Cogan @AdamCogan
+
+Rapidly changing environment. If you went to China in 2015 it's no longer relevant
+
+WeChat pay or AliPay over credit card or cash. QR code scanning
+
+Largest economy soon (2029)
+
+Many companies have \$0 revenue in China, even big ones. Partly due to the firewall. Also because we don't understand the culture
+
+Mostly mobile. Native apps. Web apps. WeChat official pages and mini apps
+
+Sesame credit from AliPay, WeChat, PBOC (people's bank of China), etc.
+Better interest rates
+Paying bills on time
+Based on your friends
+Restricted travel
+Is this the same thing as the social credit system?
+
+Even the beggars have WeChat QR codes
+
+How to succeed in China:
+
+- use WeChat
+- payments
+- auth - phone/otp or social, not user/ pass
+- QR code
+- gamify
+- Chinese name
+- Chinese cloud
+- local partners sales and support
+- translation/localisation
+- mini app
+- UX - no minimalist design. Busier the better
+-
+
+<a href="#nav">Back to top</a>
+
+##Using Flutter to develop cloud enabled mobile applications <a id="using-flutter-to-develop-cloud-enabled-mobile-applications"></a>
+
+Nick Randolph and Pooja Bhaumik
+
+Differential rendering (like React)
+
+Easy to use with material design - components are available. Make your apps beautiful.
+
+Everything is a widget, and it's all declarative
+
+Dart has a .. chaining operator to... set multiple properties?
+
+Hot reload is way better than xamarin or native Android and gradle
+
+Visual studio app centre
+
+<a href="#nav">Back to top</a>
+
+## What's going on with Project Fugu? <a id="whats-going-on-with-project-fugu"></a>
+
+Phil Nash @philnash
+
+Chrome team.
+Pushing the web forward -- parity with native apps
+
+Previously we had vendor prefixes
+Now we have feature flags
+
+#enable-experimental-web-platform-features
+
+Websites can request to join origin trial. That means you don't need users to opt in
+
+---
+
+The new stuff:
+Web share API
+No tracking. No JS, don't need to (and can't) track where they shared it or what platforms they use
+
+Web share target API
+Make your own pwa to share, maybe?
+Chrome trial suggested it was ok, trying to convince Safari
+
+Wake lock
+Keeps the screen awake (or system, but it doesn't work yet)
+Useful for non interactive sites, or sites that don't interact with button/links (e.g. motion)
+
+Aborting requests
+Abort Controller to cancel fetches
+
+Contacts picker API
+Could be useful for calling, emailing, sharing with contacts.
+They can select from their Devices contacts
+
+Native file system API
+Window. Choose file system entries () // promise
+Drag and drop files don't work on mobile. The "choose file" button is ugly
+
+Shape detection API
+Face detector, Text detector, Barcode detector
+No mouth = no face, apparently
+Get locations of different features and bounding box
+
+It's all good for them to build it, but if we don't experiment, they won't find the edge cases or be able to make it better
+
+<a href="#nav">Back to top</a>
+
+## How to do in-app chaos testing <a id="how-to-do-in-app-chaos-testing"></a>
+
+Wesley Cabus
+
+Server in a suitcase in Rwanda. They go hours/days without internet because of Power outages. We were developing in an office with WiFi. They're so different
+
+Airplane mode isn't an accurate simulation
+
+Wrote a library called ruh roh. Wraps around a service and has random delays or random failures. Nugget package (prerelease)
+
+Lets you cause exceptions from different services/methods based on whatever conditions you want so you can test what happens when stuff doesn't work.
+Really useful for external dependencies
+
+Can also slow things down
+
+Change the data that is returned
+
+<a href="#nav">Back to top</a>
+
+## Bank Grade Security <a id="bank-grade-security"></a>
+
+Kieran Jacobsen @kjacobsen
+
+Hsts
+Csp
+security headers
+Report uri
+
+TLS
+SSL labs
+TLS 11 and 10 make security worse for everyone, to support a few
+
+. well-known/security. Txt
+Process, contacts, policies, etc
+
+Keybase.io
+
+<a href="#nav">Back to top</a>
+
+## Beyond infrastructure as code DSLs <a id="beyond-infrastructure-as-code-dsls"></a>
+
+Jake Ginnivan
+
+Pulumi can use ts, python, go
+
+Define resources in code.
+Can publish and consume infra
+
+Configuration in code, e.g. tests, feature flags, environment
+
+Pulumi cli
+Tracks state - what's actually deployed - uses some extra metadata, so it doesn't just query to find what's available
+
+App.pulumi.com
+"Enterprise" features like audit, policies, secret management
+
+Can mix intra code and application code
+E.g. S3 on created event handler => lambda
+
+"We want devs to manage infra"
+Input from ops. Make sure it's monitored, etc. Knowledge sharing
+Feel like this will help build awareness
+Allow team to evolve architecture, look at simplifying, reducing cost, etc
+
+Pulumi crosswalk gives you some sensible defaults.
+Pulumi is more configurable, but more effort, too
+
+<a href="#nav">Back to top</a>
+
+## Thousands of concurrent connections with Azure SignalR Service <a id="thousands-of-concurrent-connections-with-azure-signalr-service"></a>
+
+Nelly Sattari @nelly_sattari
+and Stafford Williams @staff0rd
+
+Real-time functionality. Get updates as they happen
+
+Well suited with event driven architecture
+
+Used to use long polling. Connection is held open. Once data is available, response returned, connection closed
+Once it's closed, another long poll request is opened
+
+Then server push, but it's only one way
+
+Web sockets allow bidirectional messages. Don't need to keep including headers, because the connection already exists, so less data
+
+SignalR chooses the best connection based on client and server capabilities. Essentially, it abstracts that layer. Websockets -> server push -> long polling
+
+50vms to 1 big VM ~250000 persistent connections
+Scaling out means that each app service can only broadcast to it's own clients
+So you need a backplane
+Which means it needs to be stateful
+
+Azure SignalR Service handles that for you. It's a proxy not a backplane
+Persistent connections on the web server is now 0. They all go through the SignalR Service
+
+Handles up to 100,000 connections (100 units) if you want to pay for it. That's per service
 
 <a href="#nav">Back to top</a>
