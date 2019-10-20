@@ -8,6 +8,7 @@ can help you write better tests, and help you raise the bar for quality.
 This blog series will talk to some of the benefits of using finite state machines
 through all stages of the software development lifecycle.
 </p>"
+draft: true
 ---
 
 You may have heard that `async`/`await` code is actually using a state machine under the hood.

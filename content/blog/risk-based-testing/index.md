@@ -2,6 +2,7 @@
 title: Risk-based testing
 date: "2019-10-16T04:10:10.612Z"
 description: "How do you decide which features you test and which features you don't?"
+draft: true
 ---
 
 Testing, why?
