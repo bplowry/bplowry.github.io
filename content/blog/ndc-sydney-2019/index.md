@@ -4,9 +4,8 @@ date: "2019-10-16T03:26:15.377Z"
 description: "I had the chance to attend NDC Sydney for the first time. This is my first tech conference outside of Perth, and my first multi-day conference. I learned a bunch, so I wrote some of it down."
 ---
 
-<span role="img" aria-label="Work in progress">👷 ‍️🚧 👷‍♂️</span> I'll be updating this post over the next few days, fleshing out my notes.
-
----
+I went to NDC Sydney for the first time, this year.
+I took notes for most of the talks I attended, and thought I should share.
 
 <nav>
 
@@ -46,7 +45,7 @@ description: "I had the chance to attend NDC Sydney for the first time. This is 
 
 Heather Downing [@quorralyne](https://twitter.com/@quorralyne)
 
-![](./the-care-and-feeding-of-software-developers.jpg)
+!["Success is a lousy teacher. It seduces smart people into thinking they can't lose" - Bill Gates](./the-care-and-feeding-of-software-developers.jpg)
 
 The best leaders aren't "the best at tech"
 
@@ -124,7 +123,7 @@ so you don't need to "carry" it around.
 All the bits of containers have been around forever.
 Docker put it all together and made it easy.
 
-> **HOT TIP:** `docker run -d **--rm**` will clean up afterwards.
+<aside>**HOT TIP:** `docker run -d **--rm**` will clean up afterwards.</aside>
 
 If you have multiple containers,
 layers are shared, so we only have one copy of dependencies.
@@ -220,7 +219,7 @@ Resource quotas
 
 AKS (Azure Kubernetes Service) - free control plane - don't pay for the VMs, don't manage them, apart from some config
 
-> **HOT TIP:** Use specific versions of dependencies so it spins up from cache. The `:latest` tag will always fetch from the registry, leading to slower startup.
+<aside> **HOT TIP:** Use specific versions of dependencies so it spins up from cache. The `:latest` tag will always fetch from the registry, leading to slower startup.</aside>
 
 I'd come in to this talk with a view that I'd never need Kubernetes.
 My main takeaway was that Kubernetes doesn't mean you need huge complicated systems:
@@ -241,11 +240,13 @@ Web development has changed a lot in the past few years.
 When Ryan last touched web development, jQuery was king. You'd download the file and put it on the web server with FTP. Simple.
 
 Now we have
-CLIs (command line interfaces),
-transpilers,
-packages and package managers,
-bundlers,
-NodeJS.
+
+- CLIs (command line interfaces),
+- transpilers,
+- packages and package managers,
+- bundlers,
+- NodeJS.
+
 It's a lot more complicated.
 
 The steps along the way:
@@ -260,12 +261,14 @@ The steps along the way:
 - 2015: Webpack comes along and quickly becomes the go-to (self: typical JavaScript)
 
 Transpiling allows us to use syntax that isn't supported in older browsers, e.g. turning `async/await` code into `.then` and `.catch`.
+
 Polyfills allow us to use functionality that isn't natively supported in older browsers, e.g. ensuring that `Promise` is available in the browser.
-These allow us to write "modern" code, so we don't need to worry (as much) about browser differences.
+
+Together, these allow us to write "modern" code, so we don't need to worry (as much) about browser differences.
 
 Script runners make all those CLI commands easier.
-First Grunt and Gulp, then NPM added `scripts`, so it's the standard.
-The script runner lets you run "build" rather than "./node_modules/bin/webpack webpack.config.js --production" or something else complicated.
+First Grunt and Gulp, then NPM added `scripts`, and it's become the standard.
+The script runner lets you run `npm run build` rather than `./node_modules/bin/webpack webpack.config.js --production` or something else complicated.
 
 React, Vue, and Angular (the most-used web frameworks at time of writing) use all of these things under the hood.
 They have CLI tools to create new projects following best practices.
@@ -293,29 +296,32 @@ Appetite to learn
 
 Nelly Sattari [@nelly_sattari](https://twitter.com/@nelly_sattari)
 
-Brown bags
+Brown bags or lunch and learn. Takes the name from the brown paper bag you might take your lunch in.
 
-Build a network to find speakers
-Great way to network
-Attend other events
-Companies/vendors might want to get involved
+Benefits:
 
-Good way to build
-
+- Build a network to find speakers
+- Great way to network
+- Attend other events
+- Companies/vendors might want to get involved
+- Good way to build
 - your profile
 - learning culture in org
 - relationships with other areas of your company
 
-Make them regular.
-One now, another one later, maybe, doesn't really work
-People need to know what to expect and when to expect it
-It might start slow, but if you stick with it you can build something good
+If you're going to run brown bags, make them regular.
+Having one now and another one later, maybe, doesn't really work.
+People need to know what to expect and when to expect it.
+It might start slowly, but if you stick with it you can build something good
 
 Nelly went from ~20% attendance to ~80% within a year, and now her company even provides lunch!
 
-Might seem like a lot of effort, but it's probably not as much as you think
+Organising them might seem like a lot of effort,
+but it's probably not as much as you think.
+Maybe a few hours a month (depending on how often you have them).
 
-People will appreciate you making the effort, and they'll make an effort, too.
+People will appreciate you making the effort,
+and they'll make an effort, too (to attend, speak, organise, etc.)
 
 [Back to top](#)
 
@@ -325,38 +331,46 @@ People will appreciate you making the effort, and they'll make an effort, too.
 
 Adam Cogan [@AdamCogan](https://twitter.com/@AdamCogan)
 
-Rapidly changing environment. If you went to China in 2015 it's no longer relevant
+China is a rapidly changing environment.
+If you went to China in 2015, there's a good chance it's a different place now.
 
-WeChat pay or AliPay over credit card or cash. QR code scanning
+China is projected to become the world's largest economy soon (2029), overtaking the USA.
 
-Largest economy soon (2029)
+Many companies have \$0 revenue in China, even big ones.
+This is partly due to the Great Firewall of China.
+But it's also because we don't understand the culture.
 
-Many companies have \$0 revenue in China, even big ones. Partly due to the firewall. Also because we don't understand the culture
+Internet usage is mostly mobile (65% if I remember correctly, compared to 40% in Aus?).
+People primarily use native apps, over web apps.
+There are also pseudo-apps like WeChat official pages and mini-apps.
 
-Mostly mobile. Native apps. Web apps. WeChat official pages and mini apps
+Payments are typically done using WeChat Pay or AliPay over credit card or cash.
+Shop keeper will scan a QR code on your phone to make payment.
+Even people asking for money on the street have WeChat QR codes.
 
-Sesame credit from AliPay, WeChat, PBOC (people's bank of China), etc.
-Better interest rates
-Paying bills on time
-Based on your friends
-Restricted travel
-Is this the same thing as the social credit system?
+There's a thing called Sesame credit
+(self: I think this is that social credit system).
+You are judged and ranked on your activity;
+things like whether you pay your bills on time,
+but maybe other stuff, too,
+like the rankings of your friends?
 
-Even the beggars have WeChat QR codes
+Sesame credit is endorsed by AliPay, WeChat Pay, People's Bank of China, etc.
+You can get better interest rates, or no deposit for hire bikes, which is nice.
+But you can also end up having travel restrictions ... not so nice.
 
 How to succeed in China:
 
-- use WeChat
-- payments
-- auth - phone/otp or social, not user/ pass
-- QR code
-- gamify
-- Chinese name
-- Chinese cloud
-- local partners sales and support
-- translation/localisation
-- mini app
-- UX - no minimalist design. Busier the better
+- use WeChat official pages/mini-apps
+- payments using AliPay, WeChat pay
+- authentication using phone number and OTP (one-time passwcode) or social login. Not username/password
+- QR codes everywhere.
+- gamify interactions with your apps. e.g. "red envelope" (traditional) for a random win
+- have a Chinese name
+- use a Chinese cloud provider
+- find local partners sales and support
+- translation/localisation by a local
+- user experience: don't use minimalist design. The busier, the better. There was an example of a video with comments appearing over the top, to the point you can't see the video.
 
 [Back to top](#)
 
@@ -367,19 +381,25 @@ How to succeed in China:
 Nick Randolph [@thenickrandolph](https://twitter.com/@thenickrandolph)
 and Pooja Bhaumik [@pblead26](https://twitter.com/@pblead26)
 
-![](./using-flutter-to-develop-cloud-enabled-mobile-applications.jpg)
+![Connect the dots: Flutter + Azure](./using-flutter-to-develop-cloud-enabled-mobile-applications.jpg)
 
-Differential rendering (like React)
+Flutter does differential rendering (like React).
+Doesn't use native components,
+but uses the Skia rendering engine to draw everything.
+This helps you build apps that look the same on Android and iOS
+(some minor quirks, like over-scroll behaviour).
 
-Easy to use with material design - components are available. Make your apps beautiful.
+You still need to consider if that's right for you ...
+after all you may want to be consistent with the platform.
 
-Everything is a widget, and it's all declarative
+Easy to use with Material Design (Android) or Cupertino (iOS) - components are available and they _look_ like native.
 
-Dart has a .. chaining operator to... set multiple properties?
+Everything is a widget, and it's all declarative.
 
-Hot reload is way better than Xamarin or native Android and gradle
+The developer experience can be a lot better than native.
+For example, hot reloading is way better than Xamarin or native Android and gradle.
 
-Visual studio app centre
+Consider Visual Studio App Center for building and publishing into the app stores.
 
 [Back to top](#)
 
@@ -389,50 +409,71 @@ Visual studio app centre
 
 Phil Nash [@philnash](https://twitter.com/@philnash)
 
-![](./whats-going-on-with-project-fugu.jpg)
+![Get on with the Fugu](./whats-going-on-with-project-fugu.jpg)
 
 Project Fugu is run by the Chrome team.
-Pushing the web forward -- parity with native apps
+The goal is to push the web forward, towards parity with native apps.
 
-Previously we had vendor prefixes
-Now we have feature flags
+Previously we had vendor prefixes, like `ms-flex`, or `-webkit-line-clamp`.
+Now we have feature flags.
 
-`#enable-experimental-web-platform-features`
+You can enable them yourself by going to `chrome://flags` and `#enable-experimental-web-platform-features`.
+But that doesn't really work if you want to put something on your public website.
+Users won't enable feature flags to view your website.
 
-Websites can request to join origin trial. That means you don't need users to opt in
+So Chrome has this thing called Origin Trials.
+Websites can request to join an origin trial,
+which means you don't need users to opt in --
+Chrome will enable whatever flags you asked for when users access your site.
 
-The new stuff:
-Web share API
+They might also take it away without telling you,
+so you need to make sure it works _without_ the flag.
+You'd probably need that anyway to support other browsers, so no big deal.
+The reasons they'd take it away:
+
+- too many people using it -- it's meant to be an experiment
+- the experiment has expired
+- other reasons?
+
+**The new stuff:**
+
+Generally the new features require `https`,
+and often users will need to give permission
+(for camera, location, file system, push notifications, etc.)
+
+**Web share API**
 No tracking. No JS, don't need to (and can't) track where they shared it or what platforms they use
 
-Web share target API
-Make your own PWA to share, maybe?
+**Web share target API**
+Make your own PWA (progressive web application) as a sharing target?
 Chrome origin trial suggested it was ok, trying to convince Safari
 
-Wake lock
+**Wake lock**
 Keeps the screen awake (or system, but it doesn't work yet)
 Useful for non interactive sites, or sites that don't interact with button/links (e.g. motion)
 
-Aborting requests
-Abort Controller to cancel fetches
-not supported for all promises, but some do
+**Aborting requests**
+`AbortController` to cancel fetches, by passing in `controller.signal` into the `fetch`.
+Aborting is not supported for all promises, but some APIs (particularly new ones) do support it.
 (self: this also applies to WebAuthn methods)
 
-Contacts picker API
+**Contacts picker API**
 Could be useful for calling, emailing, sharing with contacts.
-They can select from their Devices contacts
+The user selects from contacts on their device.
 
-Native file system API
-`window.chooseFileSystemEntries() // returns a promise`
-Drag and drop files don't work on mobile. The "Choose file" button is ugly.
-This API gives access to the file system (with permission from the user)
+**Native file system API**
+`window.chooseFileSystemEntries()` returns a promise.
+This was added as an alternative to the older alternatives.
+Drag and drop files don't work on mobile.
+The "Choose file" button is ugly.
+This API gives access to the file system (with permission from the user).
 
-Shape detection API
+**Shape detection API**
 Face detector, Text detector, Barcode detector
 No mouth = no face, apparently
-Get locations of different features and bounding box
+Get locations of different features and bounding box.
 
-It's all good for them to build it, but if we don't experiment, they won't find the edge cases or be able to make it better
+Takeaway: It's all good for them to build it, but if we don't experiment, they won't find the edge cases or be able to make it better
 
 [Back to top](#)
 
@@ -442,18 +483,34 @@ It's all good for them to build it, but if we don't experiment, they won't find 
 
 Wesley Cabus [@WesleyCabus](https://twitter.com/@WesleyCabus)
 
-Server in a suitcase in Rwanda. They go hours/days without internet because of Power outages. We were developing in an office with WiFi. They're so different
+Wesley was making software that would be deployed on a server in a suitcase in Rwanda.
+They go hours/days without internet because of power outages.
+Wesley's team were developing in an office with WiFi.
+They're nothing alike.
 
-Airplane mode isn't an accurate simulation
+They wanted to simulate more realistic conditions for how the software was actually used.
+Unfortunately, airplane mode isn't an accurate simulation.
 
-Wrote a library called ruh roh. Wraps around a service and has random delays or random failures. Nugget package (prerelease)
+Wesley wrote a library called ruh roh [on NuGet](https://www.nuget.org/packages/RuhRoh/).
+This lets you wrap services or methods in your app startup, and "inject some randomness".
 
-Lets you cause exceptions from different services/methods based on whatever conditions you want so you can test what happens when stuff doesn't work.
-Really useful for external dependencies
+You can:
 
-Can also slow things down
+- slow down
+- throw exceptions
+- change responses
 
-Change the data that is returned
+Based on:
+
+- random failures
+- every N calls,
+- after N calls,
+- inputs to the method
+
+It lets you test what happens when stuff doesn't work.
+This is really useful for external dependencies.
+You're more likely to already handle errors in your own code,
+but assume that a library you didn't write behaves in a way it might not.
 
 [Back to top](#)
 
@@ -463,21 +520,47 @@ Change the data that is returned
 
 Kieran Jacobsen [@kjacobsen](https://twitter.com/@kjacobsen)
 
-HSTS - pre-loading
-CSP
-securityheaders.com
-Report-URI.org?
+Kieran went through a number of tests (and showed us how to do them) for Australian banks.
 
-TLS
-SSL labs.com
-TLS 1.1 and 1.0 make security worse for everyone, to support a few.
-1.0 is almost 20 years old.
-We shouldn't need to support people on Windows XP
+Things the banks didn't always do well:
 
-`.well-known/security.txt`
-Process, contacts, policies, encryption (of the report), etc.
+HSTS (HTTP Strict Transport Security) helps prevent MITM (person in the middle) attacks.
+It works by telling the browser to never display the page
+if the certificate isn't the same as the first time you visited.
+That still leaves a small chance for an attacker (the first time you go to the page),
+so there's a thing called HSTS pre-loading.
+Preloading lets browsers pre-load the right certificates, so it removes that chance for the attacker.
+
+Having a CSP (Content Security Policy) prevents the browser from loading resources from un-approved sites.
+Essentially, you whitelist known sources, e.g. analytics or third parties you _expect_ to appear.
+Any other requests will be rejected, so if a malicious script tries to send or download something, it will fail.
+There's a "report only" mode that can be used to tell you what resources you _are_ getting,
+in case you're not ready to completely block that traffic.
+
+TLS is great, but TLS 1.0 is not. It has known vulnerabilities -- not surprising, given it's 20 years old.
+Some websites still support it because "we have users using IE6 on Windows XP".
+The problem is, when a website supports TLS 1.0, or 1.1, it puts everyone at risk for the sake of a few.
+TLS 1.2 or 1.3 for the win!
+
+When well-meaning people want to report issues to a bank (or anyone),
+it's often difficult to find the right person to contact.
+Posting in open channels like Twitter can also alert attackers that there is a problem they can exploit,
+or give them notice so they can clean up their tracks.
+To help reduce the problem, it is recommended to put information in `/.well-known/security.txt`.
+The information in this document should outline the process for reporting an issue.
+You should include:
+
+- who to contact
+- relevant policies
+- how to send the report (e.g. public keys for encrypting the message)
 
 For easy message encryption, you can use [keybase.io](https://keybase.io)
+
+Resources:
+
+- [Security Headers](https://securityheaders.com/)
+- [Report URI](https://report-uri.com/)
+- [SSL Labs](https://www.ssllabs.com/)
 
 [Back to top](#)
 
@@ -487,31 +570,35 @@ For easy message encryption, you can use [keybase.io](https://keybase.io)
 
 Jake Ginnivan [@JakeGinnivan](https://twitter.com/@JakeGinnivan)
 
-<img src="./beyond-infrastructure-as-code-dsls.jpg">
+![](./beyond-infrastructure-as-code-dsls.jpg)
 
-Pulumi can use TypeScript, python, or Go
+Pulumi allows you to define resources in code, using TypeScript, python, or Go.
 
-Define resources in code.
-Can publish and consume infra
+Configuration in code has a few benefits. You can test it, you can use feature flags, you can access environment variables, you can create resources based on conditions.
 
-Configuration in code, e.g. tests, feature flags, environment
+Pulumi has a CLI. It's not entirely standalone, as it needs to track some state.
+That state relates to what's actually deployed - there's some extra metadata stored by Pulumi, so it can't just query AWS/Azure to find what's there.
 
-Pulumi CLI
-Tracks state - what's actually deployed - uses some extra metadata, so it can't just query to find what's available
+app.pulumi.com is managed service with "enterprise" features like audit, policies, secret management.
+You can get by without it if you don't want to pay
 
-app.pulumi.com - managed service with
-"enterprise" features like audit, policies, secret management
+Pulumi can publish and consume infrastructure -- that is, create new stuff and reference old stuff.
 
-Can mix intra code and application code
-e.g. S3 on created event handler => lambda
+You can mix infrastructure code with application code.
+For example, create an S3 bucket and an `onCreated` event handler.
+The event handler will end up in a Lambda with a S3 trigger.
+That's pretty cool.
 
-"We want devs to manage infra"
-Input from ops. Make sure it's monitored, etc. Knowledge sharing
-Feel like this will help build awareness
-Allow team to evolve architecture, look at simplifying, reducing cost, etc
+Jake's team are going down this path because "we want devs to manage infrastructure".
+They have an ops team who will give input, provide advice, make sure it's all monitored, etc.
+This will allow knowledge sharing between dev and ops,
+build awareness of what's actually running your code and how it fits together.
+They also hope it will allow them to evolve their architecture.
+In the future, they'd like to simplify if possible, and reduce cost.
 
-Pulumi crosswalk gives you some sensible defaults.
-Pulumi is more configurable, but more effort, too
+Pulumi crosswalk (x-walk? the plugins are things like `awsx` rather than `aws`) gives you some sensible defaults.
+
+Pulumi is more configurable, but more effort, too.
 
 [Back to top](#)
 
@@ -550,8 +637,8 @@ Persistent connections on the web server is now 0. They all go through the Signa
 
 Handles up to 100,000 connections (100 units) if you want to pay for it. That's per service.
 
-There was a cool demo with audience involvement - we played pong, did some yes/no polls, pressed a clicker
-Demonstrated low-latency communication. Multiple concurrent updates, etc.
+There was a cool demo with audience involvement - we played pong, did some yes/no polls, pressed a clicker.
+This demonstrated the low-latency communication, multiple concurrent updates, and it was pretty good fun.
 
 [Back to top](#)
 
@@ -563,27 +650,33 @@ Amy Kapernick [@Amys_Kapers](https://twitter.com/@Amys_Kapers)
 
 ![](./css-grid-what-is-this-magic.jpg)
 
-In the beginning there was darkness
-Then HTML pages
-Then tables for layout
-Then floats and clear fix and all the container divs that come with that
-Then flexbox allowed responsiveness across one axis
-Then CSS grid opened up the other axis as well
+In the beginning there was darkness.
+
+- Then HTML pages
+- Then tables for layout
+- Then floats and clear fix and all the container divs that come with that
+- Then flexbox allowed responsiveness across one axis
+- Then CSS grid opened up the other axis as well
 
 So, now, we can use semantic HTML for the structure
-and CSS for the layout. Like we should have been doing. No wrapper divs
+and CSS for the layout. Like we should have been doing. No wrapper `div`s
 
 `fr` unit is like flex basis.
 Add up the numbers (1fr + 2fr = 3fr), and each element will grow proportionally to "their" `fr` (2fr twice as big as 1fr)
 
-Minmax can help you deal with leftover space, e.g. when you don't know how many rows you need/columns
+`minmax()` can help you deal with leftover space, e.g. when you don't know how many rows you need/columns
 
-Grid + flex = 🎉
+Grid + flex = <span role="img" title="party">🎉</span>
 
-Browser support
-CSS Grid ~91%
-Flex box 98%
-Sub grid 😬 Firefox 71 (as yet unreleased)
+Browser support:
+
+- CSS Grid ~91%
+- Flex box 98%
+- Sub grid 😬 Firefox 71 (as yet unreleased)
+
+Use `@supports(display: grid)` (IE _thinks_ it supports grid, though)
+or `@supports(grid-template-areas: '.')` to figure out if grid is supported.
+Put your grid code inside the query and a fall-back outside, if you need to support it.
 
 [Back to top](#)
 
@@ -593,9 +686,7 @@ Sub grid 😬 Firefox 71 (as yet unreleased)
 
 Anton Ball [@antonjb](https://twitter.com/@antonjb)
 
-![](./commuting-like-a-developer.jpg)
-
-Commuting
+![Transport Driven Development](./commuting-like-a-developer.jpg)
 
 69% of Aussies drive to work. It's boring and "mindless". His many times have you arrived and not really been aware of how it happened
 
@@ -603,15 +694,15 @@ The average commuter spends about 4.5 hours per week commuting.
 
 Stress, poor sleep.
 
-There are many ways we commute. Anton showed a few wild examples
-a Perth unicyclist
+There are many ways we commute. Anton showed a few wild examples:
+a Perth unicyclist,
 a Sydney Harbour swimmer
 ... but more conventional options are available
 
 So he ran an experiment.
 Like all good experiments, he needed some rules:
-Consistent timing (door to desk)
-No work or email on the commute
+Consistent timing (door to desk),
+No work or email on the commute,
 Nothing infinite scrolling (e.g. Twitter, Facebook)
 
 Using an electric assisted bike (cheating) meant he didn't get as sweaty, so didn't need to change at either end.
@@ -622,7 +713,7 @@ You can probably guess that the car was the fastest mode,
 and cycling was the cheapest.
 Most investigations stop there, but Anton wanted to go deeper.
 
-A few notable pieces:
+A few notable bits:
 
 - you can use the commute to learn (all modes allowed listening to podcasts),
   but reading was restricted to public transport.
@@ -651,9 +742,10 @@ And the results?
 So what does Anton do now? (Mostly) cycling or public transport.
 
 What's next?
-Automation. Less reliance on cars. Car sharing
-Being able to reduce infrastructure for cars (e.g. parking lots)
-could free up money for better infrastructure for other modes, or, you know, parks.
+
+- Automation. Less reliance on cars. Car sharing
+- Being able to reduce infrastructure for cars (e.g. parking lots)
+  could free up money for better infrastructure for other modes, or, you know, parks.
 
 The challenge:
 
