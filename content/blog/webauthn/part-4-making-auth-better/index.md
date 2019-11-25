@@ -16,9 +16,9 @@ draft: true
 
 Other posts in this series:
 
-- [Forget your passwords with the Web Authentication API](../forget-your-passwords)
-- [The problem with passwords](../the-problem-with-passwords)
-- [The Web Authentication API](../web-authentication-api)
+- [Forget your passwords with the Web Authentication API](../part-1-forget-your-passwords)
+- [The problem with passwords](../part-2-the-problem-with-passwords)
+- [The Web Authentication API](../part-3-web-authentication-api)
 
 ---
 

@@ -1,22 +1,12 @@
 ---
 title: "The problem with passwords"
-date: "2019-09-23T04:22:29.924Z"
-description: "<p>
-There are plenty of problems with passwords:
-we forget them,
-we re-use them,
-and we make them too easy to guess.
-There's light on the horizon, though.
-The Web Authentication API (WebAuthn) could spell the end of passwords on the internet.
-</p><p>
-This is the second post in a series on Web Authentication
-</p>"
-draft: true
+date: "2019-11-25T02:53:14.000Z"
+description: "This is the second post in a series on Web Authentication"
 ---
 
 Other posts in this series:
 
-- [Forget your passwords with the Web Authentication API](../forget-your-passwords)
+- [Forget your passwords with the Web Authentication API](../part-1-forget-your-passwords)
 
 ---
 
@@ -48,20 +38,18 @@ There are a few attributes of the card that allow it to be used as verification 
 1. The photo looks like you
 1. It has your name on it
 
-<!-- <aside>
-The bouncer checking that you are old enough is actually related not to authentication, but to authorization --
-figuring out if you have permission to do or see something.
-The bouncer may also consider things like whether you meet a dress code, if you're on a guest list, or that you're in a fit state to enter.
-In web applications, authorization might decide what elements of a user interface you can see,
-for example "⚙ Admin settings" would only be shown to admin users,
-or you won't be able to browse/watch videos on Netflix if you haven't made a payment.
-<aside> -->
+In practice there are more things the bouncer will consider.
+Examples include
+whether you're adhering to a dress code,
+or if you're on a guest list or have tickets for an event.
+In web apps, this might be something like restricting access to certain sections based on your role,
+or preventing access to the main functionality of an app if you haven't made a payment.
 
 ## What's wrong with passwords?
 
 People typically don't make good passwords.
-Some of us might use password managers to help, but we're a small minority,
-and even the most conscientious user has a few passwords outside of their password manager,
+Some of us might use password managers to help, but it's a small minority.
+Even the most conscientious user has a few passwords outside of their password manager,
 for example their OS user account, or the master password for their password manager.
 
 Because we know people struggle to make strong passwords,
@@ -71,9 +59,6 @@ or forced password changes every 90 days.
 These rules can give the appearance of a stronger password,
 or less risk when a password is compromised.
 Whether that is true depends on how you use them.
-
-Users can meet complexity requirements by adding numbers or changing letters to symbols,
-but complexity rules alone don't make a good password.
 
 <img src="../password1.png" alt="Changing 'password' to 'P@ssword1' does not make it a good password">
 
@@ -93,12 +78,14 @@ The password is a shared secret.
 If you trust your friends, but you wouldn't give them your bank account password,
 you're probably not OK with someone you don't trust getting your passwords.
 If your password has been compromised, you may get some warning,
-for example a bank may require verification of any unusual activity (e.g. large transfers to an attacker's bank account).
+for example a bank may require verification of any unusual activity
+(e.g. large transfers to an attacker's bank account).
 Other times, we only know when large dumps of passwords end up on the internet, at sites like
+<a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">Have I Been Pwned</a>
 
-<a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">
+<p><a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">
   <img src="../hibp.jpg" alt="Have I Been Pwned allows you to check if your accounts are involved in data breaches.">
-</a>
+</a></p>
 
 Even if none of your accounts or passwords have been contained in a published breach,
 attackers still have ways to get them from you.
@@ -107,3 +94,5 @@ Many people have had their passwords stolen by phishing websites
 Sometimes, they'll find a list of common passwords and try them with a number of accounts.
 
 Ultimately, [your password isn't the problem](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-Identity/Your-Pa-word-doesn-t-matter/ba-p/731984), nor is how they are stored. The biggest problem with passwords is not how we deal with passwords, but that we have them at all.
+
+We'll explore an alternative in the next post in the series.
