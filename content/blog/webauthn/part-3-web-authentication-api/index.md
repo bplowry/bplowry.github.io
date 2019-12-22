@@ -1,17 +1,9 @@
 ---
 title: "The Web Authentication API"
-date: "2019-09-23T04:22:29.924Z"
-description: "<p>
-There are plenty of problems with passwords:
-we forget them,
-we re-use them,
-and we make them too easy to guess.
-There's light on the horizon, though.
-The Web Authentication API (WebAuthn) could spell the end of passwords on the internet.
-</p><p>
-This is the third post in a series on Web Authentication
-</p>"
-draft: true
+date: "2019-12-22T05:38:00.000Z"
+description: "There is a growing movement towards removing passwords and providing alternatives.
+Some of these are being enabled in browsers through the Web Authentication API,
+which we will explore in the third post in a series on WebAuthn."
 ---
 
 Other posts in this series:
@@ -20,6 +12,10 @@ Other posts in this series:
 - [The problem with passwords](../part-2-the-problem-with-passwords)
 
 ---
+
+In the previous post, we explored some problems with passwords.
+There is a growing movement towards removing passwords and providing alternatives.
+Some of these are being enabled in browsers through the Web Authentication API.
 
 ## What is WebAuthn?
 
@@ -43,9 +39,9 @@ Using a device called an authenticator
 What gets sent around
 
 - for registering credentials:
-- website information
+  - website information
 - for getting credentials
-- website information
+  - website information
 
 You may have noticed that we never send anything secret.
 
@@ -90,7 +86,9 @@ or you can import actual data for your users from Google Analytics.
 
 At time of writing, it is supported in Chrome, Firefox, Edge and Safari (macOS),
 and not supported on Safari (or any other browser) on iOS.
-Whether someone can actually use it depends on
+**UPDATE: 22/12/2019: Safari iOS 13.2 has support behind a feature flag, and 13.3 is enabled by default**
+
+Whether someone can actually use WebAuthn depends on
 if they have an external authenticator
 or if their phone/computer can act as an authenticator.
 
@@ -101,7 +99,7 @@ It's more likely that someone will have a phone/computer that is capable:
 - ✅ Android phone from Android 7 and above ([~58% of Android phones](https://developer.android.com/about/dashboards?hl=en))
 - ✅ Windows 10 device capable of Windows Hello -- <span role="img" alt="Note">ℹ</span> some devices are capable of using Windows Hello with a PIN, so you may not need a computer with a fingerprint scanner or an infra-red camera.
 - ✅ macOS device with Face ID or Touch ID
-- ❌ unfortunately, it's not supported on iOS yet.
+- ❌ unfortunately, it's not supported on iOS yet. **UPDATE 22/12/2019: Coming soon! experimental in iOS 13.2 and enabled in iOS 13.3**
 
 The lack of support on some devices doesn't need to hold you back, though. You can detect support in the browser and provide different experiences for users on devices without those capabilities, without taking anything away.
 
@@ -125,3 +123,6 @@ await window.navigator.credentials.get(options)
 
 If you're wondering about those `options` parameters,
 <a href="https://webauthn.guide/">webauthn.guide by Duo</a> does a much better job explaining them than I would.
+
+In the next post, we'll look at how the user experience changes,
+and how you might start enabling this for your users.

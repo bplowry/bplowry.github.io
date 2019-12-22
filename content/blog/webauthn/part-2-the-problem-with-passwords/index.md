@@ -1,7 +1,9 @@
 ---
 title: "The problem with passwords"
 date: "2019-11-25T02:53:14.000Z"
-description: "This is the second post in a series on Web Authentication"
+description: "In the second post of a series on Web Authentication,
+we will go over some of the ways passwords can give a false sense of security,
+and lead into an alternative"
 ---
 
 Other posts in this series:
