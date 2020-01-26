@@ -1,0 +1,1402 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Six of one]]></title><description><![CDATA[Thoughts on programming and perhaps other things.]]></description><link>https://bplowry.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 26 Jan 2020 15:45:20 GMT</lastBuildDate><item><title><![CDATA[Making auth better]]></title><description><![CDATA[Other posts in this series: Forget your passwords with the Web Authentication API The problem with passwords The Web Authentication API How…]]></description><link>https://bplowry.github.io/webauthn/part-4-making-auth-better/</link><guid isPermaLink="false">https://bplowry.github.io/webauthn/part-4-making-auth-better/</guid><pubDate>Sun, 26 Jan 2020 14:47:00 GMT</pubDate><content:encoded>&lt;p&gt;Other posts in this series:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;../part-1-forget-your-passwords&quot;&gt;Forget your passwords with the Web Authentication API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../part-2-the-problem-with-passwords&quot;&gt;The problem with passwords&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../part-3-web-authentication-api&quot;&gt;The Web Authentication API&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;How can WebAuthn be better for users?&lt;/h2&gt;
+&lt;p&gt;Allowing a user to create an account without a password means
+their account is less likely to be compromised,
+and the use of more secure (when compared to SMS),
+and easier-to-use 2FA (when compared to one time passcodes).
+Those should do the trick!&lt;/p&gt;
+&lt;p&gt;You can &lt;a href=&quot;https://webauth.io&quot;&gt;try it out for yourself&lt;/a&gt; if you have an authenticator
+(remember: if you’re using a phone there’s a good chance you’re holding one).
+If you don’t have an authenticator, I’ve recorded a video showing how easy it is to register and login.&lt;/p&gt;
+&lt;video width=&quot;630&quot; controls&gt;
+  &lt;source src=&quot;/af29446d2127747f7b276eb881fe67d8/register-login-demo.mp4&quot; type=&quot;video/mp4&quot;&gt;
+Your browser does not support the video tag.
+&lt;/video&gt;
+&lt;br /&gt;
+That all looks good, but there might be a few other things you need to consider.
+&lt;h2&gt;How do I enable WebAuthn for my users?&lt;/h2&gt;
+&lt;p&gt;Ultimately, a lot of these decisions are up to you/your company to decide,
+but I’ll give my thoughts below as well. Here are some things to think about:&lt;/p&gt;
+&lt;p&gt;🚧👷‍♀️ Still working on this bit 👷‍♂️🚧&lt;/p&gt;
+&lt;h3&gt;Registration&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Passwordless login or second factor?&lt;/li&gt;
+&lt;li&gt;Is a password still required?&lt;/li&gt;
+&lt;li&gt;Is a password still &lt;em&gt;allowed&lt;/em&gt;?&lt;/li&gt;
+&lt;li&gt;Register the token now or later?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;How do you make the feature discoverable?&lt;/h3&gt;
+&lt;p&gt;How do you get more people using it?
+• Hints on the login page?
+• Prompt after logging in with password?
+• What kind of messages do you want?
+• How forcefully will you push?&lt;/p&gt;
+&lt;h3&gt;Login&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Passwordless? Do you have a different login page entirely or a separate form?&lt;/li&gt;
+&lt;li&gt;Usernameless? More conditions to meet, but it’s an option&lt;/li&gt;
+&lt;li&gt;Fall back to using a password?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Account management&lt;/h3&gt;
+&lt;p&gt;Manage devices:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Nicknames&lt;/li&gt;
+&lt;li&gt;Last used&lt;/li&gt;
+&lt;li&gt;Prompt to (or automatically) remove “old” authentication methods&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Account recovery&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Password or no?&lt;/li&gt;
+&lt;li&gt;Magic link&lt;/li&gt;
+&lt;li&gt;Store their email. VERIFY&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;What have the big companies done/who can I copy?&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[The Web Authentication API]]></title><description><![CDATA[Other posts in this series: Forget your passwords with the Web Authentication API The problem with passwords Making auth better In the…]]></description><link>https://bplowry.github.io/webauthn/part-3-web-authentication-api/</link><guid isPermaLink="false">https://bplowry.github.io/webauthn/part-3-web-authentication-api/</guid><pubDate>Sun, 22 Dec 2019 05:38:00 GMT</pubDate><content:encoded>&lt;p&gt;Other posts in this series:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;../part-1-forget-your-passwords&quot;&gt;Forget your passwords with the Web Authentication API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../part-2-the-problem-with-passwords&quot;&gt;The problem with passwords&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../part-4-making-auth-better&quot;&gt;Making auth better&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;In the previous post, we explored some problems with passwords.
+There is a growing movement towards removing passwords and providing alternatives.
+Some of these are being enabled in browsers through the Web Authentication API.&lt;/p&gt;
+&lt;h2&gt;What is WebAuthn?&lt;/h2&gt;
+&lt;p&gt;WebAuthn is a specification in the &lt;abbr title=&quot;World Wide Web Consortium&quot;&gt;W3C&lt;/abbr&gt;.
+The primary contributors are Mozilla, Microsoft, Google, FIDO Alliance and the W3C.&lt;/p&gt;
+&lt;p&gt;It defines a standard by which browsers can get assertions from authenticators,
+and how web servers can validate those assertions.
+It also defines a JavaScript API for web applications to request credentials from the browser.&lt;/p&gt;
+&lt;p&gt;The Web Authentication API, combined with the Client-to-Authenticator Protocol (CTAP),
+make up the FIDO2 protocol.&lt;/p&gt;
+&lt;h2&gt;How does it work?&lt;/h2&gt;
+&lt;p&gt;Using a device called an authenticator&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a separate device, known as an external, cross-platform or roaming authenticator&lt;/li&gt;
+&lt;li&gt;built in to a phone or laptop, known as an internal, platform or bound authenticator&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What gets sent around&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;for registering credentials:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;website information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;for getting credentials&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;website information&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You may have noticed that we never send anything secret.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 33.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAABJ0AAASdAHeZh94AAABIElEQVQY05WQMY6CQBSGJ2LJCSw4Aj2FjSUVJ/ASFB7BA6wNjTR0JLBIgwUUBkwgumFJDC4QAgksJJJY2SDgPjGx0Gq/4s/Mm/nnzfvR7T90XQfaNM1jgQRBEEXxs6eqKii1XVdfLt5iYc/n/n7f9p7r9QpHRVGkafrwA2g8HjMMM51OaZrWdf1ubhq4KE0mH6MRx3FdD9TLsiQIAsfx2WwWBMG983a7TZLE8zxN02zbhlIYRbHvf6/XP5vNbxhGcXw+n3e7HUmSCCEMw0ApisrzHEmSJMuyZVk8z5umCZ9xHMeFx45H93D4cl3Ynk6n5XIJnsFgADocDkFZlkWqquo9iqJkWfZM5SWkuq4Nw4A2Ss9qtYIp0Hue7RvPsV/4A4UBTXKOMoEGAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;no secrets&quot; title=&quot;no secrets&quot; src=&quot;/static/39b13230930c4dc34542f0adf6c64953/b9e4f/no-secrets.png&quot; srcset=&quot;/static/39b13230930c4dc34542f0adf6c64953/cf440/no-secrets.png 148w,
+/static/39b13230930c4dc34542f0adf6c64953/d2d38/no-secrets.png 295w,
+/static/39b13230930c4dc34542f0adf6c64953/b9e4f/no-secrets.png 590w,
+/static/39b13230930c4dc34542f0adf6c64953/f9b6a/no-secrets.png 885w,
+/static/39b13230930c4dc34542f0adf6c64953/267a8/no-secrets.png 921w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;p&gt;The authenticator can store credential information for each login you’d like to use&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;website identifier&lt;/li&gt;
+&lt;li&gt;user identifier&lt;/li&gt;
+&lt;li&gt;credential identifier&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span role=&quot;img&quot; alt=&quot;This section is being worked on&quot;&gt;🚧 DETOUR ➡&lt;/span&gt;&lt;/p&gt;
+&lt;!-- Some authenticators store the _actual_ private key for the credential source,
+in this case they are referred to as **resident keys**, because they are resident on the authenticator.
+Authenticators that support resident keys can only store a limited number -- because they have to physically store something, and storage is limited. The Yubikey 5C, for example, can store 25 resident keys.
+
+Authenticators can hold an unlimited number of **non-resident keys** -- because nothing is stored on the device.
+That might sound strange, but this actually works by encrypting the _credential_ private key using the private key baked in to the _device_ during manufacturing, and sending that to the client (browser, app, etc) as the credential ID.
+That means when the application requests an assertion for any particular credential ID, the authenticator first has to decrypt the credential ID to get the private key, so that it can sign the authenticatorData.
+As a consequence, non-resident keys cannot be used for usernameless scenarios, which we&apos;ll go into a bit further later on. --&gt;
+&lt;h2&gt;Can I use it?&lt;/h2&gt;
+&lt;p&gt;In a word, yes. Read on if you want more detail 😆&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://caniuse.com&quot;&gt;Can I Use&lt;/a&gt; allows you to import data from your country,
+and also has a “usage relative” option, which can help narrow down to your targeted users,
+or you can import actual data for your users from Google Analytics.&lt;/p&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/gh/ireade/caniuse-embed/caniuse-embed.min.js&quot;&gt;&lt;/script&gt;
+&lt;p class=&quot;ciu_embed&quot; data-feature=&quot;webauthn&quot; data-periods=&quot;future_1,current,past_1&quot; data-accessible-colours=&quot;false&quot;&gt;
+  &lt;a href=&quot;http://caniuse.com/#feat=webauthn&quot;&gt;
+    &lt;picture&gt;
+      &lt;source type=&quot;image/webp&quot; srcset=&quot;https://res.cloudinary.com/ireaderinokun/image/upload/v1569250922/caniuse-embed/webauthn-2019-9-23.webp&quot;&gt;
+      &lt;source type=&quot;image/png&quot; srcset=&quot;https://res.cloudinary.com/ireaderinokun/image/upload/v1569250922/caniuse-embed/webauthn-2019-9-23.png&quot;&gt;
+      &lt;source type=&quot;image/jpeg&quot; srcset=&quot;https://res.cloudinary.com/ireaderinokun/image/upload/v1569250922/caniuse-embed/webauthn-2019-9-23.jpg&quot;&gt;
+      &lt;img src=&quot;https://res.cloudinary.com/ireaderinokun/image/upload/v1569250922/caniuse-embed/webauthn-2019-9-23.png&quot; alt=&quot;Data on support for the webauthn feature across the major browsers from caniuse.com&quot;&gt;
+    &lt;/picture&gt;
+  &lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;At time of writing, it is supported in Chrome, Firefox, Edge and Safari (macOS),
+and not supported on Safari (or any other browser) on iOS.
+&lt;strong&gt;UPDATE: 22/12/2019: Safari iOS 13.2 has support behind a feature flag, and 13.3 is enabled by default&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Whether someone can actually use WebAuthn depends on
+if they have an external authenticator
+or if their phone/computer can act as an authenticator.&lt;/p&gt;
+&lt;p&gt;I don’t have numbers, but I’m going to guess that a very small minority own authenticator devices like a Yubikey.&lt;/p&gt;
+&lt;p&gt;It’s more likely that someone will have a phone/computer that is capable:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Android phone from Android 7 and above (&lt;a href=&quot;https://developer.android.com/about/dashboards?hl=en&quot;&gt;~58% of Android phones&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;✅ Windows 10 device capable of Windows Hello — &lt;span role=&quot;img&quot; alt=&quot;Note&quot;&gt;ℹ&lt;/span&gt; some devices are capable of using Windows Hello with a PIN, so you may not need a computer with a fingerprint scanner or an infra-red camera.&lt;/li&gt;
+&lt;li&gt;✅ macOS device with Face ID or Touch ID&lt;/li&gt;
+&lt;li&gt;❌ unfortunately, it’s not supported on iOS yet. &lt;strong&gt;UPDATE 22/12/2019: Coming soon! experimental in iOS 13.2 and enabled in iOS 13.3&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The lack of support on some devices doesn’t need to hold you back, though. You can detect support in the browser and provide different experiences for users on devices without those capabilities, without taking anything away.&lt;/p&gt;
+&lt;h2&gt;How do I use the JavaScript API?&lt;/h2&gt;
+&lt;p&gt;The JavaScript API only has a few methods.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// feature detection for WebAuthn&lt;/span&gt;
+window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;PublicKeyCredential
+
+&lt;span class=&quot;token comment&quot;&gt;// detection for platform/on-device authenticator&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;PublicKeyCredential&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isUserVerifyingPlatformAuthenticatorAvailable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// registration of authenticator&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;navigator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;credentials&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;options&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// authenticate with authenticator&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;navigator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;credentials&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;options&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you’re wondering about those &lt;code class=&quot;language-text&quot;&gt;options&lt;/code&gt; parameters,
+&lt;a href=&quot;https://webauthn.guide/&quot;&gt;webauthn.guide by Duo&lt;/a&gt; does a much better job explaining them than I would.&lt;/p&gt;
+&lt;p&gt;In the next post, we’ll look at how the user experience changes,
+and how you might start enabling this for your users.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[The problem with passwords]]></title><description><![CDATA[Other posts in this series: Forget your passwords with the Web Authentication API The Web Authentication API Making auth better What is…]]></description><link>https://bplowry.github.io/webauthn/part-2-the-problem-with-passwords/</link><guid isPermaLink="false">https://bplowry.github.io/webauthn/part-2-the-problem-with-passwords/</guid><pubDate>Mon, 25 Nov 2019 02:53:14 GMT</pubDate><content:encoded>&lt;p&gt;Other posts in this series:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;../part-1-forget-your-passwords&quot;&gt;Forget your passwords with the Web Authentication API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../part-3-web-authentication-api&quot;&gt;The Web Authentication API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../part-4-making-auth-better&quot;&gt;Making auth better&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;What is authentication?&lt;/h2&gt;
+&lt;p&gt;Authentication is about proving your identity.
+An authentication ceremony allows a user to prove that they are who they say they are.
+In order to prove your identity, you will typically use
+something you know,
+something you have, or
+something you are.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 47.83080260303688%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAABJ0AAASdAHeZh94AAABFElEQVQoz6VRsW6DMBDl/8fumTL1Dzp1q1qJJZEIqDiFYGyDQwEnAeNgID3AilDG5kknne7uvXdnW7cnYEEMw3CqZNf3y4bSV4/9hBmB7rJeRFKQZsyGiZzmwg0JOeaz0HAbp4U8p+IYFymozKOAVnZfK2yviW564/yx/X55fXu3d4Y8GDIXv7TgTavuZHXRn6vIXsfNuTVkUck9+J6qiWzWu3Z6l+yDDD+sXaVaxMrcXJYlxlHCKPJ9Sqk5WKkwDGMcIx8FQdBPzwEqhFBMDgccIoTqurYgINtstp7ngdBMhmkQchwHipzzu60QAuTcncsSBloWRJZljLGU8+WGWreUkLwolkUpJaMjLlVlbn7qn/+NPzYMP1+nM4FAAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Examples include a password you know, a device you have, or a fingerprint/facial features that you are.&quot; title=&quot;Examples include a password you know, a device you have, or a fingerprint/facial features that you are.&quot; src=&quot;/static/6346913f854d8603024f984268bed5d1/b9e4f/know-have-are.png&quot; srcset=&quot;/static/6346913f854d8603024f984268bed5d1/cf440/know-have-are.png 148w,
+/static/6346913f854d8603024f984268bed5d1/d2d38/know-have-are.png 295w,
+/static/6346913f854d8603024f984268bed5d1/b9e4f/know-have-are.png 590w,
+/static/6346913f854d8603024f984268bed5d1/f9b6a/know-have-are.png 885w,
+/static/6346913f854d8603024f984268bed5d1/d3b8a/know-have-are.png 922w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;p&gt;In web applications, authentication typically involves logging in to a system,
+but authentication happens in real-world situations, too.
+Imagine you are trying to get into a nightclub.
+After waiting in line, you are asked by a bouncer to present your ID.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 53.501094091903724%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAABJ0AAASdAHeZh94AAABhUlEQVQoz6WSu48BURTGr8IoFApKEZrRGBWiUHgUJpQznYlEwfwLop/ao5LIqDxCmETh9U8oVRQTiYICDYnnfrOzmWbtZpO9xck5N/d37vfdc8nrH4t833o+n4jL5VKW5cfj8Vf4fr9vt1tVVa/Xa7Vatdvt+/0eO5vN5nA4/AgDQ5zNZmazmaIoQkgul5MkKRwOk88VCoUMUe/hwWCAc06nUxRFh8NhtVotFovNZjOZTF6v1zBlePmCb7cb4mg00u9EnkqlkCPm83mWZX0+3xvZaHO5XPRmiqIASKfT0+k0Eokgj8VigiBEo1EDXiwWvV7veDxqcKfToWn6dDqhaDabPM8j0Xslk8lgMAghiUSCYRjdcLFYhK/VaqXBw+EwHo/vdjsU3W7X4/EUCoVsNgu1LpfL7/dzHBcIBAzP4/G4VCqdz2cNxqtAHoShwGAajUa5XK5UKoiYc71er9VqGBuM6ONwu92ZTAbdNbjVarXbbTzV7/9B17xer/v9/nw+n0wmKD8ALxzcX89jsy4AAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;ID cards are important when trying to get into a nightclub&quot; title=&quot;ID cards are important when trying to get into a nightclub&quot; src=&quot;/static/0cb2b604f0f4aec7c7ce1b4c511b2451/b9e4f/bouncer-id.png&quot; srcset=&quot;/static/0cb2b604f0f4aec7c7ce1b4c511b2451/cf440/bouncer-id.png 148w,
+/static/0cb2b604f0f4aec7c7ce1b4c511b2451/d2d38/bouncer-id.png 295w,
+/static/0cb2b604f0f4aec7c7ce1b4c511b2451/b9e4f/bouncer-id.png 590w,
+/static/0cb2b604f0f4aec7c7ce1b4c511b2451/f9b6a/bouncer-id.png 885w,
+/static/0cb2b604f0f4aec7c7ce1b4c511b2451/7d205/bouncer-id.png 914w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;p&gt;This exchange has serves a dual purpose:
+firstly, they need to check your date of birth to figure out if you’re old enough to enter — that’s &lt;em&gt;authorization&lt;/em&gt; —
+but more importantly, they need to verify that it’s &lt;em&gt;your&lt;/em&gt; date of birth they’re checking — &lt;em&gt;authentication&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;There are a few attributes of the card that allow it to be used as verification of your identity:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It’s issued by a trusted source, which can be verified by making sure it has the right layout, colours, holograms, etc.&lt;/li&gt;
+&lt;li&gt;The photo looks like you&lt;/li&gt;
+&lt;li&gt;It has your name on it&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In practice there are more things the bouncer will consider.
+Examples include
+whether you’re adhering to a dress code,
+or if you’re on a guest list or have tickets for an event.
+In web apps, this might be something like restricting access to certain sections based on your role,
+or preventing access to the main functionality of an app if you haven’t made a payment.&lt;/p&gt;
+&lt;h2&gt;What’s wrong with passwords?&lt;/h2&gt;
+&lt;p&gt;People typically don’t make good passwords.
+Some of us might use password managers to help, but it’s a small minority.
+Even the most conscientious user has a few passwords outside of their password manager,
+for example their OS user account, or the master password for their password manager.&lt;/p&gt;
+&lt;p&gt;Because we know people struggle to make strong passwords,
+we add a whole lot of extra rules around them,
+like password complexity rules
+or forced password changes every 90 days.
+These rules can give the appearance of a stronger password,
+or less risk when a password is compromised.
+Whether that is true depends on how you use them.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 67.66334440753046%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAIAAACgpqunAAAACXBIWXMAABJ0AAASdAHeZh94AAABj0lEQVQoz3VTy26CUBTsf7eJuzYxbv2ErtxoYjQ+Nz7axAfGSCg+UKNN0GB8CwjX04GLIFVncXPODcPMmQMvRHR5DvoH3NxcvtBzMMZCfMZI1+lwcAqfPJvNZFlWFGU0GomiKAhC30W5XF6tVtyaJxiPUyzmWeDkRqPRbrdxfrkQXPCbA3RuycUiZTIh29vtdr1eP7R9Pp+D3rYJRpZLp/DJrVYrl8tVKpVmswnlUqnU7XZRJ5PJ4XDoKfM5o1GKREK2N5sNxCVJGgwGmHw6nSKFyWSCOrDNCbJMohgKDKmMx+N724ZhaJp2Op2CPfX7JEn+tjzbCDaVSuXz+Ww2i6JerxcKhUQigXGwCIfI5/x4v7y9hmwbLiAC/7vdbr/f4+Sz6LpuX+Nx3KpLUjViN8rz+Ry7UVUVDk3TBIcXeAu2vVgsXClixMyLqRwFkx0Dcq/Xg89qtVqr1RB1Op1Gi0HgHFN0Op3rJ8y+fz9/tDIPwCPbLrBSy7Jw8hbKvMXpR2hBm+6+7Qf/wCO4zODJP83bD++ObyQXAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Changing &amp;apos;password&amp;apos; to &amp;apos;P@ssword1&amp;apos; does not make it a good password&quot; title=&quot;Changing &amp;apos;password&amp;apos; to &amp;apos;P@ssword1&amp;apos; does not make it a good password&quot; src=&quot;/static/00181959cb910ea010651ff0bdbb313b/b9e4f/password1.png&quot; srcset=&quot;/static/00181959cb910ea010651ff0bdbb313b/cf440/password1.png 148w,
+/static/00181959cb910ea010651ff0bdbb313b/d2d38/password1.png 295w,
+/static/00181959cb910ea010651ff0bdbb313b/b9e4f/password1.png 590w,
+/static/00181959cb910ea010651ff0bdbb313b/f9b6a/password1.png 885w,
+/static/00181959cb910ea010651ff0bdbb313b/2f110/password1.png 903w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;p&gt;Password complexity rules can provide a false sense of security,
+since so many of us simply add numbers onto the end or make common substitutions of letters for symbols.
+The idea that a complex password is better doesn’t hold up when so many passwords follow similar patterns.&lt;/p&gt;
+&lt;p&gt;A password is intended to be something that is only known by the user,
+and can be verified by the service where they use it.
+It shouldn’t be stored on either side in a way that someone else could decipher it.
+For users, that usually means not writing it down in a notebook titled “Passwords”,
+and for application developers, that means not storing it in plain text.
+The password is a shared secret.&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 45.998071359691416%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAABJ0AAASdAHeZh94AAABBElEQVQoz6WRWWuDQBSF/f8/Jo/igriioqA+VdwQESNaExU1FpfaE5MmEPpQ2vMwnJnh3u9cLrFt2+eubdfD/EbE9g8RQL3tappmHMc8z6dpGnd9fOtyueBs23YYBvx2XXcLeCW7riuKIkVRtm0fDocwDB3H4XnesqwkSQRBYBjmeDzqum6aJk3Tqqo+i+u6juPY87z3XVVVFUVxOp3KsvR9H0BckQg+y7J5ntd1vceGu7UEWZIkoNAYWE3TWJYlSTJNU/zKssxxnKIoj8r7zOgNGvjn87nve6SAAQRZYIIgwPw/LuJajFHREigQoiiCx7QYFS+GYSALor5s9Fm8LMvfVvUFl4z0a/pEAP0AAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Think you can trust other people with your secrets?&quot; title=&quot;Think you can trust other people with your secrets?&quot; src=&quot;/static/3982e5526a894a80b2f4c7c4c0da3b1c/b9e4f/think-you-can.png&quot; srcset=&quot;/static/3982e5526a894a80b2f4c7c4c0da3b1c/cf440/think-you-can.png 148w,
+/static/3982e5526a894a80b2f4c7c4c0da3b1c/d2d38/think-you-can.png 295w,
+/static/3982e5526a894a80b2f4c7c4c0da3b1c/b9e4f/think-you-can.png 590w,
+/static/3982e5526a894a80b2f4c7c4c0da3b1c/f9b6a/think-you-can.png 885w,
+/static/3982e5526a894a80b2f4c7c4c0da3b1c/04880/think-you-can.png 1037w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;p&gt;If you trust your friends, but you wouldn’t give them your bank account password,
+you’re probably not OK with someone you don’t trust getting your passwords.
+If your password has been compromised, you may get some warning,
+for example a bank may require verification of any unusual activity
+(e.g. large transfers to an attacker’s bank account).
+Other times, we only know when large dumps of passwords end up on the internet, at sites like
+&lt;a href=&quot;https://haveibeenpwned.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Have I Been Pwned&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://haveibeenpwned.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 35.42857142857142%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAME/8QAFAEBAAAAAAAAAAAAAAAAAAAAAv/aAAwDAQACEAMQAAABrQQzBH//xAAaEAABBQEAAAAAAAAAAAAAAAACAAEDERMx/9oACAEBAAEFAhiKsyT9/8QAFREBAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQMBAT8Bh//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAECAQE/Aaf/xAAXEAEAAwAAAAAAAAAAAAAAAAAAAUFC/9oACAEBAAY/AqZS/8QAGRABAAMBAQAAAAAAAAAAAAAAAQARITFR/9oACAEBAAE/IapMu7Dzh0T0Z//aAAwDAQACAAMAAAAQfC//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8Qwsf/xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8Q0lf/xAAcEAACAQUBAAAAAAAAAAAAAAABEQAhMUGB0eH/2gAIAQEAAT8QVgwIxzqA9vIiNQCrOf/Z&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Have I Been Pwned allows you to check if your accounts are involved in data breaches.&quot; title=&quot;Have I Been Pwned allows you to check if your accounts are involved in data breaches.&quot; src=&quot;/static/d226cea2bc8e8c69e83bac77d04f3dc2/c739e/hibp.jpg&quot; srcset=&quot;/static/d226cea2bc8e8c69e83bac77d04f3dc2/8ee9c/hibp.jpg 148w,
+/static/d226cea2bc8e8c69e83bac77d04f3dc2/ebbe7/hibp.jpg 295w,
+/static/d226cea2bc8e8c69e83bac77d04f3dc2/c739e/hibp.jpg 590w,
+/static/d226cea2bc8e8c69e83bac77d04f3dc2/5413e/hibp.jpg 885w,
+/static/d226cea2bc8e8c69e83bac77d04f3dc2/35dd2/hibp.jpg 1050w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+    &lt;/span&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Even if none of your accounts or passwords have been contained in a published breach,
+attackers still have ways to get them from you.
+Many people have had their passwords stolen by phishing websites
+— websites that are designed to look like legitimate websites with the hope that you’ll enter your login information into them.
+Sometimes, they’ll find a list of common passwords and try them with a number of accounts.&lt;/p&gt;
+&lt;p&gt;Ultimately, &lt;a href=&quot;https://techcommunity.microsoft.com/t5/Azure-Active-Directory-Identity/Your-Pa-word-doesn-t-matter/ba-p/731984&quot;&gt;your password isn’t the problem&lt;/a&gt;, nor is how they are stored. The biggest problem with passwords is not how we deal with passwords, but that we have them at all.&lt;/p&gt;
+&lt;p&gt;We’ll explore an alternative in the next post in the series.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Forget your passwords with the Web Authentication API]]></title><description><![CDATA[Passwords are hard.
+Data breaches frequently expose poor security practices,
+proving that, as an industry, we’re not very good at this.
+As…]]></description><link>https://bplowry.github.io/webauthn/part-1-forget-your-passwords/</link><guid isPermaLink="false">https://bplowry.github.io/webauthn/part-1-forget-your-passwords/</guid><pubDate>Mon, 04 Nov 2019 13:57:22 GMT</pubDate><content:encoded>&lt;p&gt;Passwords are hard.
+Data breaches frequently expose poor security practices,
+proving that, as an industry, we’re not very good at this.
+As developers have become more aware of these challenges,
+we’ve tried to offload password management to “the big guns”,
+making our lives easier, but what about our users?
+From confusing or ineffective password complexity restrictions
+to password fields you can’t paste into,
+it’s no wonder so many people find one password and stick with it.&lt;/p&gt;
+&lt;p&gt;The Web Authentication API (WebAuthn)
+allows you to build passwordless authentication or two factor authentication
+into your web applications seamlessly in the browser.
+Using an asymmetric key pair where the public key is sent to a server,
+and the private key stored securely on your device,
+your secrets are never sent over the internet,
+greatly reducing the risk of phishing attempts.&lt;/p&gt;
+&lt;p&gt;This blog series will provide an introduction to WebAuthn,
+outlining the benefits, trade-offs, and future of this new authentication protocol.
+Through this series
+you will see how to build an experience that puts control over their credentials (literally) back into the hands of your users.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;A large portion of this series was covered in my &lt;a href=&quot;https://youtu.be/poJt8dZH9qE&quot;&gt;presentation at DDD Perth (35 minutes)&lt;/a&gt;. You can also check out the &lt;a href=&quot;https://speakerdeck.com/bplowry/forget-your-passwords-with-the-web-authentication-api&quot;&gt;slides and resources&lt;/a&gt;.&lt;/p&gt;
+
+          &lt;div
+            class=&quot;gatsby-resp-iframe-wrapper&quot;
+            style=&quot;padding-bottom: 56.25%; position: relative; height: 0; overflow: hidden;margin-bottom: 1.0725rem&quot;
+          &gt;
+            &lt;iframe src=&quot;https://www.youtube.com/embed/poJt8dZH9qE&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen style=&quot;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          &quot;&gt;&lt;/iframe&gt;
+
+          &lt;/div&gt;
+          
+&lt;h3&gt;Posts in the series&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;../part-1-forget-your-passwords&quot;&gt;Forget your passwords with the Web Authentication API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../part-2-the-problem-with-passwords&quot;&gt;The problem with passwords&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../part-3-web-authentication-api&quot;&gt;The Web Authentication API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;../part-4-making-auth-better&quot;&gt;Making auth better&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Risk-based testing]]></title><description><![CDATA[Testing, why? build confidence Testing, what? key workflows button labels? really? Testing, who? let “the business” (e.g. product owner…]]></description><link>https://bplowry.github.io/risk-based-testing/</link><guid isPermaLink="false">https://bplowry.github.io/risk-based-testing/</guid><pubDate>Wed, 16 Oct 2019 04:10:10 GMT</pubDate><content:encoded>&lt;p&gt;Testing, why?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;build confidence&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Testing, what?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;key workflows&lt;/li&gt;
+&lt;li&gt;button labels? really?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Testing, who?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;let “the business” (e.g. product owner) decide what risk they’re willing to accept&lt;/li&gt;
+&lt;li&gt;per requirement, A/C, story, epic&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Testing, when?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Things that are more risky should be tested more often&lt;/li&gt;
+&lt;li&gt;Pretty much means you need automated tests&lt;/li&gt;
+&lt;li&gt;PR build for “critical/high”, nightly run for “moderate”, nothing for “low”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Testing, how?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;do you want a different methodology for testing based on risk&lt;/li&gt;
+&lt;li&gt;E2E tests&lt;/li&gt;
+&lt;li&gt;integration tests&lt;/li&gt;
+&lt;li&gt;unit tests&lt;/li&gt;
+&lt;li&gt;manual tests (repeated)&lt;/li&gt;
+&lt;li&gt;manual tests (once)&lt;/li&gt;
+&lt;li&gt;never test&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[NDC Sydney 2019]]></title><description><![CDATA[I went to NDC Sydney for the first time, this year.
+I took notes for most of the talks I attended, and thought I should share. The care and…]]></description><link>https://bplowry.github.io/ndc-sydney-2019/</link><guid isPermaLink="false">https://bplowry.github.io/ndc-sydney-2019/</guid><pubDate>Wed, 16 Oct 2019 03:26:15 GMT</pubDate><content:encoded>&lt;p&gt;I went to NDC Sydney for the first time, this year.
+I took notes for most of the talks I attended, and thought I should share.&lt;/p&gt;
+&lt;nav&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#the-care-and-feeding-of-software-developers&quot;&gt;The care and feeding of software developers&lt;/a&gt; by Heather Downing&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#kubernetes-0-to-100&quot;&gt;Kubernetes 0 to 100&lt;/a&gt; by Scott Holden&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#modern-javascript-for-web-dinosaurs&quot;&gt;Modern JavaScript for web dinosaurs&lt;/a&gt; by Scott Holden&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#am-i-a-good-developer&quot;&gt;Am I a good developer?&lt;/a&gt; by Emad Alashi&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#have-lunch-and-impact-on-your-company&quot;&gt;Have lunch and impact on your company!&lt;/a&gt; by Nelly Sattari&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#chinafy-your-apps&quot;&gt;Chinafy your apps + Lessons you can steal from China&lt;/a&gt; by Adam Cogan&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#using-flutter-to-develop-cloud-enabled-mobile-applications&quot;&gt;Using Flutter to develop cloud enabled mobile applications&lt;/a&gt; by Nick Randolph and Pooja Bhaumik&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#whats-going-on-with-project-fugu&quot;&gt;What’s going on with Project Fugu?&lt;/a&gt; by Phil Nash&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#how-to-do-in-app-chaos-testing&quot;&gt;How to do in-app chaos testing&lt;/a&gt; by Wesley Cabus&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#bank-grade-security&quot;&gt;Bank Grade Security&lt;/a&gt; by Kieran Jacobsen&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#beyond-infrastructure-as-code-dsls&quot;&gt;Beyond infrastructure as code DSLs&lt;/a&gt; by Jake Ginnivan&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#thousands-of-concurrent-connections-with-azure-signalr-service&quot;&gt;Thousands of concurrent connections with Azure SignalR Service&lt;/a&gt; by Nelly Sattari and Stafford Williams&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#css-grid-what-is-this-magic&quot;&gt;CSS Grid - What is this magic?!&lt;/a&gt; by Amy Kapernick&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#commuting-like-a-developer&quot;&gt;Commuting like a developer&lt;/a&gt; by Anton Ball&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/nav&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;the-care-and-feeding-of-software-developers&quot;&gt;&lt;/a&gt; The care and feeding of software developers&lt;/h2&gt;
+&lt;p&gt;Heather Downing &lt;a href=&quot;https://twitter.com/@quorralyne&quot;&gt;@quorralyne&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5ae69f9a762281d80a3468fe6accc527/6c9e7/the-care-and-feeding-of-software-developers.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAUBAgT/xAAVAQEBAAAAAAAAAAAAAAAAAAABAP/aAAwDAQACEAMQAAABWu0thkzEf//EABsQAAICAwEAAAAAAAAAAAAAAAEDAAIEISIT/9oACAEBAAEFAl93qqtRk6avmerDDs//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAaEAEBAAIDAAAAAAAAAAAAAAABAAIhMTJB/9oACAEBAAY/AgtEzl6cXdt3/8QAGhABAAIDAQAAAAAAAAAAAAAAAQARITFhkf/aAAgBAQABPyGy+lmJlwUuELQs2CO96xtiV7P/2gAMAwEAAgADAAAAEEPf/8QAFREBAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQMBAT8Qp//EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPxDEj//EAB0QAAMBAAEFAAAAAAAAAAAAAAERIQAxQYGRobH/2gAIAQEAAT8QpLnAHKgxCkC+cFYqesx0pCFot6b2SfMeFrqTO//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;&amp;quot;Success is a lousy teacher. It seduces smart people into thinking they can&amp;#39;t lose&amp;quot; - Bill Gates&quot;
+        title=&quot;&amp;quot;Success is a lousy teacher. It seduces smart people into thinking they can&amp;#39;t lose&amp;quot; - Bill Gates&quot;
+        src=&quot;/static/5ae69f9a762281d80a3468fe6accc527/c739e/the-care-and-feeding-of-software-developers.jpg&quot;
+        srcset=&quot;/static/5ae69f9a762281d80a3468fe6accc527/8ee9c/the-care-and-feeding-of-software-developers.jpg 148w,
+/static/5ae69f9a762281d80a3468fe6accc527/ebbe7/the-care-and-feeding-of-software-developers.jpg 295w,
+/static/5ae69f9a762281d80a3468fe6accc527/c739e/the-care-and-feeding-of-software-developers.jpg 590w,
+/static/5ae69f9a762281d80a3468fe6accc527/5413e/the-care-and-feeding-of-software-developers.jpg 885w,
+/static/5ae69f9a762281d80a3468fe6accc527/4efde/the-care-and-feeding-of-software-developers.jpg 1180w,
+/static/5ae69f9a762281d80a3468fe6accc527/6c9e7/the-care-and-feeding-of-software-developers.jpg 4048w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The best leaders aren’t “the best at tech”&lt;/p&gt;
+&lt;p&gt;Get away from what makes people like you (similar interests, background, etc.)
+Go out of your way to find the people unlike you. Equal attention.&lt;/p&gt;
+&lt;p&gt;Leadership is a muscle, you need to exercise it.
+Don’t get comfortable.
+You need to sacrifice for your team.&lt;/p&gt;
+&lt;p&gt;What developers want from leaders:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;safety (failure, support, belief)&lt;/li&gt;
+&lt;li&gt;flexible and empathetic during personal challenges&lt;/li&gt;
+&lt;li&gt;listen. They speak first&lt;/li&gt;
+&lt;li&gt;respect. Differences&lt;/li&gt;
+&lt;li&gt;encourage - “you got this”&lt;/li&gt;
+&lt;li&gt;recognise - talk to them about their progress. Acknowledge their achievements, but also recognise their effort&lt;/li&gt;
+&lt;li&gt;empower - let other people demonstrate their capability. Let them grow. Help them grow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Our differences make us a better team. People are not drop in and replace&lt;/p&gt;
+&lt;p&gt;You may need to support people at different levels.
+Juniors need freedom to learn, make mistakes, and grow.
+Mid-level need freedom to pair, share their knowledge, learn, make mistakes, and grow.
+Seniors need freedom to experiment, try new ideas, pair, share, learn, make mistakes, and grow.
+Noticing the pattern yet?&lt;/p&gt;
+&lt;p&gt;Your team will also have different personality types, and this may change as time goes by.
+Optimists will help keep morale up — “Everything is on fire, but hey, we’re alive”.
+Pessimists will make sure we’re not getting ahead of ourselves.
+You probably need people who are bold, and visionary.
+Sometimes people will be down-hearted; it’s not going to be all the time, but it’ll be &lt;em&gt;all&lt;/em&gt; of us, &lt;em&gt;some&lt;/em&gt; of the time.&lt;/p&gt;
+&lt;p&gt;How do you become the best leader?
+Let them do their jobs?
+Handle all the non-dev stuff for them.
+Be mostly responsive and reachable.
+Have regular (frequent and predictable) one-on-ones.
+Value quality over quantity or velocity; let them do the best job they can.
+Avoid task switching, if you can. Changing context from day-to-day,
+or multiple times per day isn’t always productive and can be overwhelming.
+Be the shield.&lt;/p&gt;
+&lt;p&gt;You may need to be vulnerable:
+Be prepared to give away control.
+Emphasise that you’re learning, too.
+Let them fail and learn.
+Remember that it’s OK to not know.&lt;/p&gt;
+&lt;p&gt;The challenge?
+Learn new tech, see how you can apply it.
+You know, that’s cool. But also
+learn about leadership, because that’s your future.
+Whether you end up as team lead or senior dev:
+leadership is part of your job.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;kubernetes-0-to-100&quot;&gt;&lt;/a&gt; Kubernetes 0 to 100&lt;/h2&gt;
+&lt;p&gt;Scott Holden &lt;a href=&quot;https://twitter.com/@sc_holden&quot;&gt;@sc_holden&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To understand Kubernetes, you need to understand containers.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;container = code + runtime&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The main benefits of containerisation are in resource isolation.
+Compared to a VM,
+there’s no OS — and the OS is huge —
+so you don’t need to “carry” it around.&lt;/p&gt;
+&lt;p&gt;All the bits of containers have been around forever.
+Docker put it all together and made it easy.&lt;/p&gt;
+&lt;aside&gt;**HOT TIP:** `docker run -d **--rm**` will clean up afterwards.&lt;/aside&gt;
+&lt;p&gt;If you have multiple containers,
+layers are shared, so we only have one copy of dependencies.&lt;/p&gt;
+&lt;p&gt;Scott went through an example of
+creating a new image from an existing one “by hand”.
+That is, by opening a remote terminal with &lt;code class=&quot;language-text&quot;&gt;docker exec bash&lt;/code&gt;
+and going to town, then publishing the new image.
+But that’s not the recommended approach.&lt;/p&gt;
+&lt;p&gt;Usually, you’d use a Dockerfile.
+&lt;code class=&quot;language-text&quot;&gt;FROM&lt;/code&gt; is like starting the image.
+&lt;code class=&quot;language-text&quot;&gt;RUN&lt;/code&gt; is the same as jumping in and editing.&lt;/p&gt;
+&lt;p&gt;Docker Desktop ships with Kubernetes.
+You can turn it on and go.&lt;/p&gt;
+&lt;p&gt;Kubernetes is about container orchestration.
+That includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;scheduling&lt;/li&gt;
+&lt;li&gt;monitoring&lt;/li&gt;
+&lt;li&gt;scaling&lt;/li&gt;
+&lt;li&gt;deploying new versions&lt;/li&gt;
+&lt;li&gt;configuration, and&lt;/li&gt;
+&lt;li&gt;service discovery&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kubernetes talks to the container runtime.
+It’s not a container runtime itself.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/85b6911c5f5b8a26deb302e662eaf7ea/6c9e7/kubernetes-0-to-100.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgX/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAABv5qppVGRP//EABsQAAICAwEAAAAAAAAAAAAAAAECABEDBBMi/9oACAEBAAEFAinrPSyzG2mJ6Ws//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8BJ//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABoQAAICAwAAAAAAAAAAAAAAAAABEDERIVH/2gAIAQEABj8CwXssb6NO4//EABsQAAMBAAMBAAAAAAAAAAAAAAABESExQWFx/9oACAEBAAE/IdVXCRpJ4GJAEsT4Pm1+yw//2gAMAwEAAgADAAAAEDwf/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8QAs//xAAWEQADAAAAAAAAAAAAAAAAAAABEDH/2gAIAQIBAT8QgX//xAAcEAEAAwADAQEAAAAAAAAAAAABABEhMUFRYXH/2gAIAQEAAT8QIGAWVN57qV+8/QfkW338JZ66CzEv6txa15LACuJ//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Kubernetes is a scheduler (in terms of running containers)&quot;
+        title=&quot;Kubernetes is a scheduler (in terms of running containers)&quot;
+        src=&quot;/static/85b6911c5f5b8a26deb302e662eaf7ea/c739e/kubernetes-0-to-100.jpg&quot;
+        srcset=&quot;/static/85b6911c5f5b8a26deb302e662eaf7ea/8ee9c/kubernetes-0-to-100.jpg 148w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/ebbe7/kubernetes-0-to-100.jpg 295w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/c739e/kubernetes-0-to-100.jpg 590w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/5413e/kubernetes-0-to-100.jpg 885w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/4efde/kubernetes-0-to-100.jpg 1180w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/6c9e7/kubernetes-0-to-100.jpg 4048w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In order to manage your schedule your containers, Kubernetes needs master nodes and worker nodes.&lt;/p&gt;
+&lt;p&gt;The master node&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;is probably actually a cluster of master nodes&lt;/li&gt;
+&lt;li&gt;runs Kubernetes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Worker nodes&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;some form of “compute”&lt;/li&gt;
+&lt;li&gt;runs workloads&lt;/li&gt;
+&lt;li&gt;container runtime lives here&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A typical configuration might start with 3 master nodes and 5 worker nodes.&lt;/p&gt;
+&lt;p&gt;Kubernetes exists somewhere between
+IaaS (Infrastructure as a Service) and
+PaaS (Platform as a Service).
+It depends where you sit.
+(Self: doesn’t that mean it’s &lt;em&gt;both&lt;/em&gt;?)&lt;/p&gt;
+&lt;p&gt;Managed Kubernetes service (e.g. Azure Kubernetes Service … Google, AWS, Alicloud likely have equivalents)
+can manage most of the infrastructure details.
+You don’t need to think about master nodes, you just need to configure them.&lt;/p&gt;
+&lt;p&gt;Next up was a look through the &lt;em&gt;nuts and bolts&lt;/em&gt; of k8s.&lt;/p&gt;
+&lt;p&gt;Pod (one or more containers)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Single instance of the smallest component&lt;/li&gt;
+&lt;li&gt;multi container - use for logging, monitoring, service mesh&lt;/li&gt;
+&lt;li&gt;the pod is what scales. It all scales together&lt;/li&gt;
+&lt;li&gt;by itself, is not resilient&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;kubectl apply&lt;/code&gt; to create. &lt;code class=&quot;language-text&quot;&gt;kubectl delete&lt;/code&gt; to delete a pod&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ReplicaSet&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ensures you anyways have N pods running&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Deployment&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;deploying a new version of a ReplicaSet&lt;/li&gt;
+&lt;li&gt;it will spin up and spin down the new and old versions&lt;/li&gt;
+&lt;li&gt;used if you want to update things&lt;/li&gt;
+&lt;li&gt;failback is also available&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Service&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;lets you load balance in cloud, expose a port per node, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ingress&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;expose HTTP endpoints for different services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Extras:&lt;/strong&gt;
+Autoscaling: but not for free, you’ll need to configure it&lt;/p&gt;
+&lt;p&gt;Namespaces: provide logical separation, e.g. dev and test&lt;/p&gt;
+&lt;p&gt;Resource quotas&lt;/p&gt;
+&lt;p&gt;AKS (Azure Kubernetes Service) - free control plane - don’t pay for the VMs, don’t manage them, apart from some config&lt;/p&gt;
+&lt;aside&gt; **HOT TIP:** Use specific versions of dependencies so it spins up from cache. The `:latest` tag will always fetch from the registry, leading to slower startup.&lt;/aside&gt;
+&lt;p&gt;I’d come in to this talk with a view that I’d never need Kubernetes.
+My main takeaway was that Kubernetes doesn’t mean you need huge complicated systems:
+Restarting a single killed pod with a ReplicaSet is a useful feature.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;modern-javascript-for-web-dinosaurs&quot;&gt;&lt;/a&gt; Modern JavaScript for web dinosaurs&lt;/h2&gt;
+&lt;p&gt;Ryan Preece &lt;a href=&quot;https://twitter.com/@Preecington&quot;&gt;@Preecington&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1642b9eede3b7189f408e853f6c0872f/6c9e7/modern-javascript-for-web-dinosaurs.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIDBf/EABUBAQEAAAAAAAAAAAAAAAAAAAIA/9oADAMBAAIQAxAAAAE58hYpS//EABoQAQEAAgMAAAAAAAAAAAAAAAIDAAEEEBL/2gAIAQEAAQUC4sg53joD1vBVzKtRdf/EABURAQEAAAAAAAAAAAAAAAAAABAS/9oACAEDAQE/AZP/xAAVEQEBAAAAAAAAAAAAAAAAAAAQEf/aAAgBAgEBPwGn/8QAHRAAAgIBBQAAAAAAAAAAAAAAAQIAEBESISJBcf/aAAgBAQAGPwI6l7hKsfDXFsTdq//EABoQAQEAAwEBAAAAAAAAAAAAAAEAESFhMUH/2gAIAQEAAT8hVgX6tCR0uNhLC0rI+2Uv/9oADAMBAAIAAwAAABB/D//EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAgBAwEBPxBQ7aX/xAAXEQADAQAAAAAAAAAAAAAAAAAAASER/9oACAECAQE/ELUMP//EABoQAQADAQEBAAAAAAAAAAAAAAEAESExgUH/2gAIAQEAAT8QzSABRMPpHUK2UB96Rs78m1gugOy8xkKNJyDP/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;modern javascript for web dinosaurs&quot;
+        title=&quot;modern javascript for web dinosaurs&quot;
+        src=&quot;/static/1642b9eede3b7189f408e853f6c0872f/c739e/modern-javascript-for-web-dinosaurs.jpg&quot;
+        srcset=&quot;/static/1642b9eede3b7189f408e853f6c0872f/8ee9c/modern-javascript-for-web-dinosaurs.jpg 148w,
+/static/1642b9eede3b7189f408e853f6c0872f/ebbe7/modern-javascript-for-web-dinosaurs.jpg 295w,
+/static/1642b9eede3b7189f408e853f6c0872f/c739e/modern-javascript-for-web-dinosaurs.jpg 590w,
+/static/1642b9eede3b7189f408e853f6c0872f/5413e/modern-javascript-for-web-dinosaurs.jpg 885w,
+/static/1642b9eede3b7189f408e853f6c0872f/4efde/modern-javascript-for-web-dinosaurs.jpg 1180w,
+/static/1642b9eede3b7189f408e853f6c0872f/6c9e7/modern-javascript-for-web-dinosaurs.jpg 4048w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Web development has changed a lot in the past few years.&lt;/p&gt;
+&lt;p&gt;When Ryan last touched web development, jQuery was king. You’d download the file and put it on the web server with FTP. Simple.&lt;/p&gt;
+&lt;p&gt;Now we have&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CLIs (command line interfaces),&lt;/li&gt;
+&lt;li&gt;transpilers,&lt;/li&gt;
+&lt;li&gt;packages and package managers,&lt;/li&gt;
+&lt;li&gt;bundlers,&lt;/li&gt;
+&lt;li&gt;NodeJS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It’s a lot more complicated.&lt;/p&gt;
+&lt;p&gt;The steps along the way:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;script src=&amp;quot;scripts/jQuery.js&amp;quot; /&amp;gt;&lt;/code&gt;
+We added a reference to the file we’d downloaded and put on the web server&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;script src=&amp;quot;node_modules/jQuery/dist/jQuery.min.js&amp;quot; /&amp;gt;&lt;/code&gt;
+We could install dependencies with NPM&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;require(&amp;quot;jQuery&amp;quot;)&lt;/code&gt;
+CommonJS came around and we could install dependencies using &lt;code class=&quot;language-text&quot;&gt;require&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;2011: The first bundlers started appearing. Browserify was the main player.&lt;/li&gt;
+&lt;li&gt;2015: Webpack comes along and quickly becomes the go-to (self: typical JavaScript)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Transpiling allows us to use syntax that isn’t supported in older browsers, e.g. turning &lt;code class=&quot;language-text&quot;&gt;async/await&lt;/code&gt; code into &lt;code class=&quot;language-text&quot;&gt;.then&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;.catch&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Polyfills allow us to use functionality that isn’t natively supported in older browsers, e.g. ensuring that &lt;code class=&quot;language-text&quot;&gt;Promise&lt;/code&gt; is available in the browser.&lt;/p&gt;
+&lt;p&gt;Together, these allow us to write “modern” code, so we don’t need to worry (as much) about browser differences.&lt;/p&gt;
+&lt;p&gt;Script runners make all those CLI commands easier.
+First Grunt and Gulp, then NPM added &lt;code class=&quot;language-text&quot;&gt;scripts&lt;/code&gt;, and it’s become the standard.
+The script runner lets you run &lt;code class=&quot;language-text&quot;&gt;npm run build&lt;/code&gt; rather than &lt;code class=&quot;language-text&quot;&gt;./node_modules/bin/webpack webpack.config.js --production&lt;/code&gt; or something else complicated.&lt;/p&gt;
+&lt;p&gt;React, Vue, and Angular (the most-used web frameworks at time of writing) use all of these things under the hood.
+They have CLI tools to create new projects following best practices.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;am-i-a-good-developer&quot;&gt;&lt;/a&gt; Am I a Good Developer?&lt;/h2&gt;
+&lt;p&gt;Emad Alashi &lt;a href=&quot;https://twitter.com/@EmadAshi&quot;&gt;@EmadAshi&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Are you a good developer
+We should understand one level below what we’re working on&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;in a human pyramid, you don’t care about the bottom, only the layer you’re standing on&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Appetite to learn&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;have-lunch-and-impact-on-your-company&quot;&gt;&lt;/a&gt; Have lunch and impact on your company!&lt;/h2&gt;
+&lt;p&gt;Nelly Sattari &lt;a href=&quot;https://twitter.com/@nelly_sattari&quot;&gt;@nelly_sattari&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Brown bags or lunch and learn. Takes the name from the brown paper bag you might take your lunch in.&lt;/p&gt;
+&lt;p&gt;Benefits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Build a network to find speakers&lt;/li&gt;
+&lt;li&gt;Great way to network&lt;/li&gt;
+&lt;li&gt;Attend other events&lt;/li&gt;
+&lt;li&gt;Companies/vendors might want to get involved&lt;/li&gt;
+&lt;li&gt;Good way to build&lt;/li&gt;
+&lt;li&gt;your profile&lt;/li&gt;
+&lt;li&gt;learning culture in org&lt;/li&gt;
+&lt;li&gt;relationships with other areas of your company&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you’re going to run brown bags, make them regular.
+Having one now and another one later, maybe, doesn’t really work.
+People need to know what to expect and when to expect it.
+It might start slowly, but if you stick with it you can build something good&lt;/p&gt;
+&lt;p&gt;Nelly went from ~20% attendance to ~80% within a year, and now her company even provides lunch!&lt;/p&gt;
+&lt;p&gt;Organising them might seem like a lot of effort,
+but it’s probably not as much as you think.
+Maybe a few hours a month (depending on how often you have them).&lt;/p&gt;
+&lt;p&gt;People will appreciate you making the effort,
+and they’ll make an effort, too (to attend, speak, organise, etc.)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;chinafy-your-apps&quot;&gt;&lt;/a&gt; Chinafy your apps + Lessons you can steal from China&lt;/h2&gt;
+&lt;p&gt;Adam Cogan &lt;a href=&quot;https://twitter.com/@AdamCogan&quot;&gt;@AdamCogan&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;China is a rapidly changing environment.
+If you went to China in 2015, there’s a good chance it’s a different place now.&lt;/p&gt;
+&lt;p&gt;China is projected to become the world’s largest economy soon (2029), overtaking the USA.&lt;/p&gt;
+&lt;p&gt;Many companies have $0 revenue in China, even big ones.
+This is partly due to the Great Firewall of China.
+But it’s also because we don’t understand the culture.&lt;/p&gt;
+&lt;p&gt;Internet usage is mostly mobile (65% if I remember correctly, compared to 40% in Aus?).
+People primarily use native apps, over web apps.
+There are also pseudo-apps like WeChat official pages and mini-apps.&lt;/p&gt;
+&lt;p&gt;Payments are typically done using WeChat Pay or AliPay over credit card or cash.
+Shop keeper will scan a QR code on your phone to make payment.
+Even people asking for money on the street have WeChat QR codes.&lt;/p&gt;
+&lt;p&gt;There’s a thing called Sesame credit
+(self: I think this is that social credit system).
+You are judged and ranked on your activity;
+things like whether you pay your bills on time,
+but maybe other stuff, too,
+like the rankings of your friends?&lt;/p&gt;
+&lt;p&gt;Sesame credit is endorsed by AliPay, WeChat Pay, People’s Bank of China, etc.
+You can get better interest rates, or no deposit for hire bikes, which is nice.
+But you can also end up having travel restrictions … not so nice.&lt;/p&gt;
+&lt;p&gt;How to succeed in China:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;use WeChat official pages/mini-apps&lt;/li&gt;
+&lt;li&gt;payments using AliPay, WeChat pay&lt;/li&gt;
+&lt;li&gt;authentication using phone number and OTP (one-time passwcode) or social login. Not username/password&lt;/li&gt;
+&lt;li&gt;QR codes everywhere.&lt;/li&gt;
+&lt;li&gt;gamify interactions with your apps. e.g. “red envelope” (traditional) for a random win&lt;/li&gt;
+&lt;li&gt;have a Chinese name&lt;/li&gt;
+&lt;li&gt;use a Chinese cloud provider&lt;/li&gt;
+&lt;li&gt;find local partners sales and support&lt;/li&gt;
+&lt;li&gt;translation/localisation by a local&lt;/li&gt;
+&lt;li&gt;user experience: don’t use minimalist design. The busier, the better. There was an example of a video with comments appearing over the top, to the point you can’t see the video.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;using-flutter-to-develop-cloud-enabled-mobile-applications&quot;&gt;&lt;/a&gt; Using Flutter to develop cloud enabled mobile applications&lt;/h2&gt;
+&lt;p&gt;Nick Randolph &lt;a href=&quot;https://twitter.com/@thenickrandolph&quot;&gt;@thenickrandolph&lt;/a&gt;
+and Pooja Bhaumik &lt;a href=&quot;https://twitter.com/@pblead26&quot;&gt;@pblead26&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4575f8e45f9f942567ccbfbcf385d4e1/6c9e7/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EABYBAQEBAAAAAAAAAAAAAAAAAAIAAf/aAAwDAQACEAMQAAABnrzKIpEmP//EABsQAAIDAAMAAAAAAAAAAAAAAAIDAAESBBMU/9oACAEBAAEFAuMAmNpXG1liW9demGzZf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABURAQEAAAAAAAAAAAAAAAAAABAh/9oACAECAQE/AYf/xAAaEAEBAAIDAAAAAAAAAAAAAAABABAREiEy/9oACAEBAAY/AnlhAnq8lu//xAAZEAADAQEBAAAAAAAAAAAAAAAAAREhMWH/2gAIAQEAAT8hcd4xGa94IUzS8JrVGazMp//aAAwDAQACAAMAAAAQvO//xAAYEQEBAAMAAAAAAAAAAAAAAAABABEhUf/aAAgBAwEBPxBXsBja3//EABcRAQEBAQAAAAAAAAAAAAAAAAEAURH/2gAIAQIBAT8QDLPMv//EABoQAQEBAQEBAQAAAAAAAAAAAAERIQAxcaH/2gAIAQEAAT8QTuiiMycgEvNTfzpgCi68vHB3HXhSZHhXkhMsPnf/2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Connect the dots: Flutter + Azure&quot;
+        title=&quot;Connect the dots: Flutter + Azure&quot;
+        src=&quot;/static/4575f8e45f9f942567ccbfbcf385d4e1/c739e/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg&quot;
+        srcset=&quot;/static/4575f8e45f9f942567ccbfbcf385d4e1/8ee9c/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 148w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/ebbe7/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 295w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/c739e/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 590w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/5413e/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 885w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/4efde/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 1180w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/6c9e7/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 4048w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Flutter does differential rendering (like React).
+Doesn’t use native components,
+but uses the Skia rendering engine to draw everything.
+This helps you build apps that look the same on Android and iOS
+(some minor quirks, like over-scroll behaviour).&lt;/p&gt;
+&lt;p&gt;You still need to consider if that’s right for you …
+after all you may want to be consistent with the platform.&lt;/p&gt;
+&lt;p&gt;Easy to use with Material Design (Android) or Cupertino (iOS) - components are available and they &lt;em&gt;look&lt;/em&gt; like native.&lt;/p&gt;
+&lt;p&gt;Everything is a widget, and it’s all declarative.&lt;/p&gt;
+&lt;p&gt;The developer experience can be a lot better than native.
+For example, hot reloading is way better than Xamarin or native Android and gradle.&lt;/p&gt;
+&lt;p&gt;Consider Visual Studio App Center for building and publishing into the app stores.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;whats-going-on-with-project-fugu&quot;&gt;&lt;/a&gt; What’s going on with Project Fugu?&lt;/h2&gt;
+&lt;p&gt;Phil Nash &lt;a href=&quot;https://twitter.com/@philnash&quot;&gt;@philnash&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f455c1dc986b9f164e8664e029cb7031/6c9e7/whats-going-on-with-project-fugu.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQDBf/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAGS/lbzUYH/xAAaEAACAwEBAAAAAAAAAAAAAAACAwABERQE/9oACAEBAAEFAvOu2zmGGOGtpLrrZLLb/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8BRn//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAcEAACAgIDAAAAAAAAAAAAAAAAAREhAiJBYZH/2gAIAQEABj8Ce0QW8mNdmpx4S4s//8QAGhAAAwADAQAAAAAAAAAAAAAAAAERMVFh4f/aAAgBAQABPyFRUdELzYk2FA/2leHcGvVTU//aAAwDAQACAAMAAAAQyO//xAAXEQEBAQEAAAAAAAAAAAAAAAABABEx/9oACAEDAQE/EOqAy//EABURAQEAAAAAAAAAAAAAAAAAAAEA/9oACAECAQE/EBJW/8QAHRABAAICAgMAAAAAAAAAAAAAAQARIUExgVGh8f/aAAgBAQABPxBRahwq38mH27T0TdZC3wyvkZYhjXlekdSYmts//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Get on with the Fugu&quot;
+        title=&quot;Get on with the Fugu&quot;
+        src=&quot;/static/f455c1dc986b9f164e8664e029cb7031/c739e/whats-going-on-with-project-fugu.jpg&quot;
+        srcset=&quot;/static/f455c1dc986b9f164e8664e029cb7031/8ee9c/whats-going-on-with-project-fugu.jpg 148w,
+/static/f455c1dc986b9f164e8664e029cb7031/ebbe7/whats-going-on-with-project-fugu.jpg 295w,
+/static/f455c1dc986b9f164e8664e029cb7031/c739e/whats-going-on-with-project-fugu.jpg 590w,
+/static/f455c1dc986b9f164e8664e029cb7031/5413e/whats-going-on-with-project-fugu.jpg 885w,
+/static/f455c1dc986b9f164e8664e029cb7031/4efde/whats-going-on-with-project-fugu.jpg 1180w,
+/static/f455c1dc986b9f164e8664e029cb7031/6c9e7/whats-going-on-with-project-fugu.jpg 4048w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Project Fugu is run by the Chrome team.
+The goal is to push the web forward, towards parity with native apps.&lt;/p&gt;
+&lt;p&gt;Previously we had vendor prefixes, like &lt;code class=&quot;language-text&quot;&gt;ms-flex&lt;/code&gt;, or &lt;code class=&quot;language-text&quot;&gt;-webkit-line-clamp&lt;/code&gt;.
+Now we have feature flags.&lt;/p&gt;
+&lt;p&gt;You can enable them yourself by going to &lt;code class=&quot;language-text&quot;&gt;chrome://flags&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;#enable-experimental-web-platform-features&lt;/code&gt;.
+But that doesn’t really work if you want to put something on your public website.
+Users won’t enable feature flags to view your website.&lt;/p&gt;
+&lt;p&gt;So Chrome has this thing called Origin Trials.
+Websites can request to join an origin trial,
+which means you don’t need users to opt in —
+Chrome will enable whatever flags you asked for when users access your site.&lt;/p&gt;
+&lt;p&gt;They might also take it away without telling you,
+so you need to make sure it works &lt;em&gt;without&lt;/em&gt; the flag.
+You’d probably need that anyway to support other browsers, so no big deal.
+The reasons they’d take it away:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;too many people using it — it’s meant to be an experiment&lt;/li&gt;
+&lt;li&gt;the experiment has expired&lt;/li&gt;
+&lt;li&gt;other reasons?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;The new stuff:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Generally the new features require &lt;code class=&quot;language-text&quot;&gt;https&lt;/code&gt;,
+and often users will need to give permission
+(for camera, location, file system, push notifications, etc.)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Web share API&lt;/strong&gt;
+No tracking. No JS, don’t need to (and can’t) track where they shared it or what platforms they use&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Web share target API&lt;/strong&gt;
+Make your own PWA (progressive web application) as a sharing target?
+Chrome origin trial suggested it was ok, trying to convince Safari&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Wake lock&lt;/strong&gt;
+Keeps the screen awake (or system, but it doesn’t work yet)
+Useful for non interactive sites, or sites that don’t interact with button/links (e.g. motion)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Aborting requests&lt;/strong&gt;
+&lt;code class=&quot;language-text&quot;&gt;AbortController&lt;/code&gt; to cancel fetches, by passing in &lt;code class=&quot;language-text&quot;&gt;controller.signal&lt;/code&gt; into the &lt;code class=&quot;language-text&quot;&gt;fetch&lt;/code&gt;.
+Aborting is not supported for all promises, but some APIs (particularly new ones) do support it.
+(self: this also applies to WebAuthn methods)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Contacts picker API&lt;/strong&gt;
+Could be useful for calling, emailing, sharing with contacts.
+The user selects from contacts on their device.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Native file system API&lt;/strong&gt;
+&lt;code class=&quot;language-text&quot;&gt;window.chooseFileSystemEntries()&lt;/code&gt; returns a promise.
+This was added as an alternative to the older alternatives.
+Drag and drop files don’t work on mobile.
+The “Choose file” button is ugly.
+This API gives access to the file system (with permission from the user).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Shape detection API&lt;/strong&gt;
+Face detector, Text detector, Barcode detector
+No mouth = no face, apparently
+Get locations of different features and bounding box.&lt;/p&gt;
+&lt;p&gt;Takeaway: It’s all good for them to build it, but if we don’t experiment, they won’t find the edge cases or be able to make it better&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;how-to-do-in-app-chaos-testing&quot;&gt;&lt;/a&gt; How to do in-app chaos testing&lt;/h2&gt;
+&lt;p&gt;Wesley Cabus &lt;a href=&quot;https://twitter.com/@WesleyCabus&quot;&gt;@WesleyCabus&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wesley was making software that would be deployed on a server in a suitcase in Rwanda.
+They go hours/days without internet because of power outages.
+Wesley’s team were developing in an office with WiFi.
+They’re nothing alike.&lt;/p&gt;
+&lt;p&gt;They wanted to simulate more realistic conditions for how the software was actually used.
+Unfortunately, airplane mode isn’t an accurate simulation.&lt;/p&gt;
+&lt;p&gt;Wesley wrote a library called ruh roh &lt;a href=&quot;https://www.nuget.org/packages/RuhRoh/&quot;&gt;on NuGet&lt;/a&gt;.
+This lets you wrap services or methods in your app startup, and “inject some randomness”.&lt;/p&gt;
+&lt;p&gt;You can:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;slow down&lt;/li&gt;
+&lt;li&gt;throw exceptions&lt;/li&gt;
+&lt;li&gt;change responses&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Based on:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;random failures&lt;/li&gt;
+&lt;li&gt;every N calls,&lt;/li&gt;
+&lt;li&gt;after N calls,&lt;/li&gt;
+&lt;li&gt;inputs to the method&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It lets you test what happens when stuff doesn’t work.
+This is really useful for external dependencies.
+You’re more likely to already handle errors in your own code,
+but assume that a library you didn’t write behaves in a way it might not.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;bank-grade-security&quot;&gt;&lt;/a&gt; Bank Grade Security&lt;/h2&gt;
+&lt;p&gt;Kieran Jacobsen &lt;a href=&quot;https://twitter.com/@kjacobsen&quot;&gt;@kjacobsen&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Kieran went through a number of tests (and showed us how to do them) for Australian banks.&lt;/p&gt;
+&lt;p&gt;Things the banks didn’t always do well:&lt;/p&gt;
+&lt;p&gt;HSTS (HTTP Strict Transport Security) helps prevent MITM (person in the middle) attacks.
+It works by telling the browser to never display the page
+if the certificate isn’t the same as the first time you visited.
+That still leaves a small chance for an attacker (the first time you go to the page),
+so there’s a thing called HSTS pre-loading.
+Preloading lets browsers pre-load the right certificates, so it removes that chance for the attacker.&lt;/p&gt;
+&lt;p&gt;Having a CSP (Content Security Policy) prevents the browser from loading resources from un-approved sites.
+Essentially, you whitelist known sources, e.g. analytics or third parties you &lt;em&gt;expect&lt;/em&gt; to appear.
+Any other requests will be rejected, so if a malicious script tries to send or download something, it will fail.
+There’s a “report only” mode that can be used to tell you what resources you &lt;em&gt;are&lt;/em&gt; getting,
+in case you’re not ready to completely block that traffic.&lt;/p&gt;
+&lt;p&gt;TLS is great, but TLS 1.0 is not. It has known vulnerabilities — not surprising, given it’s 20 years old.
+Some websites still support it because “we have users using IE6 on Windows XP”.
+The problem is, when a website supports TLS 1.0, or 1.1, it puts everyone at risk for the sake of a few.
+TLS 1.2 or 1.3 for the win!&lt;/p&gt;
+&lt;p&gt;When well-meaning people want to report issues to a bank (or anyone),
+it’s often difficult to find the right person to contact.
+Posting in open channels like Twitter can also alert attackers that there is a problem they can exploit,
+or give them notice so they can clean up their tracks.
+To help reduce the problem, it is recommended to put information in &lt;code class=&quot;language-text&quot;&gt;/.well-known/security.txt&lt;/code&gt;.
+The information in this document should outline the process for reporting an issue.
+You should include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;who to contact&lt;/li&gt;
+&lt;li&gt;relevant policies&lt;/li&gt;
+&lt;li&gt;how to send the report (e.g. public keys for encrypting the message)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For easy message encryption, you can use &lt;a href=&quot;https://keybase.io&quot;&gt;keybase.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Resources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://securityheaders.com/&quot;&gt;Security Headers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://report-uri.com/&quot;&gt;Report URI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ssllabs.com/&quot;&gt;SSL Labs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;beyond-infrastructure-as-code-dsls&quot;&gt;&lt;/a&gt; Beyond infrastructure as code DSLs&lt;/h2&gt;
+&lt;p&gt;Jake Ginnivan &lt;a href=&quot;https://twitter.com/@JakeGinnivan&quot;&gt;@JakeGinnivan&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a5ed870d8154c86f75bcc3645cfa508f/6c9e7/beyond-infrastructure-as-code-dsls.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgX/xAAVAQEBAAAAAAAAAAAAAAAAAAABAP/aAAwDAQACEAMQAAABns5jB0JC/8QAGhAAAwEBAQEAAAAAAAAAAAAAAQIDABEEFP/aAAgBAQABBQLyDuMkzzHYsyD6aY3ff//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABsQAAIBBQAAAAAAAAAAAAAAAAABAhEhMTJB/9oACAEBAAY/ApGqLIdDhhH/xAAbEAEAAgMBAQAAAAAAAAAAAAABABEhMZFBYf/aAAgBAQABPyERcHW4gzyh9YqK7LfEnx5inPGf/9oADAMBAAIAAwAAABBg3//EABURAQEAAAAAAAAAAAAAAAAAAAAh/9oACAEDAQE/EEf/xAAVEQEBAAAAAAAAAAAAAAAAAAAAIf/aAAgBAgEBPxBX/8QAHBABAQACAgMAAAAAAAAAAAAAEQEAMVGBQdHw/9oACAEBAAE/ECzeCXnGfRGT8QVkt23Jm5CXvxiQt4n1xEvW3vP/2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;beyond infrastructure as code dsls&quot;
+        title=&quot;beyond infrastructure as code dsls&quot;
+        src=&quot;/static/a5ed870d8154c86f75bcc3645cfa508f/c739e/beyond-infrastructure-as-code-dsls.jpg&quot;
+        srcset=&quot;/static/a5ed870d8154c86f75bcc3645cfa508f/8ee9c/beyond-infrastructure-as-code-dsls.jpg 148w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/ebbe7/beyond-infrastructure-as-code-dsls.jpg 295w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/c739e/beyond-infrastructure-as-code-dsls.jpg 590w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/5413e/beyond-infrastructure-as-code-dsls.jpg 885w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/4efde/beyond-infrastructure-as-code-dsls.jpg 1180w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/6c9e7/beyond-infrastructure-as-code-dsls.jpg 4048w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Pulumi allows you to define resources in code, using TypeScript, python, or Go.&lt;/p&gt;
+&lt;p&gt;Configuration in code has a few benefits. You can test it, you can use feature flags, you can access environment variables, you can create resources based on conditions.&lt;/p&gt;
+&lt;p&gt;Pulumi has a CLI. It’s not entirely standalone, as it needs to track some state.
+That state relates to what’s actually deployed - there’s some extra metadata stored by Pulumi, so it can’t just query AWS/Azure to find what’s there.&lt;/p&gt;
+&lt;p&gt;app.pulumi.com is managed service with “enterprise” features like audit, policies, secret management.
+You can get by without it if you don’t want to pay&lt;/p&gt;
+&lt;p&gt;Pulumi can publish and consume infrastructure — that is, create new stuff and reference old stuff.&lt;/p&gt;
+&lt;p&gt;You can mix infrastructure code with application code.
+For example, create an S3 bucket and an &lt;code class=&quot;language-text&quot;&gt;onCreated&lt;/code&gt; event handler.
+The event handler will end up in a Lambda with a S3 trigger.
+That’s pretty cool.&lt;/p&gt;
+&lt;p&gt;Jake’s team are going down this path because “we want devs to manage infrastructure”.
+They have an ops team who will give input, provide advice, make sure it’s all monitored, etc.
+This will allow knowledge sharing between dev and ops,
+build awareness of what’s actually running your code and how it fits together.
+They also hope it will allow them to evolve their architecture.
+In the future, they’d like to simplify if possible, and reduce cost.&lt;/p&gt;
+&lt;p&gt;Pulumi crosswalk (x-walk? the plugins are things like &lt;code class=&quot;language-text&quot;&gt;awsx&lt;/code&gt; rather than &lt;code class=&quot;language-text&quot;&gt;aws&lt;/code&gt;) gives you some sensible defaults.&lt;/p&gt;
+&lt;p&gt;Pulumi is more configurable, but more effort, too.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;thousands-of-concurrent-connections-with-azure-signalr-service&quot;&gt;&lt;/a&gt; Thousands of concurrent connections with Azure SignalR Service&lt;/h2&gt;
+&lt;p&gt;Nelly Sattari &lt;a href=&quot;https://twitter.com/@nelly_sattari&quot;&gt;@nelly_sattari&lt;/a&gt;
+and Stafford Williams &lt;a href=&quot;https://twitter.com/@staff0rd&quot;&gt;@staff0rd&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Real-time functionality. Get updates as they happen&lt;/p&gt;
+&lt;p&gt;Real-time apps are well-suited to event driven architecture.&lt;/p&gt;
+&lt;p&gt;Used to use long polling. Connection is held open. Once data is available, response returned, connection closed
+Once it’s closed, another long poll request is opened&lt;/p&gt;
+&lt;p&gt;Then came server push, but it’s only one way&lt;/p&gt;
+&lt;p&gt;WebSockets allow bi-directional messages. Don’t need to keep including headers, because the connection already exists, so less data&lt;/p&gt;
+&lt;p&gt;SignalR chooses the best connection based on client and server capabilities. Essentially, it abstracts that layer. WebSockets -&gt; server push -&gt; long polling&lt;/p&gt;
+&lt;p&gt;Stafford experimented with the limits of an Azure App Service,
+but found around 750 concurrent connections — even though they advertise “unlimited”
+Tried changing the testing approach, ended up with
+50 virtual machine clients connecting to 1 big server VM and got around 250,000 persistent connections&lt;/p&gt;
+&lt;p&gt;Scaling out means that each app service can only broadcast to it’s own clients
+So you need a backplane
+Which means it needs to be stateful.
+Compromises.&lt;/p&gt;
+&lt;p&gt;Azure SignalR Service handles that for you. It’s a proxy not a backplane
+Persistent connections on the web server is now 0. They all go through the SignalR Service&lt;/p&gt;
+&lt;p&gt;Handles up to 100,000 connections (100 units) if you want to pay for it. That’s per service.&lt;/p&gt;
+&lt;p&gt;There was a cool demo with audience involvement - we played pong, did some yes/no polls, pressed a clicker.
+This demonstrated the low-latency communication, multiple concurrent updates, and it was pretty good fun.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;css-grid-what-is-this-magic&quot;&gt;&lt;/a&gt; CSS Grid - What is this magic?!&lt;/h2&gt;
+&lt;p&gt;Amy Kapernick &lt;a href=&quot;https://twitter.com/@Amys_Kapers&quot;&gt;@Amys_Kapers&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/6c9e7/css-grid-what-is-this-magic.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EABYBAQEBAAAAAAAAAAAAAAAAAAECA//aAAwDAQACEAMQAAABzK89wpKSNP/EABsQAQEAAQUAAAAAAAAAAAAAAAECAwAEEhMh/9oACAEBAAEFAsZyvcYeofGaZay1eqBf/8QAFREBAQAAAAAAAAAAAAAAAAAAABL/2gAIAQMBAT8BQ//EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPwFsf//EABoQAQABBQAAAAAAAAAAAAAAAAEAEBEhIjH/2gAIAQEABj8CCtzs2VmJ/8QAGBABAQEBAQAAAAAAAAAAAAAAAREAMUH/2gAIAQEAAT8hKD3SERuuFNwB4dPmE7qwAb//2gAMAwEAAgADAAAAEIDv/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oACAEDAQE/EA1tX//EABYRAAMAAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPxByCL//xAAZEAADAQEBAAAAAAAAAAAAAAAAAREhMcH/2gAIAQEAAT8QVmWyVoh0iewyDsuFvNHB8ZNNDD0yKHIf/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;css grid what is this magic&quot;
+        title=&quot;css grid what is this magic&quot;
+        src=&quot;/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/c739e/css-grid-what-is-this-magic.jpg&quot;
+        srcset=&quot;/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/8ee9c/css-grid-what-is-this-magic.jpg 148w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/ebbe7/css-grid-what-is-this-magic.jpg 295w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/c739e/css-grid-what-is-this-magic.jpg 590w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/5413e/css-grid-what-is-this-magic.jpg 885w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/4efde/css-grid-what-is-this-magic.jpg 1180w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/6c9e7/css-grid-what-is-this-magic.jpg 4048w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the beginning there was darkness.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Then HTML pages&lt;/li&gt;
+&lt;li&gt;Then tables for layout&lt;/li&gt;
+&lt;li&gt;Then floats and clear fix and all the container divs that come with that&lt;/li&gt;
+&lt;li&gt;Then flexbox allowed responsiveness across one axis&lt;/li&gt;
+&lt;li&gt;Then CSS grid opened up the other axis as well&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So, now, we can use semantic HTML for the structure
+and CSS for the layout. Like we should have been doing. No wrapper &lt;code class=&quot;language-text&quot;&gt;div&lt;/code&gt;s&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;fr&lt;/code&gt; unit is like flex basis.
+Add up the numbers (1fr + 2fr = 3fr), and each element will grow proportionally to “their” &lt;code class=&quot;language-text&quot;&gt;fr&lt;/code&gt; (2fr twice as big as 1fr)&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;minmax()&lt;/code&gt; can help you deal with leftover space, e.g. when you don’t know how many rows you need/columns&lt;/p&gt;
+&lt;p&gt;Grid + flex = &lt;span role=&quot;img&quot; title=&quot;party&quot;&gt;🎉&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Browser support:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CSS Grid ~91%&lt;/li&gt;
+&lt;li&gt;Flex box 98%&lt;/li&gt;
+&lt;li&gt;Sub grid 😬 Firefox 71 (as yet unreleased)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Use &lt;code class=&quot;language-text&quot;&gt;@supports(display: grid)&lt;/code&gt; (IE &lt;em&gt;thinks&lt;/em&gt; it supports grid, though)
+or &lt;code class=&quot;language-text&quot;&gt;@supports(grid-template-areas: &amp;#39;.&amp;#39;)&lt;/code&gt; to figure out if grid is supported.
+Put your grid code inside the query and a fall-back outside, if you need to support it.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;a id=&quot;commuting-like-a-developer&quot;&gt;&lt;/a&gt; Commuting like a developer&lt;/h2&gt;
+&lt;p&gt;Anton Ball &lt;a href=&quot;https://twitter.com/@antonjb&quot;&gt;@antonjb&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/bbc653739675cb7b7c9f68b2a8cd8ed2/6c9e7/commuting-like-a-developer.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgX/xAAWAQEBAQAAAAAAAAAAAAAAAAACAAH/2gAMAwEAAhADEAAAAUURMO800S//xAAZEAACAwEAAAAAAAAAAAAAAAABAgADBBH/2gAIAQEAAQUCpqNivm4h7K9BrU7GIJn/xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAIAQMBAT8BRsv/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAZEAEAAwEBAAAAAAAAAAAAAAABABASEQL/2gAIAQEABj8C7oIu2gPJOZK//8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERITFB/9oACAEBAAE/IV3f8lNCmlcSRp2jcmetD70qFGf/2gAMAwEAAgADAAAAEL/f/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oACAEDAQE/EIGH/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oACAECAQE/EBLb/8QAGhABAAMAAwAAAAAAAAAAAAAAAQARITFBgf/aAAgBAQABPxBmWCGpr2KylgEaIAN2L5lFiOi42KmTveRF0zCf/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Transport Driven Development&quot;
+        title=&quot;Transport Driven Development&quot;
+        src=&quot;/static/bbc653739675cb7b7c9f68b2a8cd8ed2/c739e/commuting-like-a-developer.jpg&quot;
+        srcset=&quot;/static/bbc653739675cb7b7c9f68b2a8cd8ed2/8ee9c/commuting-like-a-developer.jpg 148w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/ebbe7/commuting-like-a-developer.jpg 295w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/c739e/commuting-like-a-developer.jpg 590w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/5413e/commuting-like-a-developer.jpg 885w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/4efde/commuting-like-a-developer.jpg 1180w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/6c9e7/commuting-like-a-developer.jpg 4048w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;69% of Aussies drive to work. It’s boring and “mindless”. His many times have you arrived and not really been aware of how it happened&lt;/p&gt;
+&lt;p&gt;The average commuter spends about 4.5 hours per week commuting.&lt;/p&gt;
+&lt;p&gt;Stress, poor sleep.&lt;/p&gt;
+&lt;p&gt;There are many ways we commute. Anton showed a few wild examples:
+a Perth unicyclist,
+a Sydney Harbour swimmer
+… but more conventional options are available&lt;/p&gt;
+&lt;p&gt;So he ran an experiment.
+Like all good experiments, he needed some rules:
+Consistent timing (door to desk),
+No work or email on the commute,
+Nothing infinite scrolling (e.g. Twitter, Facebook)&lt;/p&gt;
+&lt;p&gt;Using an electric assisted bike (cheating) meant he didn’t get as sweaty, so didn’t need to change at either end.&lt;/p&gt;
+&lt;p&gt;Anton considered the time and cost for driving, cycling, and public transport.&lt;/p&gt;
+&lt;p&gt;You can probably guess that the car was the fastest mode,
+and cycling was the cheapest.
+Most investigations stop there, but Anton wanted to go deeper.&lt;/p&gt;
+&lt;p&gt;A few notable bits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;you can use the commute to learn (all modes allowed listening to podcasts),
+but reading was restricted to public transport.
+When driving or cycling, you need to look where you’re going,
+and your hands are occupied. On a bus, you just need to keep an eye out for your stop.&lt;/li&gt;
+&lt;li&gt;use the trip to plan your day, or separate work from home.&lt;/li&gt;
+&lt;li&gt;cycling was more vigorous exercise, and for longer,
+but public transport had some walking, which was better than driving, at least.&lt;/li&gt;
+&lt;li&gt;Driving was awful for mental health. It’s stressful, there’s road rage.
+The other modes allow stopping and looking around. Being in your body.&lt;/li&gt;
+&lt;li&gt;Bike paths often go through parks, and are usually nicer to look at than roads.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And the results?&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Category&lt;/th&gt;
+&lt;th&gt;Driving&lt;/th&gt;
+&lt;th&gt;Cycling&lt;/th&gt;
+&lt;th&gt;Public transport&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Time&lt;/td&gt;
+&lt;td&gt;🏆&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Cost&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;🏆&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Free time&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;🏆&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Health&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;🏆&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mental health&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;🏆&lt;/td&gt;
+&lt;td&gt;🏆&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;View&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;🏆&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Environment&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;🏆&lt;/td&gt;
+&lt;td&gt;🏆&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Safety (no judgements made)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;So what does Anton do now? (Mostly) cycling or public transport.&lt;/p&gt;
+&lt;p&gt;What’s next?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automation. Less reliance on cars. Car sharing&lt;/li&gt;
+&lt;li&gt;Being able to reduce infrastructure for cars (e.g. parking lots)
+could free up money for better infrastructure for other modes, or, you know, parks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The challenge:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Give it a try&lt;/li&gt;
+&lt;li&gt;See how you can improve your commute&lt;/li&gt;
+&lt;li&gt;Find the joy in your journey&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So that’s NDC Sydney! I learned a lot, had a ball, and hope to be back in the future!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Draft testing]]></title><description><![CDATA[This should never appear]]></description><link>https://bplowry.github.io/draft/</link><guid isPermaLink="false">https://bplowry.github.io/draft/</guid><pubDate>Tue, 01 Oct 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This should never appear&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Level up your testing with Finite State Machines (part 1)]]></title><description><![CDATA[You may have heard that / code is actually using a state machine under the hood.
+We can show examples of what that looks like when…]]></description><link>https://bplowry.github.io/testing-with-fsm/</link><guid isPermaLink="false">https://bplowry.github.io/testing-with-fsm/</guid><pubDate>Thu, 26 Sep 2019 09:34:12 GMT</pubDate><content:encoded>&lt;p&gt;You may have heard that &lt;code class=&quot;language-text&quot;&gt;async&lt;/code&gt;/&lt;code class=&quot;language-text&quot;&gt;await&lt;/code&gt; code is actually using a state machine under the hood.
+We can show examples of what that looks like when converting modern code to older syntax.
+For example,
+when &lt;a href=&quot;https://www.typescriptlang.org/play/?target=1#code/IYZwngdgxgBAZgV2gFwJYHsL3egFAShgG8AoGGAJwFNkEKsAFC9AW1RCoDpqR0AbAG5VcAcgBGwCiPwBuEgF8gA&quot;&gt;compiling TypeScript&lt;/a&gt;
+or &lt;a href=&quot;https://babeljs.io/en/repl#?babili=false&amp;#x26;browsers=&amp;#x26;build=&amp;#x26;builtIns=false&amp;#x26;spec=false&amp;#x26;loose=false&amp;#x26;code_lz=IYZwngdgxgBAZgV2gFwJYHsL3egFAShgG8AoGGAJwFNkEKsAFC9AW1RCoDpqR0AbAG5VcAcgBGwCiPwBuEgF8gA&amp;#x26;debug=false&amp;#x26;forceAllTransforms=false&amp;#x26;shippedProposals=false&amp;#x26;circleciRepo=&amp;#x26;evaluate=false&amp;#x26;fileSize=false&amp;#x26;timeTravel=false&amp;#x26;sourceType=module&amp;#x26;lineWrap=true&amp;#x26;presets=env&amp;#x26;prettier=false&amp;#x26;targets=&amp;#x26;version=7.6.2&amp;#x26;externalPlugins=&quot;&gt;transpiling JavaScript using Babel&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;So we start with something relatively simple:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; Promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;bar&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And after transpilation/compilation, we end up with:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;use strict&quot;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; __awaiter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__awaiter&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;thisArg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; _arguments&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; generator&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;adopt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; value &lt;span class=&quot;token keyword&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;P&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; value
+        &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Promise&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;resolve&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; reject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fulfilled&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;generator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;token function&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rejected&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;generator&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;throw&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;token function&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;done
+          &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;adopt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fulfilled&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; rejected&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;generator &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;generator&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;thisArg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; _arguments &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; __generator &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__generator&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;thisArg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; _ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        label&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token function-variable function&quot;&gt;sent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+          &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        trys&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        ops&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      f&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      y&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      t&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      g
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;g &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; next&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;verb&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;verb&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;verb&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; Symbol &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;g&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Symbol&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;iterator&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      g
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;verb&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; v&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;op&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TypeError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Generator is already executing.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            y &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+              &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+                op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
+                  &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;return&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+                  &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+                  &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;throw&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;return&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;y&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+                  &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+              &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;y&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;done&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; t
+          &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+          &lt;span class=&quot;token keyword&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+              t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; op
+              &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+              _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; done&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+              _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;
+              y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+              op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;continue&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+              op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ops&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+              _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;trys&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;continue&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+                &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;trys&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+              &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                _ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+                &lt;span class=&quot;token keyword&quot;&gt;continue&lt;/span&gt;
+              &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+                &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;
+              &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+                t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; op
+                &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;
+              &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+                _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ops&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;
+              &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ops&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+              _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;trys&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+              &lt;span class=&quot;token keyword&quot;&gt;continue&lt;/span&gt;
+          &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+          op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;thisArg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+          y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;finally&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          f &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; done&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;__awaiter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;__generator&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;_a&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;/*return*/&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;bar&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I’m sure if I stepped through it, I could figure out what’s going on …
+but rest assured, we won’t be doing anything remotely as complicated as that.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Becoming Telstra Purple]]></title><description><![CDATA[I started at Readify in 2017,
+after my previous employer closed their Perth office.
+I’d been a developer for just under a year
+and in the…]]></description><link>https://bplowry.github.io/becoming-telstra-purple/</link><guid isPermaLink="false">https://bplowry.github.io/becoming-telstra-purple/</guid><pubDate>Sat, 14 Sep 2019 11:47:03 GMT</pubDate><content:encoded>&lt;p&gt;I started at Readify in 2017,
+after my previous employer closed their Perth office.
+I’d been a developer for just under a year
+and in the software industry for just under 3 years.
+I’ve had amazing opportunities for growth since starting at Readify.
+We get 20 days per year of professional development time to learn new skills,
+both technical and core skills.
+I’m surrounded by smart and encouraging people who are always willing to help.
+These learning opportunities were the biggest reason for me joining Readify in the first place.&lt;/p&gt;
+&lt;p&gt;Now Readify is part of &lt;a href=&quot;https://purple.telstra.com&quot;&gt;Telstra Purple&lt;/a&gt;.
+The Readify name will live on in our hearts and minds,
+but not on paper.
+The connections I’d built with the people around me,
+and their reputation for delivering outcomes,
+haven’t gone anywhere.
+Readify had a strong presence and reputation within the community,
+and the task of everyone who’s now a part of Telstra Purple
+is to build that same reputation for the new name.
+It’s important to remember that the people haven’t changed,
+just the name on their shirts.&lt;/p&gt;
+&lt;p&gt;Telstra Purple is built from a number of separate businesses,
+which had been acquired by Telstra over a number of years,
+including Readify and Kloud — the two sharing a sister-company relationship of sorts.
+Becoming Telstra Purple allows us to build stronger relationships with the people in those other businesses.&lt;/p&gt;
+&lt;p&gt;As an example, Readify run a quarterly Back2Base event,
+where everyone comes back from customers for a day of talks and workshops.
+In WA, Readify has 50 or 60 people
+and Kloud, having come to WA only recently, has around 5.
+When we wanted to include the new Kloudies in Back2Base as part of our WA “fam”,
+we needed to drop the “Readify” from “Readify Back2Base”.
+In trying to include more people, we’d actually lost something of our identity.&lt;/p&gt;
+&lt;p&gt;Identity is particularly important for a business like Readify;
+so many of us spend our days with customers that these events might be the first time you meet someone new.
+Earlier this month, we had our first Back2Base since becoming Telstra Purple,
+and this time we &lt;em&gt;could&lt;/em&gt; use branding while remaining inclusive —
+the Telstra Purple brand.
+Everyone was included. We are together again.&lt;/p&gt;
+&lt;p&gt;Speaking about identity — being at Readify had become a big part of mine.
+I was introduced as being from Readify when speaking at DDD Perth and Fenders,
+and I wore the polo like a uniform, like so many others at Readify.
+It was a little scary to lose that,
+and I think it’s normal to be scared of changing your identity.
+But all the things that I liked about Readify are still there.&lt;/p&gt;
+&lt;p&gt;The perks are the same,
+the work is the same
+(for now — joining forces opens some exciting new avenues),
+the people are the same,
+and the shirts are coming!&lt;/p&gt;</content:encoded></item></channel></rss>

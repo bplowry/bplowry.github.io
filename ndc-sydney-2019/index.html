@@ -1,0 +1,866 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><style data-href="/styles.2ccef1f5cb09dba67a2a.css">@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-191cc9f50f3b76b9617cb383f19acb7d.woff2) format("woff2"),url(/static/montserrat-latin-100-370318464551d5f25b0f0a78f374faac.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-bdeaeb79db315697bd173a55b097dc18.woff2) format("woff2"),url(/static/montserrat-latin-100italic-ecf7d49386e8f265878e735db34a7c4b.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-85d5ef9db7f2dc6979172a4a3b2c57cb.woff2) format("woff2"),url(/static/montserrat-latin-200-1fc98e126a3d152549240e6244d7e669.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-49095760a498d024fe1a85a078850df9.woff2) format("woff2"),url(/static/montserrat-latin-200italic-fe46cf8b9462c820457d3bf537e4057f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-7c3daf12b706645b5d3710f863a4da04.woff2) format("woff2"),url(/static/montserrat-latin-300-8dc95fab9cf98d02ca8d76e97d3dff60.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-f20b178ca2024a5eac8e42e6649db86c.woff2) format("woff2"),url(/static/montserrat-latin-300italic-3fe16939288856e8e828fa2661bf2354.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-bc3aa95dca08f5fee5291e34959c27bc.woff2) format("woff2"),url(/static/montserrat-latin-400-8102c4838f9e3d08dad644290a9cb701.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-5cad650422a7184467af5a4d17b264c4.woff2) format("woff2"),url(/static/montserrat-latin-400italic-d191f22af3bb50902b99ac577f81a322.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-92d16e458625f4d2c8940f6bdca0ff09.woff2) format("woff2"),url(/static/montserrat-latin-500-8b763220218ffc11c57c84ddb80e7b26.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-47bfcca6b69d6a9acca7a8bff17193e2.woff2) format("woff2"),url(/static/montserrat-latin-500italic-72c01f753c3940c0b9cb6bf2389caddf.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-6fb1b5623e528e27c18658fecf5ee0ee.woff2) format("woff2"),url(/static/montserrat-latin-600-7c839d15a6f54e7025ba8c0c4b333e8f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-60789af1c9338ed1a9546722ec54b4f7.woff2) format("woff2"),url(/static/montserrat-latin-600italic-f3d4de8d0afb19e777c79032ce828e3d.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-39d93cf678c740f9f6b2b1cfde34bee3.woff2) format("woff2"),url(/static/montserrat-latin-700-80f10bd382f0df1cd650fec59f3c9394.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-ba136d97b14e82284dd595e257f11c47.woff2) format("woff2"),url(/static/montserrat-latin-700italic-8c98142b425630821139c24bd1698700.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-b7018be9ed6cd94da8b6675b3a468c3b.woff2) format("woff2"),url(/static/montserrat-latin-800-9a9befcf50d64f9d2d19d8b1d1984add.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-540ffdd223d1a9ad3d4e678e1a23372e.woff2) format("woff2"),url(/static/montserrat-latin-800italic-897086f99f4e1f45e6b1e9368527d0bc.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-58cd789700850375b834e8b6776002eb.woff2) format("woff2"),url(/static/montserrat-latin-900-26d42c9428780e545a540bbb50c84bce.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-451157bc8861fe54f523b3669a3def71.woff2) format("woff2"),url(/static/montserrat-latin-900italic-a8ec4957e1c24f5793305763ad9845b3.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-b1158cfcd4aacb9d8fb61625e37af46a.woff2) format("woff2"),url(/static/merriweather-latin-300-cc7de05e166e90320d7d896e0f72a19d.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-8fe52a48089d6ebe46db0b8e7cc66263.woff2) format("woff2"),url(/static/merriweather-latin-300italic-e1331f5397c2a673f9d3765138debdb5.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-8276fdb72ae8f4714d4e6eba704cc39f.woff2) format("woff2"),url(/static/merriweather-latin-400-69f09800f4f6479d06e44eba837df872.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-3a9be9ea9f7aa4af6de7307df21d9fc0.woff2) format("woff2"),url(/static/merriweather-latin-400italic-d76079ed7541a433a54f79316de086e9.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-fa534be7ffa380e39a7f6e03bf9a5e03.woff2) format("woff2"),url(/static/merriweather-latin-700-ba56ea84b8084b7ff9677f50d3cd81bd.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-1ef5edaaa20ae53ea50399884c5e48c6.woff2) format("woff2"),url(/static/merriweather-latin-700italic-534bc9e7ce93c73d73426e46acd78092.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-7528fb70e8a4a82c7305e72ff43ac25f.woff2) format("woff2"),url(/static/merriweather-latin-900-3799b6e2f5ed3fcccf9d7a708d7419fa.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-e1b4d2aaa78e12ad84aaf8a56321e4c2.woff2) format("woff2"),url(/static/merriweather-latin-900italic-2ae22f731b3424e8dbb4b37f7ca6e708.woff) format("woff")}code[class*=language-],pre[class*=language-]{color:#000;background:none;text-shadow:0 1px #fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::-moz-selection,code[class*=language-] ::-moz-selection,pre[class*=language-]::-moz-selection,pre[class*=language-] ::-moz-selection{text-shadow:none;background:#b3d4fc}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{text-shadow:none;background:#b3d4fc}@media print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.13.61"/><style type="text/css">.gatsby-resp-image-image{width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;color:transparent;}</style><link rel="preconnect dns-prefetch" href="https://www.google-analytics.com"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="shortcut icon" href="/icons/icon-48x48.png?v=008654519ce705ac7bc44303a9014606"/><link rel="manifest" href="/manifest_en-AU.webmanifest"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=008654519ce705ac7bc44303a9014606"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=008654519ce705ac7bc44303a9014606"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=008654519ce705ac7bc44303a9014606"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=008654519ce705ac7bc44303a9014606"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=008654519ce705ac7bc44303a9014606"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=008654519ce705ac7bc44303a9014606"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=008654519ce705ac7bc44303a9014606"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=008654519ce705ac7bc44303a9014606"/><title data-react-helmet="true">NDC Sydney 2019 | Six of one</title><meta data-react-helmet="true" name="description" content="I had the chance to attend NDC Sydney for the first time. This is my first tech conference outside of Perth, and my first multi-day conference. I learned a bunch, so I wrote some of it down."/><meta data-react-helmet="true" property="og:title" content="NDC Sydney 2019"/><meta data-react-helmet="true" property="og:description" content="I had the chance to attend NDC Sydney for the first time. This is my first tech conference outside of Perth, and my first multi-day conference. I learned a bunch, so I wrote some of it down."/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Ben Lowry"/><meta data-react-helmet="true" name="twitter:title" content="NDC Sydney 2019"/><meta data-react-helmet="true" name="twitter:description" content="I had the chance to attend NDC Sydney for the first time. This is my first tech conference outside of Perth, and my first multi-day conference. I learned a bunch, so I wrote some of it down."/><link as="script" rel="preload" href="/webpack-runtime-a2e3e34c82d58bf84d8e.js"/><link as="script" rel="preload" href="/styles-93679f138f49483c9e6e.js"/><link as="script" rel="preload" href="/app-6fdf2a862aa8a32f80b7.js"/><link as="script" rel="preload" href="/0-760c11b75d509541f1a1.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-1667f0d9d66287fe427f.js"/><link as="fetch" rel="preload" href="/page-data/ndc-sydney-2019/page-data.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div style="margin-left:auto;margin-right:auto;max-width:42rem;padding:2.625rem 1.3125rem"><header><h3 style="font-family:Montserrat, sans-serif;margin-top:0"><a style="box-shadow:none;text-decoration:none;color:inherit" href="/">Six of one</a></h3></header><main><h1 style="margin-top:1.75rem;margin-bottom:0">NDC Sydney 2019</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem">October 16, 2019<!-- --> · 📖 <!-- -->22 min read</p><div><p>I went to NDC Sydney for the first time, this year.
+I took notes for most of the talks I attended, and thought I should share.</p>
+<nav>
+<ul>
+<li><a href="#the-care-and-feeding-of-software-developers">The care and feeding of software developers</a> by Heather Downing</li>
+<li><a href="#kubernetes-0-to-100">Kubernetes 0 to 100</a> by Scott Holden</li>
+<li><a href="#modern-javascript-for-web-dinosaurs">Modern JavaScript for web dinosaurs</a> by Scott Holden</li>
+<li><a href="#am-i-a-good-developer">Am I a good developer?</a> by Emad Alashi</li>
+<li><a href="#have-lunch-and-impact-on-your-company">Have lunch and impact on your company!</a> by Nelly Sattari</li>
+<li><a href="#chinafy-your-apps">Chinafy your apps + Lessons you can steal from China</a> by Adam Cogan</li>
+<li><a href="#using-flutter-to-develop-cloud-enabled-mobile-applications">Using Flutter to develop cloud enabled mobile applications</a> by Nick Randolph and Pooja Bhaumik</li>
+<li><a href="#whats-going-on-with-project-fugu">What’s going on with Project Fugu?</a> by Phil Nash</li>
+<li><a href="#how-to-do-in-app-chaos-testing">How to do in-app chaos testing</a> by Wesley Cabus</li>
+<li><a href="#bank-grade-security">Bank Grade Security</a> by Kieran Jacobsen</li>
+<li><a href="#beyond-infrastructure-as-code-dsls">Beyond infrastructure as code DSLs</a> by Jake Ginnivan</li>
+<li><a href="#thousands-of-concurrent-connections-with-azure-signalr-service">Thousands of concurrent connections with Azure SignalR Service</a> by Nelly Sattari and Stafford Williams</li>
+<li><a href="#css-grid-what-is-this-magic">CSS Grid - What is this magic?!</a> by Amy Kapernick</li>
+<li><a href="#commuting-like-a-developer">Commuting like a developer</a> by Anton Ball</li>
+</ul>
+</nav>
+<hr>
+<h2><a id="the-care-and-feeding-of-software-developers"></a> The care and feeding of software developers</h2>
+<p>Heather Downing <a href="https://twitter.com/@quorralyne">@quorralyne</a></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5ae69f9a762281d80a3468fe6accc527/6c9e7/the-care-and-feeding-of-software-developers.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAUBAgT/xAAVAQEBAAAAAAAAAAAAAAAAAAABAP/aAAwDAQACEAMQAAABWu0thkzEf//EABsQAAICAwEAAAAAAAAAAAAAAAEDAAIEISIT/9oACAEBAAEFAl93qqtRk6avmerDDs//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAaEAEBAAIDAAAAAAAAAAAAAAABAAIhMTJB/9oACAEBAAY/AgtEzl6cXdt3/8QAGhABAAIDAQAAAAAAAAAAAAAAAQARITFhkf/aAAgBAQABPyGy+lmJlwUuELQs2CO96xtiV7P/2gAMAwEAAgADAAAAEEPf/8QAFREBAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQMBAT8Qp//EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPxDEj//EAB0QAAMBAAEFAAAAAAAAAAAAAAERIQAxQYGRobH/2gAIAQEAAT8QpLnAHKgxCkC+cFYqesx0pCFot6b2SfMeFrqTO//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="&quot;Success is a lousy teacher. It seduces smart people into thinking they can&#39;t lose&quot; - Bill Gates"
+        title="&quot;Success is a lousy teacher. It seduces smart people into thinking they can&#39;t lose&quot; - Bill Gates"
+        src="/static/5ae69f9a762281d80a3468fe6accc527/c739e/the-care-and-feeding-of-software-developers.jpg"
+        srcset="/static/5ae69f9a762281d80a3468fe6accc527/8ee9c/the-care-and-feeding-of-software-developers.jpg 148w,
+/static/5ae69f9a762281d80a3468fe6accc527/ebbe7/the-care-and-feeding-of-software-developers.jpg 295w,
+/static/5ae69f9a762281d80a3468fe6accc527/c739e/the-care-and-feeding-of-software-developers.jpg 590w,
+/static/5ae69f9a762281d80a3468fe6accc527/5413e/the-care-and-feeding-of-software-developers.jpg 885w,
+/static/5ae69f9a762281d80a3468fe6accc527/4efde/the-care-and-feeding-of-software-developers.jpg 1180w,
+/static/5ae69f9a762281d80a3468fe6accc527/6c9e7/the-care-and-feeding-of-software-developers.jpg 4048w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>The best leaders aren’t “the best at tech”</p>
+<p>Get away from what makes people like you (similar interests, background, etc.)
+Go out of your way to find the people unlike you. Equal attention.</p>
+<p>Leadership is a muscle, you need to exercise it.
+Don’t get comfortable.
+You need to sacrifice for your team.</p>
+<p>What developers want from leaders:</p>
+<ul>
+<li>safety (failure, support, belief)</li>
+<li>flexible and empathetic during personal challenges</li>
+<li>listen. They speak first</li>
+<li>respect. Differences</li>
+<li>encourage - “you got this”</li>
+<li>recognise - talk to them about their progress. Acknowledge their achievements, but also recognise their effort</li>
+<li>empower - let other people demonstrate their capability. Let them grow. Help them grow</li>
+</ul>
+<p>Our differences make us a better team. People are not drop in and replace</p>
+<p>You may need to support people at different levels.
+Juniors need freedom to learn, make mistakes, and grow.
+Mid-level need freedom to pair, share their knowledge, learn, make mistakes, and grow.
+Seniors need freedom to experiment, try new ideas, pair, share, learn, make mistakes, and grow.
+Noticing the pattern yet?</p>
+<p>Your team will also have different personality types, and this may change as time goes by.
+Optimists will help keep morale up — “Everything is on fire, but hey, we’re alive”.
+Pessimists will make sure we’re not getting ahead of ourselves.
+You probably need people who are bold, and visionary.
+Sometimes people will be down-hearted; it’s not going to be all the time, but it’ll be <em>all</em> of us, <em>some</em> of the time.</p>
+<p>How do you become the best leader?
+Let them do their jobs?
+Handle all the non-dev stuff for them.
+Be mostly responsive and reachable.
+Have regular (frequent and predictable) one-on-ones.
+Value quality over quantity or velocity; let them do the best job they can.
+Avoid task switching, if you can. Changing context from day-to-day,
+or multiple times per day isn’t always productive and can be overwhelming.
+Be the shield.</p>
+<p>You may need to be vulnerable:
+Be prepared to give away control.
+Emphasise that you’re learning, too.
+Let them fail and learn.
+Remember that it’s OK to not know.</p>
+<p>The challenge?
+Learn new tech, see how you can apply it.
+You know, that’s cool. But also
+learn about leadership, because that’s your future.
+Whether you end up as team lead or senior dev:
+leadership is part of your job.</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="kubernetes-0-to-100"></a> Kubernetes 0 to 100</h2>
+<p>Scott Holden <a href="https://twitter.com/@sc_holden">@sc_holden</a></p>
+<p>To understand Kubernetes, you need to understand containers.</p>
+<p><code class="language-text">container = code + runtime</code></p>
+<p>The main benefits of containerisation are in resource isolation.
+Compared to a VM,
+there’s no OS — and the OS is huge —
+so you don’t need to “carry” it around.</p>
+<p>All the bits of containers have been around forever.
+Docker put it all together and made it easy.</p>
+<aside>**HOT TIP:** `docker run -d **--rm**` will clean up afterwards.</aside>
+<p>If you have multiple containers,
+layers are shared, so we only have one copy of dependencies.</p>
+<p>Scott went through an example of
+creating a new image from an existing one “by hand”.
+That is, by opening a remote terminal with <code class="language-text">docker exec bash</code>
+and going to town, then publishing the new image.
+But that’s not the recommended approach.</p>
+<p>Usually, you’d use a Dockerfile.
+<code class="language-text">FROM</code> is like starting the image.
+<code class="language-text">RUN</code> is the same as jumping in and editing.</p>
+<p>Docker Desktop ships with Kubernetes.
+You can turn it on and go.</p>
+<p>Kubernetes is about container orchestration.
+That includes:</p>
+<ul>
+<li>scheduling</li>
+<li>monitoring</li>
+<li>scaling</li>
+<li>deploying new versions</li>
+<li>configuration, and</li>
+<li>service discovery</li>
+</ul>
+<p>Kubernetes talks to the container runtime.
+It’s not a container runtime itself.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/85b6911c5f5b8a26deb302e662eaf7ea/6c9e7/kubernetes-0-to-100.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgX/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAABv5qppVGRP//EABsQAAICAwEAAAAAAAAAAAAAAAECABEDBBMi/9oACAEBAAEFAinrPSyzG2mJ6Ws//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8BJ//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABoQAAICAwAAAAAAAAAAAAAAAAABEDERIVH/2gAIAQEABj8CwXssb6NO4//EABsQAAMBAAMBAAAAAAAAAAAAAAABESExQWFx/9oACAEBAAE/IdVXCRpJ4GJAEsT4Pm1+yw//2gAMAwEAAgADAAAAEDwf/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8QAs//xAAWEQADAAAAAAAAAAAAAAAAAAABEDH/2gAIAQIBAT8QgX//xAAcEAEAAwADAQEAAAAAAAAAAAABABEhMUFRYXH/2gAIAQEAAT8QIGAWVN57qV+8/QfkW338JZ66CzEv6txa15LACuJ//9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Kubernetes is a scheduler (in terms of running containers)"
+        title="Kubernetes is a scheduler (in terms of running containers)"
+        src="/static/85b6911c5f5b8a26deb302e662eaf7ea/c739e/kubernetes-0-to-100.jpg"
+        srcset="/static/85b6911c5f5b8a26deb302e662eaf7ea/8ee9c/kubernetes-0-to-100.jpg 148w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/ebbe7/kubernetes-0-to-100.jpg 295w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/c739e/kubernetes-0-to-100.jpg 590w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/5413e/kubernetes-0-to-100.jpg 885w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/4efde/kubernetes-0-to-100.jpg 1180w,
+/static/85b6911c5f5b8a26deb302e662eaf7ea/6c9e7/kubernetes-0-to-100.jpg 4048w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>In order to manage your schedule your containers, Kubernetes needs master nodes and worker nodes.</p>
+<p>The master node</p>
+<ul>
+<li>is probably actually a cluster of master nodes</li>
+<li>runs Kubernetes</li>
+</ul>
+<p>Worker nodes</p>
+<ul>
+<li>some form of “compute”</li>
+<li>runs workloads</li>
+<li>container runtime lives here</li>
+</ul>
+<p>A typical configuration might start with 3 master nodes and 5 worker nodes.</p>
+<p>Kubernetes exists somewhere between
+IaaS (Infrastructure as a Service) and
+PaaS (Platform as a Service).
+It depends where you sit.
+(Self: doesn’t that mean it’s <em>both</em>?)</p>
+<p>Managed Kubernetes service (e.g. Azure Kubernetes Service … Google, AWS, Alicloud likely have equivalents)
+can manage most of the infrastructure details.
+You don’t need to think about master nodes, you just need to configure them.</p>
+<p>Next up was a look through the <em>nuts and bolts</em> of k8s.</p>
+<p>Pod (one or more containers)</p>
+<ul>
+<li>Single instance of the smallest component</li>
+<li>multi container - use for logging, monitoring, service mesh</li>
+<li>the pod is what scales. It all scales together</li>
+<li>by itself, is not resilient</li>
+<li><code class="language-text">kubectl apply</code> to create. <code class="language-text">kubectl delete</code> to delete a pod</li>
+</ul>
+<p>ReplicaSet</p>
+<ul>
+<li>ensures you anyways have N pods running</li>
+</ul>
+<p>Deployment</p>
+<ul>
+<li>deploying a new version of a ReplicaSet</li>
+<li>it will spin up and spin down the new and old versions</li>
+<li>used if you want to update things</li>
+<li>failback is also available</li>
+</ul>
+<p>Service</p>
+<ul>
+<li>lets you load balance in cloud, expose a port per node, etc.</li>
+</ul>
+<p>Ingress</p>
+<ul>
+<li>expose HTTP endpoints for different services</li>
+</ul>
+<p><strong>Extras:</strong>
+Autoscaling: but not for free, you’ll need to configure it</p>
+<p>Namespaces: provide logical separation, e.g. dev and test</p>
+<p>Resource quotas</p>
+<p>AKS (Azure Kubernetes Service) - free control plane - don’t pay for the VMs, don’t manage them, apart from some config</p>
+<aside> **HOT TIP:** Use specific versions of dependencies so it spins up from cache. The `:latest` tag will always fetch from the registry, leading to slower startup.</aside>
+<p>I’d come in to this talk with a view that I’d never need Kubernetes.
+My main takeaway was that Kubernetes doesn’t mean you need huge complicated systems:
+Restarting a single killed pod with a ReplicaSet is a useful feature.</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="modern-javascript-for-web-dinosaurs"></a> Modern JavaScript for web dinosaurs</h2>
+<p>Ryan Preece <a href="https://twitter.com/@Preecington">@Preecington</a></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/1642b9eede3b7189f408e853f6c0872f/6c9e7/modern-javascript-for-web-dinosaurs.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIDBf/EABUBAQEAAAAAAAAAAAAAAAAAAAIA/9oADAMBAAIQAxAAAAE58hYpS//EABoQAQEAAgMAAAAAAAAAAAAAAAIDAAEEEBL/2gAIAQEAAQUC4sg53joD1vBVzKtRdf/EABURAQEAAAAAAAAAAAAAAAAAABAS/9oACAEDAQE/AZP/xAAVEQEBAAAAAAAAAAAAAAAAAAAQEf/aAAgBAgEBPwGn/8QAHRAAAgIBBQAAAAAAAAAAAAAAAQIAEBESISJBcf/aAAgBAQAGPwI6l7hKsfDXFsTdq//EABoQAQEAAwEBAAAAAAAAAAAAAAEAESFhMUH/2gAIAQEAAT8hVgX6tCR0uNhLC0rI+2Uv/9oADAMBAAIAAwAAABB/D//EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAgBAwEBPxBQ7aX/xAAXEQADAQAAAAAAAAAAAAAAAAAAASER/9oACAECAQE/ELUMP//EABoQAQADAQEBAAAAAAAAAAAAAAEAESExgUH/2gAIAQEAAT8QzSABRMPpHUK2UB96Rs78m1gugOy8xkKNJyDP/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="modern javascript for web dinosaurs"
+        title="modern javascript for web dinosaurs"
+        src="/static/1642b9eede3b7189f408e853f6c0872f/c739e/modern-javascript-for-web-dinosaurs.jpg"
+        srcset="/static/1642b9eede3b7189f408e853f6c0872f/8ee9c/modern-javascript-for-web-dinosaurs.jpg 148w,
+/static/1642b9eede3b7189f408e853f6c0872f/ebbe7/modern-javascript-for-web-dinosaurs.jpg 295w,
+/static/1642b9eede3b7189f408e853f6c0872f/c739e/modern-javascript-for-web-dinosaurs.jpg 590w,
+/static/1642b9eede3b7189f408e853f6c0872f/5413e/modern-javascript-for-web-dinosaurs.jpg 885w,
+/static/1642b9eede3b7189f408e853f6c0872f/4efde/modern-javascript-for-web-dinosaurs.jpg 1180w,
+/static/1642b9eede3b7189f408e853f6c0872f/6c9e7/modern-javascript-for-web-dinosaurs.jpg 4048w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Web development has changed a lot in the past few years.</p>
+<p>When Ryan last touched web development, jQuery was king. You’d download the file and put it on the web server with FTP. Simple.</p>
+<p>Now we have</p>
+<ul>
+<li>CLIs (command line interfaces),</li>
+<li>transpilers,</li>
+<li>packages and package managers,</li>
+<li>bundlers,</li>
+<li>NodeJS.</li>
+</ul>
+<p>It’s a lot more complicated.</p>
+<p>The steps along the way:</p>
+<ul>
+<li><code class="language-text">&lt;script src=&quot;scripts/jQuery.js&quot; /&gt;</code>
+We added a reference to the file we’d downloaded and put on the web server</li>
+<li><code class="language-text">&lt;script src=&quot;node_modules/jQuery/dist/jQuery.min.js&quot; /&gt;</code>
+We could install dependencies with NPM</li>
+<li><code class="language-text">require(&quot;jQuery&quot;)</code>
+CommonJS came around and we could install dependencies using <code class="language-text">require</code></li>
+<li>2011: The first bundlers started appearing. Browserify was the main player.</li>
+<li>2015: Webpack comes along and quickly becomes the go-to (self: typical JavaScript)</li>
+</ul>
+<p>Transpiling allows us to use syntax that isn’t supported in older browsers, e.g. turning <code class="language-text">async/await</code> code into <code class="language-text">.then</code> and <code class="language-text">.catch</code>.</p>
+<p>Polyfills allow us to use functionality that isn’t natively supported in older browsers, e.g. ensuring that <code class="language-text">Promise</code> is available in the browser.</p>
+<p>Together, these allow us to write “modern” code, so we don’t need to worry (as much) about browser differences.</p>
+<p>Script runners make all those CLI commands easier.
+First Grunt and Gulp, then NPM added <code class="language-text">scripts</code>, and it’s become the standard.
+The script runner lets you run <code class="language-text">npm run build</code> rather than <code class="language-text">./node_modules/bin/webpack webpack.config.js --production</code> or something else complicated.</p>
+<p>React, Vue, and Angular (the most-used web frameworks at time of writing) use all of these things under the hood.
+They have CLI tools to create new projects following best practices.</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="am-i-a-good-developer"></a> Am I a Good Developer?</h2>
+<p>Emad Alashi <a href="https://twitter.com/@EmadAshi">@EmadAshi</a></p>
+<p>Are you a good developer
+We should understand one level below what we’re working on</p>
+<ul>
+<li>in a human pyramid, you don’t care about the bottom, only the layer you’re standing on</li>
+</ul>
+<p>Appetite to learn</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="have-lunch-and-impact-on-your-company"></a> Have lunch and impact on your company!</h2>
+<p>Nelly Sattari <a href="https://twitter.com/@nelly_sattari">@nelly_sattari</a></p>
+<p>Brown bags or lunch and learn. Takes the name from the brown paper bag you might take your lunch in.</p>
+<p>Benefits:</p>
+<ul>
+<li>Build a network to find speakers</li>
+<li>Great way to network</li>
+<li>Attend other events</li>
+<li>Companies/vendors might want to get involved</li>
+<li>Good way to build</li>
+<li>your profile</li>
+<li>learning culture in org</li>
+<li>relationships with other areas of your company</li>
+</ul>
+<p>If you’re going to run brown bags, make them regular.
+Having one now and another one later, maybe, doesn’t really work.
+People need to know what to expect and when to expect it.
+It might start slowly, but if you stick with it you can build something good</p>
+<p>Nelly went from ~20% attendance to ~80% within a year, and now her company even provides lunch!</p>
+<p>Organising them might seem like a lot of effort,
+but it’s probably not as much as you think.
+Maybe a few hours a month (depending on how often you have them).</p>
+<p>People will appreciate you making the effort,
+and they’ll make an effort, too (to attend, speak, organise, etc.)</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="chinafy-your-apps"></a> Chinafy your apps + Lessons you can steal from China</h2>
+<p>Adam Cogan <a href="https://twitter.com/@AdamCogan">@AdamCogan</a></p>
+<p>China is a rapidly changing environment.
+If you went to China in 2015, there’s a good chance it’s a different place now.</p>
+<p>China is projected to become the world’s largest economy soon (2029), overtaking the USA.</p>
+<p>Many companies have $0 revenue in China, even big ones.
+This is partly due to the Great Firewall of China.
+But it’s also because we don’t understand the culture.</p>
+<p>Internet usage is mostly mobile (65% if I remember correctly, compared to 40% in Aus?).
+People primarily use native apps, over web apps.
+There are also pseudo-apps like WeChat official pages and mini-apps.</p>
+<p>Payments are typically done using WeChat Pay or AliPay over credit card or cash.
+Shop keeper will scan a QR code on your phone to make payment.
+Even people asking for money on the street have WeChat QR codes.</p>
+<p>There’s a thing called Sesame credit
+(self: I think this is that social credit system).
+You are judged and ranked on your activity;
+things like whether you pay your bills on time,
+but maybe other stuff, too,
+like the rankings of your friends?</p>
+<p>Sesame credit is endorsed by AliPay, WeChat Pay, People’s Bank of China, etc.
+You can get better interest rates, or no deposit for hire bikes, which is nice.
+But you can also end up having travel restrictions … not so nice.</p>
+<p>How to succeed in China:</p>
+<ul>
+<li>use WeChat official pages/mini-apps</li>
+<li>payments using AliPay, WeChat pay</li>
+<li>authentication using phone number and OTP (one-time passwcode) or social login. Not username/password</li>
+<li>QR codes everywhere.</li>
+<li>gamify interactions with your apps. e.g. “red envelope” (traditional) for a random win</li>
+<li>have a Chinese name</li>
+<li>use a Chinese cloud provider</li>
+<li>find local partners sales and support</li>
+<li>translation/localisation by a local</li>
+<li>user experience: don’t use minimalist design. The busier, the better. There was an example of a video with comments appearing over the top, to the point you can’t see the video.</li>
+</ul>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="using-flutter-to-develop-cloud-enabled-mobile-applications"></a> Using Flutter to develop cloud enabled mobile applications</h2>
+<p>Nick Randolph <a href="https://twitter.com/@thenickrandolph">@thenickrandolph</a>
+and Pooja Bhaumik <a href="https://twitter.com/@pblead26">@pblead26</a></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4575f8e45f9f942567ccbfbcf385d4e1/6c9e7/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EABYBAQEBAAAAAAAAAAAAAAAAAAIAAf/aAAwDAQACEAMQAAABnrzKIpEmP//EABsQAAIDAAMAAAAAAAAAAAAAAAIDAAESBBMU/9oACAEBAAEFAuMAmNpXG1liW9demGzZf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABURAQEAAAAAAAAAAAAAAAAAABAh/9oACAECAQE/AYf/xAAaEAEBAAIDAAAAAAAAAAAAAAABABAREiEy/9oACAEBAAY/AnlhAnq8lu//xAAZEAADAQEBAAAAAAAAAAAAAAAAAREhMWH/2gAIAQEAAT8hcd4xGa94IUzS8JrVGazMp//aAAwDAQACAAMAAAAQvO//xAAYEQEBAAMAAAAAAAAAAAAAAAABABEhUf/aAAgBAwEBPxBXsBja3//EABcRAQEBAQAAAAAAAAAAAAAAAAEAURH/2gAIAQIBAT8QDLPMv//EABoQAQEBAQEBAQAAAAAAAAAAAAERIQAxcaH/2gAIAQEAAT8QTuiiMycgEvNTfzpgCi68vHB3HXhSZHhXkhMsPnf/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Connect the dots: Flutter + Azure"
+        title="Connect the dots: Flutter + Azure"
+        src="/static/4575f8e45f9f942567ccbfbcf385d4e1/c739e/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg"
+        srcset="/static/4575f8e45f9f942567ccbfbcf385d4e1/8ee9c/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 148w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/ebbe7/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 295w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/c739e/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 590w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/5413e/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 885w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/4efde/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 1180w,
+/static/4575f8e45f9f942567ccbfbcf385d4e1/6c9e7/using-flutter-to-develop-cloud-enabled-mobile-applications.jpg 4048w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Flutter does differential rendering (like React).
+Doesn’t use native components,
+but uses the Skia rendering engine to draw everything.
+This helps you build apps that look the same on Android and iOS
+(some minor quirks, like over-scroll behaviour).</p>
+<p>You still need to consider if that’s right for you …
+after all you may want to be consistent with the platform.</p>
+<p>Easy to use with Material Design (Android) or Cupertino (iOS) - components are available and they <em>look</em> like native.</p>
+<p>Everything is a widget, and it’s all declarative.</p>
+<p>The developer experience can be a lot better than native.
+For example, hot reloading is way better than Xamarin or native Android and gradle.</p>
+<p>Consider Visual Studio App Center for building and publishing into the app stores.</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="whats-going-on-with-project-fugu"></a> What’s going on with Project Fugu?</h2>
+<p>Phil Nash <a href="https://twitter.com/@philnash">@philnash</a></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/f455c1dc986b9f164e8664e029cb7031/6c9e7/whats-going-on-with-project-fugu.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQDBf/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAGS/lbzUYH/xAAaEAACAwEBAAAAAAAAAAAAAAACAwABERQE/9oACAEBAAEFAvOu2zmGGOGtpLrrZLLb/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8BRn//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAcEAACAgIDAAAAAAAAAAAAAAAAAREhAiJBYZH/2gAIAQEABj8Ce0QW8mNdmpx4S4s//8QAGhAAAwADAQAAAAAAAAAAAAAAAAERMVFh4f/aAAgBAQABPyFRUdELzYk2FA/2leHcGvVTU//aAAwDAQACAAMAAAAQyO//xAAXEQEBAQEAAAAAAAAAAAAAAAABABEx/9oACAEDAQE/EOqAy//EABURAQEAAAAAAAAAAAAAAAAAAAEA/9oACAECAQE/EBJW/8QAHRABAAICAgMAAAAAAAAAAAAAAQARIUExgVGh8f/aAAgBAQABPxBRahwq38mH27T0TdZC3wyvkZYhjXlekdSYmts//9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Get on with the Fugu"
+        title="Get on with the Fugu"
+        src="/static/f455c1dc986b9f164e8664e029cb7031/c739e/whats-going-on-with-project-fugu.jpg"
+        srcset="/static/f455c1dc986b9f164e8664e029cb7031/8ee9c/whats-going-on-with-project-fugu.jpg 148w,
+/static/f455c1dc986b9f164e8664e029cb7031/ebbe7/whats-going-on-with-project-fugu.jpg 295w,
+/static/f455c1dc986b9f164e8664e029cb7031/c739e/whats-going-on-with-project-fugu.jpg 590w,
+/static/f455c1dc986b9f164e8664e029cb7031/5413e/whats-going-on-with-project-fugu.jpg 885w,
+/static/f455c1dc986b9f164e8664e029cb7031/4efde/whats-going-on-with-project-fugu.jpg 1180w,
+/static/f455c1dc986b9f164e8664e029cb7031/6c9e7/whats-going-on-with-project-fugu.jpg 4048w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Project Fugu is run by the Chrome team.
+The goal is to push the web forward, towards parity with native apps.</p>
+<p>Previously we had vendor prefixes, like <code class="language-text">ms-flex</code>, or <code class="language-text">-webkit-line-clamp</code>.
+Now we have feature flags.</p>
+<p>You can enable them yourself by going to <code class="language-text">chrome://flags</code> and <code class="language-text">#enable-experimental-web-platform-features</code>.
+But that doesn’t really work if you want to put something on your public website.
+Users won’t enable feature flags to view your website.</p>
+<p>So Chrome has this thing called Origin Trials.
+Websites can request to join an origin trial,
+which means you don’t need users to opt in —
+Chrome will enable whatever flags you asked for when users access your site.</p>
+<p>They might also take it away without telling you,
+so you need to make sure it works <em>without</em> the flag.
+You’d probably need that anyway to support other browsers, so no big deal.
+The reasons they’d take it away:</p>
+<ul>
+<li>too many people using it — it’s meant to be an experiment</li>
+<li>the experiment has expired</li>
+<li>other reasons?</li>
+</ul>
+<p><strong>The new stuff:</strong></p>
+<p>Generally the new features require <code class="language-text">https</code>,
+and often users will need to give permission
+(for camera, location, file system, push notifications, etc.)</p>
+<p><strong>Web share API</strong>
+No tracking. No JS, don’t need to (and can’t) track where they shared it or what platforms they use</p>
+<p><strong>Web share target API</strong>
+Make your own PWA (progressive web application) as a sharing target?
+Chrome origin trial suggested it was ok, trying to convince Safari</p>
+<p><strong>Wake lock</strong>
+Keeps the screen awake (or system, but it doesn’t work yet)
+Useful for non interactive sites, or sites that don’t interact with button/links (e.g. motion)</p>
+<p><strong>Aborting requests</strong>
+<code class="language-text">AbortController</code> to cancel fetches, by passing in <code class="language-text">controller.signal</code> into the <code class="language-text">fetch</code>.
+Aborting is not supported for all promises, but some APIs (particularly new ones) do support it.
+(self: this also applies to WebAuthn methods)</p>
+<p><strong>Contacts picker API</strong>
+Could be useful for calling, emailing, sharing with contacts.
+The user selects from contacts on their device.</p>
+<p><strong>Native file system API</strong>
+<code class="language-text">window.chooseFileSystemEntries()</code> returns a promise.
+This was added as an alternative to the older alternatives.
+Drag and drop files don’t work on mobile.
+The “Choose file” button is ugly.
+This API gives access to the file system (with permission from the user).</p>
+<p><strong>Shape detection API</strong>
+Face detector, Text detector, Barcode detector
+No mouth = no face, apparently
+Get locations of different features and bounding box.</p>
+<p>Takeaway: It’s all good for them to build it, but if we don’t experiment, they won’t find the edge cases or be able to make it better</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="how-to-do-in-app-chaos-testing"></a> How to do in-app chaos testing</h2>
+<p>Wesley Cabus <a href="https://twitter.com/@WesleyCabus">@WesleyCabus</a></p>
+<p>Wesley was making software that would be deployed on a server in a suitcase in Rwanda.
+They go hours/days without internet because of power outages.
+Wesley’s team were developing in an office with WiFi.
+They’re nothing alike.</p>
+<p>They wanted to simulate more realistic conditions for how the software was actually used.
+Unfortunately, airplane mode isn’t an accurate simulation.</p>
+<p>Wesley wrote a library called ruh roh <a href="https://www.nuget.org/packages/RuhRoh/">on NuGet</a>.
+This lets you wrap services or methods in your app startup, and “inject some randomness”.</p>
+<p>You can:</p>
+<ul>
+<li>slow down</li>
+<li>throw exceptions</li>
+<li>change responses</li>
+</ul>
+<p>Based on:</p>
+<ul>
+<li>random failures</li>
+<li>every N calls,</li>
+<li>after N calls,</li>
+<li>inputs to the method</li>
+</ul>
+<p>It lets you test what happens when stuff doesn’t work.
+This is really useful for external dependencies.
+You’re more likely to already handle errors in your own code,
+but assume that a library you didn’t write behaves in a way it might not.</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="bank-grade-security"></a> Bank Grade Security</h2>
+<p>Kieran Jacobsen <a href="https://twitter.com/@kjacobsen">@kjacobsen</a></p>
+<p>Kieran went through a number of tests (and showed us how to do them) for Australian banks.</p>
+<p>Things the banks didn’t always do well:</p>
+<p>HSTS (HTTP Strict Transport Security) helps prevent MITM (person in the middle) attacks.
+It works by telling the browser to never display the page
+if the certificate isn’t the same as the first time you visited.
+That still leaves a small chance for an attacker (the first time you go to the page),
+so there’s a thing called HSTS pre-loading.
+Preloading lets browsers pre-load the right certificates, so it removes that chance for the attacker.</p>
+<p>Having a CSP (Content Security Policy) prevents the browser from loading resources from un-approved sites.
+Essentially, you whitelist known sources, e.g. analytics or third parties you <em>expect</em> to appear.
+Any other requests will be rejected, so if a malicious script tries to send or download something, it will fail.
+There’s a “report only” mode that can be used to tell you what resources you <em>are</em> getting,
+in case you’re not ready to completely block that traffic.</p>
+<p>TLS is great, but TLS 1.0 is not. It has known vulnerabilities — not surprising, given it’s 20 years old.
+Some websites still support it because “we have users using IE6 on Windows XP”.
+The problem is, when a website supports TLS 1.0, or 1.1, it puts everyone at risk for the sake of a few.
+TLS 1.2 or 1.3 for the win!</p>
+<p>When well-meaning people want to report issues to a bank (or anyone),
+it’s often difficult to find the right person to contact.
+Posting in open channels like Twitter can also alert attackers that there is a problem they can exploit,
+or give them notice so they can clean up their tracks.
+To help reduce the problem, it is recommended to put information in <code class="language-text">/.well-known/security.txt</code>.
+The information in this document should outline the process for reporting an issue.
+You should include:</p>
+<ul>
+<li>who to contact</li>
+<li>relevant policies</li>
+<li>how to send the report (e.g. public keys for encrypting the message)</li>
+</ul>
+<p>For easy message encryption, you can use <a href="https://keybase.io">keybase.io</a></p>
+<p>Resources:</p>
+<ul>
+<li><a href="https://securityheaders.com/">Security Headers</a></li>
+<li><a href="https://report-uri.com/">Report URI</a></li>
+<li><a href="https://www.ssllabs.com/">SSL Labs</a></li>
+</ul>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="beyond-infrastructure-as-code-dsls"></a> Beyond infrastructure as code DSLs</h2>
+<p>Jake Ginnivan <a href="https://twitter.com/@JakeGinnivan">@JakeGinnivan</a></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a5ed870d8154c86f75bcc3645cfa508f/6c9e7/beyond-infrastructure-as-code-dsls.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgX/xAAVAQEBAAAAAAAAAAAAAAAAAAABAP/aAAwDAQACEAMQAAABns5jB0JC/8QAGhAAAwEBAQEAAAAAAAAAAAAAAQIDABEEFP/aAAgBAQABBQLyDuMkzzHYsyD6aY3ff//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABsQAAIBBQAAAAAAAAAAAAAAAAABAhEhMTJB/9oACAEBAAY/ApGqLIdDhhH/xAAbEAEAAgMBAQAAAAAAAAAAAAABABEhMZFBYf/aAAgBAQABPyERcHW4gzyh9YqK7LfEnx5inPGf/9oADAMBAAIAAwAAABBg3//EABURAQEAAAAAAAAAAAAAAAAAAAAh/9oACAEDAQE/EEf/xAAVEQEBAAAAAAAAAAAAAAAAAAAAIf/aAAgBAgEBPxBX/8QAHBABAQACAgMAAAAAAAAAAAAAEQEAMVGBQdHw/9oACAEBAAE/ECzeCXnGfRGT8QVkt23Jm5CXvxiQt4n1xEvW3vP/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="beyond infrastructure as code dsls"
+        title="beyond infrastructure as code dsls"
+        src="/static/a5ed870d8154c86f75bcc3645cfa508f/c739e/beyond-infrastructure-as-code-dsls.jpg"
+        srcset="/static/a5ed870d8154c86f75bcc3645cfa508f/8ee9c/beyond-infrastructure-as-code-dsls.jpg 148w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/ebbe7/beyond-infrastructure-as-code-dsls.jpg 295w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/c739e/beyond-infrastructure-as-code-dsls.jpg 590w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/5413e/beyond-infrastructure-as-code-dsls.jpg 885w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/4efde/beyond-infrastructure-as-code-dsls.jpg 1180w,
+/static/a5ed870d8154c86f75bcc3645cfa508f/6c9e7/beyond-infrastructure-as-code-dsls.jpg 4048w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Pulumi allows you to define resources in code, using TypeScript, python, or Go.</p>
+<p>Configuration in code has a few benefits. You can test it, you can use feature flags, you can access environment variables, you can create resources based on conditions.</p>
+<p>Pulumi has a CLI. It’s not entirely standalone, as it needs to track some state.
+That state relates to what’s actually deployed - there’s some extra metadata stored by Pulumi, so it can’t just query AWS/Azure to find what’s there.</p>
+<p>app.pulumi.com is managed service with “enterprise” features like audit, policies, secret management.
+You can get by without it if you don’t want to pay</p>
+<p>Pulumi can publish and consume infrastructure — that is, create new stuff and reference old stuff.</p>
+<p>You can mix infrastructure code with application code.
+For example, create an S3 bucket and an <code class="language-text">onCreated</code> event handler.
+The event handler will end up in a Lambda with a S3 trigger.
+That’s pretty cool.</p>
+<p>Jake’s team are going down this path because “we want devs to manage infrastructure”.
+They have an ops team who will give input, provide advice, make sure it’s all monitored, etc.
+This will allow knowledge sharing between dev and ops,
+build awareness of what’s actually running your code and how it fits together.
+They also hope it will allow them to evolve their architecture.
+In the future, they’d like to simplify if possible, and reduce cost.</p>
+<p>Pulumi crosswalk (x-walk? the plugins are things like <code class="language-text">awsx</code> rather than <code class="language-text">aws</code>) gives you some sensible defaults.</p>
+<p>Pulumi is more configurable, but more effort, too.</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="thousands-of-concurrent-connections-with-azure-signalr-service"></a> Thousands of concurrent connections with Azure SignalR Service</h2>
+<p>Nelly Sattari <a href="https://twitter.com/@nelly_sattari">@nelly_sattari</a>
+and Stafford Williams <a href="https://twitter.com/@staff0rd">@staff0rd</a></p>
+<p>Real-time functionality. Get updates as they happen</p>
+<p>Real-time apps are well-suited to event driven architecture.</p>
+<p>Used to use long polling. Connection is held open. Once data is available, response returned, connection closed
+Once it’s closed, another long poll request is opened</p>
+<p>Then came server push, but it’s only one way</p>
+<p>WebSockets allow bi-directional messages. Don’t need to keep including headers, because the connection already exists, so less data</p>
+<p>SignalR chooses the best connection based on client and server capabilities. Essentially, it abstracts that layer. WebSockets -> server push -> long polling</p>
+<p>Stafford experimented with the limits of an Azure App Service,
+but found around 750 concurrent connections — even though they advertise “unlimited”
+Tried changing the testing approach, ended up with
+50 virtual machine clients connecting to 1 big server VM and got around 250,000 persistent connections</p>
+<p>Scaling out means that each app service can only broadcast to it’s own clients
+So you need a backplane
+Which means it needs to be stateful.
+Compromises.</p>
+<p>Azure SignalR Service handles that for you. It’s a proxy not a backplane
+Persistent connections on the web server is now 0. They all go through the SignalR Service</p>
+<p>Handles up to 100,000 connections (100 units) if you want to pay for it. That’s per service.</p>
+<p>There was a cool demo with audience involvement - we played pong, did some yes/no polls, pressed a clicker.
+This demonstrated the low-latency communication, multiple concurrent updates, and it was pretty good fun.</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="css-grid-what-is-this-magic"></a> CSS Grid - What is this magic?!</h2>
+<p>Amy Kapernick <a href="https://twitter.com/@Amys_Kapers">@Amys_Kapers</a></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/6c9e7/css-grid-what-is-this-magic.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EABYBAQEBAAAAAAAAAAAAAAAAAAECA//aAAwDAQACEAMQAAABzK89wpKSNP/EABsQAQEAAQUAAAAAAAAAAAAAAAECAwAEEhMh/9oACAEBAAEFAsZyvcYeofGaZay1eqBf/8QAFREBAQAAAAAAAAAAAAAAAAAAABL/2gAIAQMBAT8BQ//EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPwFsf//EABoQAQABBQAAAAAAAAAAAAAAAAEAEBEhIjH/2gAIAQEABj8CCtzs2VmJ/8QAGBABAQEBAQAAAAAAAAAAAAAAAREAMUH/2gAIAQEAAT8hKD3SERuuFNwB4dPmE7qwAb//2gAMAwEAAgADAAAAEIDv/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oACAEDAQE/EA1tX//EABYRAAMAAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPxByCL//xAAZEAADAQEBAAAAAAAAAAAAAAAAAREhMcH/2gAIAQEAAT8QVmWyVoh0iewyDsuFvNHB8ZNNDD0yKHIf/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="css grid what is this magic"
+        title="css grid what is this magic"
+        src="/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/c739e/css-grid-what-is-this-magic.jpg"
+        srcset="/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/8ee9c/css-grid-what-is-this-magic.jpg 148w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/ebbe7/css-grid-what-is-this-magic.jpg 295w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/c739e/css-grid-what-is-this-magic.jpg 590w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/5413e/css-grid-what-is-this-magic.jpg 885w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/4efde/css-grid-what-is-this-magic.jpg 1180w,
+/static/5cd56bd3f5a7cf4904b4d9c3b7d655b5/6c9e7/css-grid-what-is-this-magic.jpg 4048w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>In the beginning there was darkness.</p>
+<ul>
+<li>Then HTML pages</li>
+<li>Then tables for layout</li>
+<li>Then floats and clear fix and all the container divs that come with that</li>
+<li>Then flexbox allowed responsiveness across one axis</li>
+<li>Then CSS grid opened up the other axis as well</li>
+</ul>
+<p>So, now, we can use semantic HTML for the structure
+and CSS for the layout. Like we should have been doing. No wrapper <code class="language-text">div</code>s</p>
+<p><code class="language-text">fr</code> unit is like flex basis.
+Add up the numbers (1fr + 2fr = 3fr), and each element will grow proportionally to “their” <code class="language-text">fr</code> (2fr twice as big as 1fr)</p>
+<p><code class="language-text">minmax()</code> can help you deal with leftover space, e.g. when you don’t know how many rows you need/columns</p>
+<p>Grid + flex = <span role="img" title="party">🎉</span></p>
+<p>Browser support:</p>
+<ul>
+<li>CSS Grid ~91%</li>
+<li>Flex box 98%</li>
+<li>Sub grid 😬 Firefox 71 (as yet unreleased)</li>
+</ul>
+<p>Use <code class="language-text">@supports(display: grid)</code> (IE <em>thinks</em> it supports grid, though)
+or <code class="language-text">@supports(grid-template-areas: &#39;.&#39;)</code> to figure out if grid is supported.
+Put your grid code inside the query and a fall-back outside, if you need to support it.</p>
+<p><a href="#">Back to top</a></p>
+<hr>
+<h2><a id="commuting-like-a-developer"></a> Commuting like a developer</h2>
+<p>Anton Ball <a href="https://twitter.com/@antonjb">@antonjb</a></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/bbc653739675cb7b7c9f68b2a8cd8ed2/6c9e7/commuting-like-a-developer.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgX/xAAWAQEBAQAAAAAAAAAAAAAAAAACAAH/2gAMAwEAAhADEAAAAUURMO800S//xAAZEAACAwEAAAAAAAAAAAAAAAABAgADBBH/2gAIAQEAAQUCpqNivm4h7K9BrU7GIJn/xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAIAQMBAT8BRsv/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAZEAEAAwEBAAAAAAAAAAAAAAABABASEQL/2gAIAQEABj8C7oIu2gPJOZK//8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERITFB/9oACAEBAAE/IV3f8lNCmlcSRp2jcmetD70qFGf/2gAMAwEAAgADAAAAEL/f/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oACAEDAQE/EIGH/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oACAECAQE/EBLb/8QAGhABAAMAAwAAAAAAAAAAAAAAAQARITFBgf/aAAgBAQABPxBmWCGpr2KylgEaIAN2L5lFiOi42KmTveRF0zCf/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Transport Driven Development"
+        title="Transport Driven Development"
+        src="/static/bbc653739675cb7b7c9f68b2a8cd8ed2/c739e/commuting-like-a-developer.jpg"
+        srcset="/static/bbc653739675cb7b7c9f68b2a8cd8ed2/8ee9c/commuting-like-a-developer.jpg 148w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/ebbe7/commuting-like-a-developer.jpg 295w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/c739e/commuting-like-a-developer.jpg 590w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/5413e/commuting-like-a-developer.jpg 885w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/4efde/commuting-like-a-developer.jpg 1180w,
+/static/bbc653739675cb7b7c9f68b2a8cd8ed2/6c9e7/commuting-like-a-developer.jpg 4048w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>69% of Aussies drive to work. It’s boring and “mindless”. His many times have you arrived and not really been aware of how it happened</p>
+<p>The average commuter spends about 4.5 hours per week commuting.</p>
+<p>Stress, poor sleep.</p>
+<p>There are many ways we commute. Anton showed a few wild examples:
+a Perth unicyclist,
+a Sydney Harbour swimmer
+… but more conventional options are available</p>
+<p>So he ran an experiment.
+Like all good experiments, he needed some rules:
+Consistent timing (door to desk),
+No work or email on the commute,
+Nothing infinite scrolling (e.g. Twitter, Facebook)</p>
+<p>Using an electric assisted bike (cheating) meant he didn’t get as sweaty, so didn’t need to change at either end.</p>
+<p>Anton considered the time and cost for driving, cycling, and public transport.</p>
+<p>You can probably guess that the car was the fastest mode,
+and cycling was the cheapest.
+Most investigations stop there, but Anton wanted to go deeper.</p>
+<p>A few notable bits:</p>
+<ul>
+<li>you can use the commute to learn (all modes allowed listening to podcasts),
+but reading was restricted to public transport.
+When driving or cycling, you need to look where you’re going,
+and your hands are occupied. On a bus, you just need to keep an eye out for your stop.</li>
+<li>use the trip to plan your day, or separate work from home.</li>
+<li>cycling was more vigorous exercise, and for longer,
+but public transport had some walking, which was better than driving, at least.</li>
+<li>Driving was awful for mental health. It’s stressful, there’s road rage.
+The other modes allow stopping and looking around. Being in your body.</li>
+<li>Bike paths often go through parks, and are usually nicer to look at than roads.</li>
+</ul>
+<p>And the results?</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Driving</th>
+<th>Cycling</th>
+<th>Public transport</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time</td>
+<td>🏆</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cost</td>
+<td></td>
+<td>🏆</td>
+<td></td>
+</tr>
+<tr>
+<td>Free time</td>
+<td></td>
+<td></td>
+<td>🏆</td>
+</tr>
+<tr>
+<td>Health</td>
+<td></td>
+<td>🏆</td>
+<td></td>
+</tr>
+<tr>
+<td>Mental health</td>
+<td></td>
+<td>🏆</td>
+<td>🏆</td>
+</tr>
+<tr>
+<td>View</td>
+<td></td>
+<td>🏆</td>
+<td></td>
+</tr>
+<tr>
+<td>Environment</td>
+<td></td>
+<td>🏆</td>
+<td>🏆</td>
+</tr>
+<tr>
+<td>Safety (no judgements made)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>So what does Anton do now? (Mostly) cycling or public transport.</p>
+<p>What’s next?</p>
+<ul>
+<li>Automation. Less reliance on cars. Car sharing</li>
+<li>Being able to reduce infrastructure for cars (e.g. parking lots)
+could free up money for better infrastructure for other modes, or, you know, parks.</li>
+</ul>
+<p>The challenge:</p>
+<ul>
+<li>Give it a try</li>
+<li>See how you can improve your commute</li>
+<li>Find the joy in your journey</li>
+</ul>
+<p><a href="#">Back to top</a></p>
+<p>So that’s NDC Sydney! I learned a lot, had a ball, and hope to be back in the future!</p></div><hr style="margin-bottom:1.75rem"/><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGQABAQEAAwAAAAAAAAAAAAAAAAUBAwQG/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgAB/9oADAMBAAIQAxAAAAHtzqk0Os4iPn8Kwbn/xAAaEAADAQEBAQAAAAAAAAAAAAABAgMAEhET/9oACAEBAAEFArltN6JbW85HP0zVdjXCtAP/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAbEAEAAwADAQAAAAAAAAAAAAABAAIRECExYf/aAAgBAQAGPwIrVzYCqcaw8ONbQ+9zqzP/xAAaEAADAAMBAAAAAAAAAAAAAAAAAREhMVFB/9oACAEBAAE/Ibd91jmBceaUVsBzo8U1aKX+bWVwfykoomoj/9oADAMBAAIAAwAAABAbB0L/xAAYEQADAQEAAAAAAAAAAAAAAAAAAREQMf/aAAgBAwEBPxCKUouPP//EABgRAAMBAQAAAAAAAAAAAAAAAAABMRAR/9oACAECAQE/EFTg6s//xAAdEAEAAgMAAwEAAAAAAAAAAAABABEhMUFRkaFx/9oACAEBAAE/EF4yI90VgebgXxm0U4H3E+YNELldXz58il2Gii8ajnuCGxReH4ahFaToOwCWNC3Xuf/Z" alt="Ben Lowry" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><source srcset="/static/741dff0760e71418905d4e37bef2e43b/9b664/profile-pic.jpg 1x,
+/static/741dff0760e71418905d4e37bef2e43b/06a10/profile-pic.jpg 1.5x,
+/static/741dff0760e71418905d4e37bef2e43b/f1b5a/profile-pic.jpg 2x" /><img loading="lazy" width="50" height="50" srcset="/static/741dff0760e71418905d4e37bef2e43b/9b664/profile-pic.jpg 1x,
+/static/741dff0760e71418905d4e37bef2e43b/06a10/profile-pic.jpg 1.5x,
+/static/741dff0760e71418905d4e37bef2e43b/f1b5a/profile-pic.jpg 2x" src="/static/741dff0760e71418905d4e37bef2e43b/9b664/profile-pic.jpg" alt="Ben Lowry" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Written by <strong>Ben Lowry</strong> who lives and works in Perth building <del>useful</del> things.<!-- --> <a href="https://twitter.com/benjaminlowry">You should follow him on Twitter</a></p></div><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/becoming-telstra-purple/">← <!-- -->Becoming Telstra Purple</a></li><li><a rel="next" href="/webauthn/part-1-forget-your-passwords/">Forget your passwords with the Web Authentication API<!-- --> →</a></li></ul></main><footer>© <!-- -->2020<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'UA-142483220-2', 'auto', {});
+      
+      
+      
+      
+      
+      }</script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/ndc-sydney-2019/";window.webpackCompilationHash="edb19ce8152a18eb8d7e";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-6fdf2a862aa8a32f80b7.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-fd7edd369e267dad4496.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-1667f0d9d66287fe427f.js"],"component---src-pages-404-js":["/component---src-pages-404-js-547be0eafb3ea09aa4e9.js"],"component---src-pages-index-js":["/component---src-pages-index-js-8cf51f8a56b9d8354384.js"]};/*]]>*/</script><script src="/component---src-templates-blog-post-js-1667f0d9d66287fe427f.js" async=""></script><script src="/0-760c11b75d509541f1a1.js" async=""></script><script src="/app-6fdf2a862aa8a32f80b7.js" async=""></script><script src="/styles-93679f138f49483c9e6e.js" async=""></script><script src="/webpack-runtime-a2e3e34c82d58bf84d8e.js" async=""></script></body></html>
