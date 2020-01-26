@@ -48,10 +48,9 @@ A large portion of this series was covered in my <a href="https://youtu.be/poJt8
 <iframe width="560" height="315" src="https://www.youtube.com/embed/poJt8dZH9qE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </aside>
 
-<!-- ---
-
 ### Posts in the series
 
-- The problem with passwords
-- The Web Authentication API
-- Making auth better for users -->
+- [Forget your passwords with the Web Authentication API](../part-1-forget-your-passwords)
+- [The problem with passwords](../part-2-the-problem-with-passwords)
+- [The Web Authentication API](../part-3-web-authentication-api)
+- [Making auth better](../part-4-making-auth-better)

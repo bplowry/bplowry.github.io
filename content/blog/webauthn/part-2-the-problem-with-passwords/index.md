@@ -9,6 +9,8 @@ and lead into an alternative"
 Other posts in this series:
 
 - [Forget your passwords with the Web Authentication API](../part-1-forget-your-passwords)
+- [The Web Authentication API](../part-3-web-authentication-api)
+- [Making auth better](../part-4-making-auth-better)
 
 ---
 

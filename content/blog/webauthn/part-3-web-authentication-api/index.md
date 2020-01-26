@@ -8,8 +8,9 @@ which we will explore in the third post in a series on WebAuthn."
 
 Other posts in this series:
 
-- [Forget your passwords with the Web Authentication API](../fpart-1-orget-your-passwords)
+- [Forget your passwords with the Web Authentication API](../part-1-forget-your-passwords)
 - [The problem with passwords](../part-2-the-problem-with-passwords)
+- [Making auth better](../part-4-making-auth-better)
 
 ---
 
