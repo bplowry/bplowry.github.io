@@ -5,7 +5,7 @@ module.exports = {
     description: `Thoughts on programming and perhaps other things.`,
     siteUrl: `https://bplowry.github.io/`,
     social: {
-      twitter: `benjaminlowry`,
+      twitter: `bplowry`,
     },
   },
   plugins: [
@@ -42,7 +42,7 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
-          `gatsby-remark-reading-time`
+          `gatsby-remark-reading-time`,
         ],
       },
     },
