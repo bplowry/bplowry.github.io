@@ -37,14 +37,27 @@ Using a device called an authenticator
 - a separate device, known as an external, cross-platform or roaming authenticator
 - built in to a phone or laptop, known as an internal, platform or bound authenticator
 
-What gets sent around
+What gets sent from the server to your device
+
+- a "challenge" for the authenticator to sign using its private key
+- (optionally) more configuration options for the authentication process
+
+What gets sent from your device to the server
 
 - for registering credentials:
-  - website information
+  - credential ID
+  - public key
+  - signed challenge (for server to verify using the public key)
+  - website information (origin and an identifier)
+  - authenticator type
+  - attestation statement (details about the authenticator)
 - for getting credentials
-  - website information
+  - credential ID
+  - signed challenge
+  - website information (origin and an identifier)
+  - details about authentication (e.g. whether "user verification" happened)
 
-You may have noticed that we never send anything secret.
+You may have noticed that we never send anything secret like a password or personally identifiable.
 
  <img src="../no-secrets.png" alt="" role="presentation">
 
@@ -53,8 +66,6 @@ The authenticator can store credential information for each login you'd like to 
 - website identifier
 - user identifier
 - credential identifier
-
-<span role="img" alt="This section is being worked on">🚧 DETOUR ➡</span>
 
 <!-- Some authenticators store the _actual_ private key for the credential source,
 in this case they are referred to as **resident keys**, because they are resident on the authenticator.

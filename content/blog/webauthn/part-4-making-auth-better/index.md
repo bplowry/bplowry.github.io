@@ -51,7 +51,7 @@ but I'll give my thoughts below as well. Here are some things to think about:
 
 How do you get more people using it?
 • Hints on the login page?
-• Prompt after logging in with password?
+• Prompt after logging in with password? <img src="../ux-prompt.png" alt="Prompt that the ability to use a platform authenticator is available to help users discover">
 • What kind of messages do you want?
 • How forcefully will you push?
 
@@ -61,18 +61,30 @@ How do you get more people using it?
 - Usernameless? More conditions to meet, but it’s an option
 - Fall back to using a password?
 
+<img src="../ux-log-in.png" alt="Log in page with username and password fields">
+
 ### Account management
 
 Manage devices:
+
+<img src="../ux-creds.png" alt="Manage devices page to allow adding a device">
 
 - Nicknames
 - Last used
 - Prompt to (or automatically) remove "old" authentication methods
 
+<img src="../ux-unused.png" alt="Manage devices page with prompt for unused device">
+
 ### Account recovery
 
 - Password or no?
-- Magic link
+- Magic link <img src="../ux-magic-link.png" alt="Allow login with a magic link or OTP">
 - Store their email. VERIFY
 
 ### What have the big companies done/who can I copy?
+
+- Twitter -- single key
+- Microsoft -- many keys
+- Facebook -- many keys
+- Google -- many keys
+- GitHub -- single key?
