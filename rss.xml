@@ -1,4 +1,200 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Six of one]]></title><description><![CDATA[Thoughts on programming and perhaps other things.]]></description><link>https://bplowry.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 26 Jan 2020 15:45:20 GMT</lastBuildDate><item><title><![CDATA[Making auth better]]></title><description><![CDATA[Other posts in this series: Forget your passwords with the Web Authentication API The problem with passwords The Web Authentication API How…]]></description><link>https://bplowry.github.io/webauthn/part-4-making-auth-better/</link><guid isPermaLink="false">https://bplowry.github.io/webauthn/part-4-making-auth-better/</guid><pubDate>Sun, 26 Jan 2020 14:47:00 GMT</pubDate><content:encoded>&lt;p&gt;Other posts in this series:&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Six of one]]></title><description><![CDATA[Thoughts on programming and perhaps other things.]]></description><link>https://bplowry.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 23 Jul 2021 05:37:33 GMT</lastBuildDate><item><title><![CDATA[MBT with @xstate/test]]></title><description><![CDATA[run through syntax boilerplate show generation failed test: how does that appear]]></description><link>https://bplowry.github.io/mbt-with-xstate/</link><guid isPermaLink="false">https://bplowry.github.io/mbt-with-xstate/</guid><pubDate>Fri, 23 Jul 2021 09:34:12 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;run through syntax&lt;/li&gt;
+&lt;li&gt;boilerplate&lt;/li&gt;
+&lt;li&gt;show generation&lt;/li&gt;
+&lt;li&gt;failed test: how does that appear&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Modeling for model-based testing]]></title><description><![CDATA[modelling is the hardest part it depends how much you want to test art not a science techniques walk through the login example]]></description><link>https://bplowry.github.io/mbt-modelling/</link><guid isPermaLink="false">https://bplowry.github.io/mbt-modelling/</guid><pubDate>Fri, 23 Jul 2021 09:34:12 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;modelling is the hardest part&lt;/li&gt;
+&lt;li&gt;it depends how much you want to test&lt;/li&gt;
+&lt;li&gt;art not a science&lt;/li&gt;
+&lt;li&gt;techniques&lt;/li&gt;
+&lt;li&gt;walk through the login example&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Level up your testing with Finite State Machines]]></title><description><![CDATA[In my previous post I mentioned how finite state machines (FSMs) could be used to generate test cases. From here, they could be hooked up to…]]></description><link>https://bplowry.github.io/testing-with-mbt/</link><guid isPermaLink="false">https://bplowry.github.io/testing-with-mbt/</guid><pubDate>Fri, 23 Jul 2021 05:09:12 GMT</pubDate><content:encoded>&lt;p&gt;In my &lt;a href=&quot;../fsm-all-stages&quot;&gt;previous post&lt;/a&gt; I mentioned how finite state machines (FSMs) could be used to generate test cases. From here, they could be hooked up to a test engine to give you automated tests, and voila! You’re doing Model Based Testing.&lt;/p&gt;
+&lt;p&gt;For this post, consider the FSM below:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ba42f7beca3c5420efd8e16e555e6ceb/331c8/stopwatch.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 61.24469589816125%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABJ0AAASdAHeZh94AAABbklEQVQoz22T2Y6CUBBE+f/f8t0nEpWIGyC4L6Ds9uT0TN8Qxk4IV6yurqoGT/7q8/nYUdq2lb7v3d3+N8z9fpfX6yVd10ld14ozjDcmvFwucr1e5Xg8yu12k9PpJFVVOQwDdrud4g6Hg2LAG8azyUaYZZnkeS6r1Uqez6eqKcvSqW+aRs7nsz6bzWaKBfd4PH4Jx3YAzudzWSwW4vu+EqPSbNHMUNQlSeLIrN8bZmeFHZomk4ms12spikKVMWA6nUocx0qCeiuiIFPv/X5LGIbayAUYRZYVRBQZoXaz2ahNFAdBoM9wQy95emZjuVyqDYqMUA6AYqPYs2gYxgBUshCGWM5fLZtC7gCJgDNKUMRvCCEblnttjBR7qNxut3pnMsrJ0FxAyCuVpqlGwiCw7rUZEpInYAhpjqJI9vu9yxVlnLHP0lgSOJQy8B8hNsnNLrJkkyhBGcEzgGZIDMeZDTvC8ac3LpSz0eHWvxUcP4s8mG66n7FXAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;State transition diagram of a stopwatch&quot;
+        title=&quot;State transition diagram of a stopwatch&quot;
+        src=&quot;/static/ba42f7beca3c5420efd8e16e555e6ceb/b9e4f/stopwatch.png&quot;
+        srcset=&quot;/static/ba42f7beca3c5420efd8e16e555e6ceb/cf440/stopwatch.png 148w,
+/static/ba42f7beca3c5420efd8e16e555e6ceb/d2d38/stopwatch.png 295w,
+/static/ba42f7beca3c5420efd8e16e555e6ceb/b9e4f/stopwatch.png 590w,
+/static/ba42f7beca3c5420efd8e16e555e6ceb/331c8/stopwatch.png 707w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h1&gt;Generating test plans&lt;/h1&gt;
+&lt;p&gt;The FSM is represented by a directed graph. By walking the graph, we can explore the different ways a user might move through an application.
+At each step, we can assert that we are in the correct state, for example by looking for particular text, or the presence or absence of an element on the page. Then we can take an action, like clicking a button, and assert that we’re in the next expected state.&lt;/p&gt;
+&lt;p&gt;“Walking the graph” is how we generate these test plans.
+There are several options for how to walk the graph. Algorithms like Dijkstra’s Algorithm allow us to find the shortest path from one state (usually the “initial” state) to any other. This doesn’t guarantee that we’ll cover every transition in the FSM, but there are others that do. The &lt;code class=&quot;language-text&quot;&gt;@xstate/test&lt;/code&gt; JS library has built in support for &lt;code class=&quot;language-text&quot;&gt;getShortestPathPlans&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;getSimplePathPlans&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In principle, we need to decide what level of “coverage” we want, and then decide what to do from there.&lt;/p&gt;
+&lt;h2&gt;Do it yourself&lt;/h2&gt;
+&lt;p&gt;It’s trivial (though possibly tedious) to generate test plans yourself. Start with your diagram, and mark each state and transition as you go through. If you just want to hit each&lt;/p&gt;
+&lt;p&gt;In principle, we start at the beginning (initial state), take one of the available transitions, end up at another state, then take one of &lt;em&gt;those&lt;/em&gt; transitions, until we hit a dead end, or “final” state. That completes one test plan. Then we start again, this time taking a different transition if available. Repeat that process until your coverage measure is met, and those are your test plans.&lt;/p&gt;
+&lt;p&gt;[gif? walkthrough of creating plans]&lt;/p&gt;
+&lt;p&gt;The above let you generate tests in advance, which could be automated and run later, but it’s also perfectly valid to manually test them — I’ll warn you though; complicated models can result in &lt;em&gt;lots&lt;/em&gt; of test plans, so you might be there a while.&lt;/p&gt;
+&lt;h2&gt;Online tests&lt;/h2&gt;
+&lt;p&gt;Another way to execute tests is to run them “online”. That’s the term used, but really it’s making decisions about which transition to take &lt;em&gt;while you’re executing&lt;/em&gt; the tests. Again, several options for how to do this with their own pros and cons — weighted transitions, random walk, higher weight for non-visited paths. One important difference between online and offline tests is that online tests might not be repeatable by re-running them, depending on implementation.&lt;/p&gt;
+&lt;h2&gt;An example using &lt;code class=&quot;language-text&quot;&gt;@xstate/test&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;I used XState to generate tests for the FSM above, resulting in 17 generated tests.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt; PASS  src/__tests__/with-lap.test.ts
+  stopwatch with lap
+    √ coverage (1 ms)
+    reaches state: &amp;quot;zero&amp;quot; ({&amp;quot;resumeCount&amp;quot;:0,&amp;quot;unlapCount&amp;quot;:0})
+      √ via  (1 ms)
+    reaches state: &amp;quot;running&amp;quot; ({&amp;quot;resumeCount&amp;quot;:0,&amp;quot;unlapCount&amp;quot;:0})
+      √ via PRESS_MAIN_BUTTON (1 ms)
+    reaches state: &amp;quot;stopped&amp;quot; ({&amp;quot;resumeCount&amp;quot;:0,&amp;quot;unlapCount&amp;quot;:0})
+      √ via PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON
+    reaches state: &amp;quot;lap&amp;quot; ({&amp;quot;resumeCount&amp;quot;:0,&amp;quot;unlapCount&amp;quot;:0})
+      √ via PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON
+    reaches state: &amp;quot;running&amp;quot; ({&amp;quot;resumeCount&amp;quot;:1,&amp;quot;unlapCount&amp;quot;:0})
+      √ via PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON
+    reaches state: &amp;quot;running&amp;quot; ({&amp;quot;resumeCount&amp;quot;:0,&amp;quot;unlapCount&amp;quot;:1})
+      √ via PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON (1 ms)
+    reaches state: &amp;quot;stopped&amp;quot; ({&amp;quot;resumeCount&amp;quot;:1,&amp;quot;unlapCount&amp;quot;:0})
+      √ via PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON
+    reaches state: &amp;quot;lap&amp;quot; ({&amp;quot;resumeCount&amp;quot;:1,&amp;quot;unlapCount&amp;quot;:0})
+      √ via PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON (1 ms)
+    reaches state: &amp;quot;stopped&amp;quot; ({&amp;quot;resumeCount&amp;quot;:0,&amp;quot;unlapCount&amp;quot;:1})
+      √ via PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON → PRESS_MAIN_BUTTON
+    reaches state: &amp;quot;lap&amp;quot; ({&amp;quot;resumeCount&amp;quot;:0,&amp;quot;unlapCount&amp;quot;:1})
+      √ via PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON
+    reaches state: &amp;quot;zero&amp;quot; ({&amp;quot;resumeCount&amp;quot;:1,&amp;quot;unlapCount&amp;quot;:0})
+      √ via PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON
+    reaches state: &amp;quot;running&amp;quot; ({&amp;quot;resumeCount&amp;quot;:1,&amp;quot;unlapCount&amp;quot;:1})
+      √ via PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON
+    reaches state: &amp;quot;zero&amp;quot; ({&amp;quot;resumeCount&amp;quot;:0,&amp;quot;unlapCount&amp;quot;:1})
+      √ via PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON → PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON
+    reaches state: &amp;quot;stopped&amp;quot; ({&amp;quot;resumeCount&amp;quot;:1,&amp;quot;unlapCount&amp;quot;:1})
+      √ via PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON → PRESS_MAIN_BUTTON
+    reaches state: &amp;quot;lap&amp;quot; ({&amp;quot;resumeCount&amp;quot;:1,&amp;quot;unlapCount&amp;quot;:1})
+      √ via PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON (1 ms)
+    reaches state: &amp;quot;zero&amp;quot; ({&amp;quot;resumeCount&amp;quot;:1,&amp;quot;unlapCount&amp;quot;:1})
+      √ via PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON → PRESS_SECOND_BUTTON → PRESS_MAIN_BUTTON → PRESS_SECOND_BUTTON
+
+Test Suites: 1 passed, 1 total
+Tests:       17 passed, 17 total&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We’ll follow up in more detail in the next post, but to hint at the important bits:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;we use &lt;code class=&quot;language-text&quot;&gt;context&lt;/code&gt; to track how many times we’ve been through each loop&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;running -&gt; stopped -&gt; running&lt;/strong&gt; and&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;running -&gt; lap -&gt; running&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;we define stop conditions where we will traverse each loop at most once, through the &lt;code class=&quot;language-text&quot;&gt;filter&lt;/code&gt; option in &lt;code class=&quot;language-text&quot;&gt;getShortestPathPlans&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We could change the conditions to allow it to go through each loop many times if that was important functionality. In reality, there shouldn’t be any difference in behaviour for a stopwatch.
+End-to-end tests can take a while to execute, and we want to balance confidence with execution time, so for this example we’ll only cover that once.&lt;/p&gt;
+&lt;p&gt;The next post will go through setting up model-based testing using XState in more detail&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Using Finite State Machines to build better software]]></title><description><![CDATA[What is a finite state machine A finite state machine (or FSM) is a way to
+model a system with a finite number of states and transitions…]]></description><link>https://bplowry.github.io/fsm-all-stages/</link><guid isPermaLink="false">https://bplowry.github.io/fsm-all-stages/</guid><pubDate>Sat, 26 Jun 2021 13:34:12 GMT</pubDate><content:encoded>&lt;h1&gt;What is a finite state machine&lt;/h1&gt;
+&lt;p&gt;A finite state machine (or FSM) is a way to
+model a system with a finite number of states and transitions between those states.
+They come with several benefits including: preventing invalid states by ignoring invalid events.&lt;/p&gt;
+&lt;p&gt;FSMs can be represented in different ways, but the one most people are probably familiar with is as a diagram with boxes for the states, and directional arrows for the transitions between them.&lt;/p&gt;
+&lt;p&gt;We’ll use a simple example of a light switch to demonstrate a few ways of representing FSMs below:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://mermaid.ink/svg/eyJjb2RlIjoic3RhdGVEaWFncmFtLXYyXG4gICAgWypdIC0tPiBPZmZcbiAgICBPZmYgLS0-IE9uIDogVHVybiBvblxuICAgIE9uIC0tPiBPZmYgOiBUdXJuIG9mZiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjp0cnVlfQ&quot; alt=&quot;A finite state machine diagram showing &amp;#x27;on&amp;#x27; and &amp;#x27;off&amp;#x27; states with &amp;#x27;turn on&amp;#x27; and &amp;#x27;turn off&amp;#x27; actions&quot;&gt;&lt;/p&gt;
+&lt;p&gt;A table with states and actions on either axis, and resulting state in the cell.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;State 👇 / Action 👉&lt;/th&gt;
+&lt;th&gt;Turn on&lt;/th&gt;
+&lt;th&gt;Turn off&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;On&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;Off&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Off&lt;/td&gt;
+&lt;td&gt;On&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;You can make charts in markdown with &lt;a href=&quot;https://mermaid-js.github.io/mermaid/#/stateDiagram&quot;&gt;mermaid&lt;/a&gt; (&lt;a href=&quot;https://mermaid-js.github.io/mermaid-live-editor/beta/edit#eyJjb2RlIjoic3RhdGVEaWFncmFtLXYyXG4gICAgWypdIC0tPiBPZmZcbiAgICBPZmYgLS0-IE9uIDogVHVybiBvblxuICAgIE9uIC0tPiBPZmYgOiBUdXJuIG9mZiIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9&quot;&gt;open in the live editor&lt;/a&gt;)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;mermaid&quot;&gt;&lt;pre class=&quot;language-mermaid&quot;&gt;&lt;code class=&quot;language-mermaid&quot;&gt;stateDiagram-v2
+    [*] --&amp;gt; Off
+    Off --&amp;gt; On : Turn on
+    On --&amp;gt; Off : Turn off&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Or use a DSL like &lt;a href=&quot;https://lucylang.org/&quot;&gt;Lucy&lt;/a&gt;, which compiles to &lt;a href=&quot;https://xstate.js.org/docs/&quot;&gt;XState&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;lucy&quot;&gt;&lt;pre class=&quot;language-lucy&quot;&gt;&lt;code class=&quot;language-lucy&quot;&gt;state on {
+  turn_off =&amp;gt; off
+}
+
+initial state off {
+  turn_on =&amp;gt; on
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Or &lt;a href=&quot;https://www.w3.org/TR/scxml/&quot;&gt;SCXML&lt;/a&gt;, an open standard for Statecharts (similar to FSMs, but with more functionality)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;xml&quot;&gt;&lt;pre class=&quot;language-xml&quot;&gt;&lt;code class=&quot;language-xml&quot;&gt;&lt;span class=&quot;token prolog&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot;?&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;scxml&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;xmlns&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;http://www.w3.org/2005/07/scxml&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+       &lt;span class=&quot;token attr-name&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;1.0&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+       &lt;span class=&quot;token attr-name&quot;&gt;initial&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;off&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;state&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;off&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;transition&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;turn_on&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;on&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;state&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;state&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;on&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;transition&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;turn_off&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;off&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;state&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;scxml&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;In the design stage&lt;/h1&gt;
+&lt;p&gt;FSMs help you model system behaviours as the user will use them.
+They’re a great match for user interfaces.
+Each “screen” represents a finite state (because there are a finite number of them),
+and each button press or link is an event or transition.&lt;/p&gt;
+&lt;p&gt;UX designers have been using FSMs for years, though they may not call them that.
+Mapping out user flows with a view of the screen and then an arrow to the new state (or states) based on a user action is pretty much the same as the boxes and lines suggested above.&lt;/p&gt;
+&lt;p&gt;These visual representations make it easier to communicate with wide groups
+— a diagram is more accessible than code —
+and means that more people can give feedback or point out errors in our design.&lt;/p&gt;
+&lt;h1&gt;In the build stage&lt;/h1&gt;
+&lt;p&gt;While the examples above mostly refer to user interfaces,
+they can also be used to model data flows in your domain.
+For example, the image below shows potential business process for an ‘order’.
+Some invalid states are prevented by this design
+— an order cannot be cancelled once it has shipped,
+nor can it be refunded before it has been paid.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://mermaid.ink/svg/eyJjb2RlIjoic3RhdGVEaWFncmFtLXYyXG4gICAgWypdIC0tPiBQZW5kaW5nXG4gICAgUGVuZGluZyAtLT4gQ2FuY2VsbGVkIDogQ2FuY2VsXG4gICAgQ2FuY2VsbGVkIC0tPiBbKl1cbiAgICBQZW5kaW5nIC0tPiBXYWl0aW5nX2NvbmZpcm1hdGlvbiA6IFBheVxuICAgIFdhaXRpbmdfY29uZmlybWF0aW9uIC0tPiBSZWFkeV9mb3Jfc2hpcHBpbmcgOiBDb25maXJtZWRcbiAgICBXYWl0aW5nX2NvbmZpcm1hdGlvbiAtLT4gV2FpdGluZ19mb3JfcmVmdW5kIDogUmVmdW5kIHJlcXVlc3RlZFxuICAgIFJlYWR5X2Zvcl9zaGlwcGluZyAtLT4gU2hpcHBlZCA6IFNoaXBcbiAgICBTaGlwcGVkIC0tPiBbKl0gOiBSZWZ1bmQgd2luZG93IGVsYXBzZWRcbiAgICBSZWFkeV9mb3Jfc2hpcHBpbmcgLS0-IFdhaXRpbmdfZm9yX3JlZnVuZCA6IFJlZnVuZCByZXF1ZXN0ZWRcbiAgICBTaGlwcGVkIC0tPiBXYWl0aW5nX2Zvcl9yZXR1cm4gOiBSZWZ1bmQgcmVxdWVzdGVkXG4gICAgV2FpdGluZ19mb3JfcmV0dXJuIC0tPiBXYWl0aW5nX2Zvcl9yZWZ1bmQgOiBSZXR1cm5lZFxuICAgIFdhaXRpbmdfZm9yX3JlZnVuZCAtLT4gUmVmdW5kZWQgOiBSZWZ1bmQgcHJvY2Vzc2VzXG4gICAgUmVmdW5kZWQgLS0-IFsqXSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0&quot; alt=&quot;State machine for an online order&quot;&gt;&lt;/p&gt;
+&lt;h1&gt;In the testing stage&lt;/h1&gt;
+&lt;p&gt;By looking at a transition in isolation, we have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;an initial state&lt;/li&gt;
+&lt;li&gt;a user action&lt;/li&gt;
+&lt;li&gt;a final state&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you’re familiar with Behaviour-Driven Design (BDD), that’s analogous to a Given-When-Then.&lt;/p&gt;
+&lt;p&gt;That is a good starting point for a unit test.
+If you want to move up the
+&lt;a href=&quot;https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;testing trophy&lt;/a&gt;,
+you can make integration or end-to-end tests if you involve more of the machine.&lt;/p&gt;
+&lt;p&gt;In an upcoming post, I’ll demonstrate how finite state machines can be used to generate test cases&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Making auth better]]></title><description><![CDATA[Other posts in this series: Forget your passwords with the Web Authentication API The problem with passwords The Web Authentication API How…]]></description><link>https://bplowry.github.io/webauthn/part-4-making-auth-better/</link><guid isPermaLink="false">https://bplowry.github.io/webauthn/part-4-making-auth-better/</guid><pubDate>Sun, 26 Jan 2020 14:47:00 GMT</pubDate><content:encoded>&lt;p&gt;Other posts in this series:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;../part-1-forget-your-passwords&quot;&gt;Forget your passwords with the Web Authentication API&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;../part-2-the-problem-with-passwords&quot;&gt;The problem with passwords&lt;/a&gt;&lt;/li&gt;
@@ -34,7 +230,16 @@ but I’ll give my thoughts below as well. Here are some things to think about:&
 &lt;h3&gt;How do you make the feature discoverable?&lt;/h3&gt;
 &lt;p&gt;How do you get more people using it?
 • Hints on the login page?
-• Prompt after logging in with password?
+• Prompt after logging in with password? &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/1e7ecbc9d6d0e0a8453c4e5c28fdca59/df67e/ux-prompt.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 85.12820512820514%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAB2HAAAdhwGP5fFlAAACjElEQVQ4y5VTbU/TUBjdzzNBkWj8gLCBEgUCDBQQbEc3NIZkK5MvBtTEBPkTflhEv5ig2WZhJGMgJrxEFnTr69r1Zcd7b5kMNiDe5PQ8bc899zy3vYFoNIpGCIJwhmOzUfDcDIQZoeX78wi0MmwUD92fRKhjFAOhiSvNWhrWJ9BkU+M8uq+HEbo5iuCNMAZ7JhCNNS96ZULGpMUHnY/Re3sMndeGGYLtYUw/4RGL/UfLddPZZzEMBMfR1TaCe8Q0dDOM3ltjmJrgWXpBaD3vAsMonr+YRX/XOGu1h+xhV1sYD8n95BjHFrsoSIBeeJ5vQmSGR3/wEWmZ7GHHCO62DaG7fRhPpzlEIi30kYjf8tzcHCRJwubmJnK5HOM61qUNZL5JkL5vIL1GOLvRpKP11tYWUqkUMw4kk0lUq1Xoug5VUaEQWJYJWZZRKpdgWhVSlyErMgxDh0F0iqKQ2oCmqkznOA52dn6A4zgERFGEaZqgo1ar/WMqonBd97R2XHZfB31m2zabk8/nfcOFhQXs7e0hk8mw6NlsFkfFIhN5nsfMLwPV0FEoFE4TVioV0qZFklqspqvWPF9ch2PTRC5L6TTArjpnE1JDuofNo8ZQq3kn9eWjsH2SMJEghnYVru3BNGxoJQta2YIuVxnbVRe/Dwx8WNzG6vIuVld28XHZx+r7n0i928HnlX1k1nLsV2MJPc8lGwbYpge5aEE9JmZ/bCiEacDDvAbxzhe8Hkzj7VAGSwNpLPWn8YbUr/q+YrEvi7VP6xBiEQTi8Tj79LpmQJFVwjq0BqiKBqWs4viXjOJB+RSHPh/tl6CWKuRflcDxnH/04vEERNFHInEO7LmI+aSI5MuLMA96QOip+wvsSBBRYIDJrAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Prompt that the ability to use a platform authenticator is available to help users discover&quot; title=&quot;Prompt that the ability to use a platform authenticator is available to help users discover&quot; src=&quot;/static/1e7ecbc9d6d0e0a8453c4e5c28fdca59/b9e4f/ux-prompt.png&quot; srcset=&quot;/static/1e7ecbc9d6d0e0a8453c4e5c28fdca59/cf440/ux-prompt.png 148w,
+/static/1e7ecbc9d6d0e0a8453c4e5c28fdca59/d2d38/ux-prompt.png 295w,
+/static/1e7ecbc9d6d0e0a8453c4e5c28fdca59/b9e4f/ux-prompt.png 590w,
+/static/1e7ecbc9d6d0e0a8453c4e5c28fdca59/f9b6a/ux-prompt.png 885w,
+/static/1e7ecbc9d6d0e0a8453c4e5c28fdca59/df67e/ux-prompt.png 1170w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
 • What kind of messages do you want?
 • How forcefully will you push?&lt;/p&gt;
 &lt;h3&gt;Login&lt;/h3&gt;
@@ -43,20 +248,67 @@ but I’ll give my thoughts below as well. Here are some things to think about:&
 &lt;li&gt;Usernameless? More conditions to meet, but it’s an option&lt;/li&gt;
 &lt;li&gt;Fall back to using a password?&lt;/li&gt;
 &lt;/ul&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/65ce0d8d84bddabd4f38585f85fbaad0/8d582/ux-log-in.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 93.66391184573003%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAB2HAAAdhwGP5fFlAAABuElEQVQ4y52Uv1LbQBDG9VapqVOHh6CjSu0nSEWKVNTMUFBgSoYiEzIDBBnbOBiMLclCkiXdH0lD+bF7Qjc4cZhIxU970ur2vt29O0dKCcUoZRFCgL93wcnzHHGSICHYPkWRcXDQLoGdLMtw/zDDxZWLwegWk7spOVT3gPwoi8KkyuOqqqxC+Rq0DQ4/Zo9zYoH5wsNsvsAqTe0CnWo4Gk9MukOGxk9RbJzsa4NVyGoKSrvQmqxea8r/0gQ1AVNKkZvT0FbZW6zCsixMc1ip6NAM2xRW9Mu9wZU7hHszMjaKE1qkfdqmKTxYLkN4vg8/COD7AZWgW9q2KSKX0ErTEdTQBL+LvN2mbhrjCEk1rAT0s7QUhCrph6yDwjwTGJ8GGPQ9uMTghOyxh+l5CNmyjqaGqzDDt48/sbf1A/ufLrG/fYkvH77jYOcaulImdTtByJp30nbSJEe/N8bR5yFOyPZ7tzjcHeDs6xS6fHOVqb8n//Mscx2l5KK+KlF1AKMu51rS5qeF2TJNwzbdSPW2uad78HGFcLZCcJcg5DGxfKhpfP7vGN4kRuSl7wfcVIvayrWU//x309wXfLKQHRbw6T0AAAAASUVORK5CYII=&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Log in page with username and password fields&quot; title=&quot;Log in page with username and password fields&quot; src=&quot;/static/65ce0d8d84bddabd4f38585f85fbaad0/b9e4f/ux-log-in.png&quot; srcset=&quot;/static/65ce0d8d84bddabd4f38585f85fbaad0/cf440/ux-log-in.png 148w,
+/static/65ce0d8d84bddabd4f38585f85fbaad0/d2d38/ux-log-in.png 295w,
+/static/65ce0d8d84bddabd4f38585f85fbaad0/b9e4f/ux-log-in.png 590w,
+/static/65ce0d8d84bddabd4f38585f85fbaad0/8d582/ux-log-in.png 726w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
 &lt;h3&gt;Account management&lt;/h3&gt;
 &lt;p&gt;Manage devices:&lt;/p&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/ca8e9303a9134a209c6c67d84bda1f5f/2afcc/ux-creds.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 26.148969889064976%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAA2UlEQVQY011PSU4DMRCc/0YckcKR/8AlQYIEjvwAlAWJc4iT2bzbmZmi3eAomZJK5e52VdtFXSqUPy2UNkQNpTSrpjozzbSxkFJhtz+gblrUIvkkKiHRNgrHXYumUiiGYUDf9/DmhOg6JHAdA8KIqee9Z1rr4Jznu38ZA2vBAXRwMsJUZLQdaESmAGc9McAaf2bq+0AzCg0hcsgl+IV5Qxd7bpoy4GHygdntCvPpGk93a9bHm0+83H9hjJzBLxxvSEhf3ywENkuB7es/3wRWz3t8v5dXAdmf9RdWcn4ohww2TAAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Manage devices page to allow adding a device&quot; title=&quot;Manage devices page to allow adding a device&quot; src=&quot;/static/ca8e9303a9134a209c6c67d84bda1f5f/b9e4f/ux-creds.png&quot; srcset=&quot;/static/ca8e9303a9134a209c6c67d84bda1f5f/cf440/ux-creds.png 148w,
+/static/ca8e9303a9134a209c6c67d84bda1f5f/d2d38/ux-creds.png 295w,
+/static/ca8e9303a9134a209c6c67d84bda1f5f/b9e4f/ux-creds.png 590w,
+/static/ca8e9303a9134a209c6c67d84bda1f5f/f9b6a/ux-creds.png 885w,
+/static/ca8e9303a9134a209c6c67d84bda1f5f/2d849/ux-creds.png 1180w,
+/static/ca8e9303a9134a209c6c67d84bda1f5f/2afcc/ux-creds.png 1262w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
 &lt;ul&gt;
 &lt;li&gt;Nicknames&lt;/li&gt;
 &lt;li&gt;Last used&lt;/li&gt;
 &lt;li&gt;Prompt to (or automatically) remove “old” authentication methods&lt;/li&gt;
 &lt;/ul&gt;
+&lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/4202ad088750a450236990c2a37c37dd/1ebe0/ux-unused.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 17.539863325740317%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAAr0lEQVQY04WQSw5CMQhFu18nLsglmLgMF6Bzo3Fk9BlfC6XfK8XPwIkkN6Sl9wB10Ki1IsaIlDM+0Xv/q/fLb5YicKNQWwOxKFQMKpLQ9O43DGKgrvWOIhU1N/iLYDoRrocAJykjJY/pdsZjJpVXzZh9gA9kIo4IxLaJSZt1BfI9o6SG7eqIzXKP9WIHZ51KVlMAqYmYwbq+gfQc6JWHWMGjPr5n+NobPKbMOu2Y+AlL1zcV+gFw+QAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Manage devices page with prompt for unused device&quot; title=&quot;Manage devices page with prompt for unused device&quot; src=&quot;/static/4202ad088750a450236990c2a37c37dd/b9e4f/ux-unused.png&quot; srcset=&quot;/static/4202ad088750a450236990c2a37c37dd/cf440/ux-unused.png 148w,
+/static/4202ad088750a450236990c2a37c37dd/d2d38/ux-unused.png 295w,
+/static/4202ad088750a450236990c2a37c37dd/b9e4f/ux-unused.png 590w,
+/static/4202ad088750a450236990c2a37c37dd/f9b6a/ux-unused.png 885w,
+/static/4202ad088750a450236990c2a37c37dd/2d849/ux-unused.png 1180w,
+/static/4202ad088750a450236990c2a37c37dd/1ebe0/ux-unused.png 1756w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
 &lt;h3&gt;Account recovery&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Password or no?&lt;/li&gt;
-&lt;li&gt;Magic link&lt;/li&gt;
+&lt;li&gt;Magic link &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
+      &lt;a class=&quot;gatsby-resp-image-link&quot; href=&quot;/static/11824ebe78fec2971accc07ba4310cc1/00212/ux-magic-link.png&quot; style=&quot;display: block&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+    &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 83.95604395604394%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAB2HAAAdhwGP5fFlAAACbklEQVQ4y61Ua2sTURDdvyn6D0Rri6IgUusDUUSK+kW0tSpYsRWaFh9FrVRpjW1ChVDy2GQfyT6STbJ5NNkku9kc79y4MYm1H4oDh3ncuWdm9k4idDodjKPdbnN94NRRcypoMd808zxuWUXYtg3PdQd5wxAOI2y1WkCvh41oGOuLjxDe/IbZBw/x+Mkcnj1/gZXQKkgo7y9CqjIOSux2u8glJch7EZSsAsR0GqKYhqqqyOfzg0nGIXieB9dzByA/QCA91u2IMH84bxgCjhAi6vl+X4/hXyKUmxUotgbZziFdUlBvN/6QHQOC7VSxb4nYL6Tw04yj6bVwXOGEnuvBaTThez7TDqrVKprNJkej0YDjOKjX69ymGPn0aOTXajUeo3OyOSEdJJNJaLqGeDyOWCyGbDbLX1OWZeRyOSQSCW5LkgRFUWAYBjQth2g0yl5ehK7ryGQy/W9YqVTYocaTKJkSaHEDEkqkNbEsC4VCgRczDJMV0pBKpXg+NRLcE6hVqkxViICITNMcdEcgm855QbaPhp6FUzdwwKajCakpGpvvoct+QtQhVSfQqFaRdcOWWTd0FEtFqFmVfxJFVSAz0mqtwl6gffja4D+IP7w2geGzBSaRylnM7y5hIbKMuZ3X3H66u/xbL2GexSi+EHnDYyLb3T6pP9phQBhW93Di5QQuvb+D6Y+zuPD2FibXbuDiu9vcnvl0H1fW7+E8sylvU/rB73X9IwhPvZrCmdBVXP5wF1NrN3F6ZRrnVq/jbGiG+0Q8EbqGk4uT+CrtjNwXxv8ArIMyvqS+c3xObmEjuc3tvt5meovHg1i+Zo3c/wVpcu5x3u3ebwAAAABJRU5ErkJggg==&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;Allow login with a magic link or OTP&quot; title=&quot;Allow login with a magic link or OTP&quot; src=&quot;/static/11824ebe78fec2971accc07ba4310cc1/b9e4f/ux-magic-link.png&quot; srcset=&quot;/static/11824ebe78fec2971accc07ba4310cc1/cf440/ux-magic-link.png 148w,
+/static/11824ebe78fec2971accc07ba4310cc1/d2d38/ux-magic-link.png 295w,
+/static/11824ebe78fec2971accc07ba4310cc1/b9e4f/ux-magic-link.png 590w,
+/static/11824ebe78fec2971accc07ba4310cc1/f9b6a/ux-magic-link.png 885w,
+/static/11824ebe78fec2971accc07ba4310cc1/00212/ux-magic-link.png 910w&quot; sizes=&quot;(max-width: 590px) 100vw, 590px&quot; loading=&quot;lazy&quot;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
 &lt;li&gt;Store their email. VERIFY&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;What have the big companies done/who can I copy?&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[The Web Authentication API]]></title><description><![CDATA[Other posts in this series: Forget your passwords with the Web Authentication API The problem with passwords Making auth better In the…]]></description><link>https://bplowry.github.io/webauthn/part-3-web-authentication-api/</link><guid isPermaLink="false">https://bplowry.github.io/webauthn/part-3-web-authentication-api/</guid><pubDate>Sun, 22 Dec 2019 05:38:00 GMT</pubDate><content:encoded>&lt;p&gt;Other posts in this series:&lt;/p&gt;
+&lt;h3&gt;What have the big companies done/who can I copy?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Twitter — single key&lt;/li&gt;
+&lt;li&gt;Microsoft — many keys&lt;/li&gt;
+&lt;li&gt;Facebook — many keys&lt;/li&gt;
+&lt;li&gt;Google — many keys&lt;/li&gt;
+&lt;li&gt;GitHub — single key?&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[The Web Authentication API]]></title><description><![CDATA[Other posts in this series: Forget your passwords with the Web Authentication API The problem with passwords Making auth better In the…]]></description><link>https://bplowry.github.io/webauthn/part-3-web-authentication-api/</link><guid isPermaLink="false">https://bplowry.github.io/webauthn/part-3-web-authentication-api/</guid><pubDate>Sun, 22 Dec 2019 05:38:00 GMT</pubDate><content:encoded>&lt;p&gt;Other posts in this series:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;../part-1-forget-your-passwords&quot;&gt;Forget your passwords with the Web Authentication API&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;../part-2-the-problem-with-passwords&quot;&gt;The problem with passwords&lt;/a&gt;&lt;/li&gt;
@@ -80,22 +332,35 @@ make up the FIDO2 protocol.&lt;/p&gt;
 &lt;li&gt;a separate device, known as an external, cross-platform or roaming authenticator&lt;/li&gt;
 &lt;li&gt;built in to a phone or laptop, known as an internal, platform or bound authenticator&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;What gets sent around&lt;/p&gt;
+&lt;p&gt;What gets sent from the server to your device&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a “challenge” for the authenticator to sign using its private key&lt;/li&gt;
+&lt;li&gt;(optionally) more configuration options for the authentication process&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What gets sent from your device to the server&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;for registering credentials:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;website information&lt;/li&gt;
+&lt;li&gt;credential ID&lt;/li&gt;
+&lt;li&gt;public key&lt;/li&gt;
+&lt;li&gt;signed challenge (for server to verify using the public key)&lt;/li&gt;
+&lt;li&gt;website information (origin and an identifier)&lt;/li&gt;
+&lt;li&gt;authenticator type&lt;/li&gt;
+&lt;li&gt;attestation statement (details about the authenticator)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;for getting credentials&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;website information&lt;/li&gt;
+&lt;li&gt;credential ID&lt;/li&gt;
+&lt;li&gt;signed challenge&lt;/li&gt;
+&lt;li&gt;website information (origin and an identifier)&lt;/li&gt;
+&lt;li&gt;details about authentication (e.g. whether “user verification” happened)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;You may have noticed that we never send anything secret.&lt;/p&gt;
+&lt;p&gt;You may have noticed that we never send anything secret like a password or personally identifiable.&lt;/p&gt;
 &lt;span class=&quot;gatsby-resp-image-wrapper&quot; style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;&gt;
       &lt;span class=&quot;gatsby-resp-image-background-image&quot; style=&quot;padding-bottom: 33.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&amp;apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAABJ0AAASdAHeZh94AAABIElEQVQY05WQMY6CQBSGJ2LJCSw4Aj2FjSUVJ/ASFB7BA6wNjTR0JLBIgwUUBkwgumFJDC4QAgksJJJY2SDgPjGx0Gq/4s/Mm/nnzfvR7T90XQfaNM1jgQRBEEXxs6eqKii1XVdfLt5iYc/n/n7f9p7r9QpHRVGkafrwA2g8HjMMM51OaZrWdf1ubhq4KE0mH6MRx3FdD9TLsiQIAsfx2WwWBMG983a7TZLE8zxN02zbhlIYRbHvf6/XP5vNbxhGcXw+n3e7HUmSCCEMw0ApisrzHEmSJMuyZVk8z5umCZ9xHMeFx45H93D4cl3Ynk6n5XIJnsFgADocDkFZlkWqquo9iqJkWfZM5SWkuq4Nw4A2Ss9qtYIp0Hue7RvPsV/4A4UBTXKOMoEGAAAAAElFTkSuQmCC&amp;apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
   &lt;img class=&quot;gatsby-resp-image-image&quot; alt=&quot;no secrets&quot; title=&quot;no secrets&quot; src=&quot;/static/39b13230930c4dc34542f0adf6c64953/b9e4f/no-secrets.png&quot; srcset=&quot;/static/39b13230930c4dc34542f0adf6c64953/cf440/no-secrets.png 148w,
@@ -110,7 +375,6 @@ make up the FIDO2 protocol.&lt;/p&gt;
 &lt;li&gt;user identifier&lt;/li&gt;
 &lt;li&gt;credential identifier&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;span role=&quot;img&quot; alt=&quot;This section is being worked on&quot;&gt;🚧 DETOUR ➡&lt;/span&gt;&lt;/p&gt;
 &lt;!-- Some authenticators store the _actual_ private key for the credential source,
 in this case they are referred to as **resident keys**, because they are resident on the authenticator.
 Authenticators that support resident keys can only store a limited number -- because they have to physically store something, and storage is limited. The Yubikey 5C, for example, can store 25 resident keys.
@@ -1196,160 +1460,7 @@ could free up money for better infrastructure for other modes, or, you know, par
 &lt;li&gt;Find the joy in your journey&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;#&quot;&gt;Back to top&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;So that’s NDC Sydney! I learned a lot, had a ball, and hope to be back in the future!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Draft testing]]></title><description><![CDATA[This should never appear]]></description><link>https://bplowry.github.io/draft/</link><guid isPermaLink="false">https://bplowry.github.io/draft/</guid><pubDate>Tue, 01 Oct 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This should never appear&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Level up your testing with Finite State Machines (part 1)]]></title><description><![CDATA[You may have heard that / code is actually using a state machine under the hood.
-We can show examples of what that looks like when…]]></description><link>https://bplowry.github.io/testing-with-fsm/</link><guid isPermaLink="false">https://bplowry.github.io/testing-with-fsm/</guid><pubDate>Thu, 26 Sep 2019 09:34:12 GMT</pubDate><content:encoded>&lt;p&gt;You may have heard that &lt;code class=&quot;language-text&quot;&gt;async&lt;/code&gt;/&lt;code class=&quot;language-text&quot;&gt;await&lt;/code&gt; code is actually using a state machine under the hood.
-We can show examples of what that looks like when converting modern code to older syntax.
-For example,
-when &lt;a href=&quot;https://www.typescriptlang.org/play/?target=1#code/IYZwngdgxgBAZgV2gFwJYHsL3egFAShgG8AoGGAJwFNkEKsAFC9AW1RCoDpqR0AbAG5VcAcgBGwCiPwBuEgF8gA&quot;&gt;compiling TypeScript&lt;/a&gt;
-or &lt;a href=&quot;https://babeljs.io/en/repl#?babili=false&amp;#x26;browsers=&amp;#x26;build=&amp;#x26;builtIns=false&amp;#x26;spec=false&amp;#x26;loose=false&amp;#x26;code_lz=IYZwngdgxgBAZgV2gFwJYHsL3egFAShgG8AoGGAJwFNkEKsAFC9AW1RCoDpqR0AbAG5VcAcgBGwCiPwBuEgF8gA&amp;#x26;debug=false&amp;#x26;forceAllTransforms=false&amp;#x26;shippedProposals=false&amp;#x26;circleciRepo=&amp;#x26;evaluate=false&amp;#x26;fileSize=false&amp;#x26;timeTravel=false&amp;#x26;sourceType=module&amp;#x26;lineWrap=true&amp;#x26;presets=env&amp;#x26;prettier=false&amp;#x26;targets=&amp;#x26;version=7.6.2&amp;#x26;externalPlugins=&quot;&gt;transpiling JavaScript using Babel&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;So we start with something relatively simple:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; Promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;bar&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And after transpilation/compilation, we end up with:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token string&quot;&gt;&quot;use strict&quot;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; __awaiter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__awaiter&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;thisArg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; _arguments&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; generator&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;adopt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; value &lt;span class=&quot;token keyword&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;P&lt;/span&gt;
-        &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; value
-        &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-          &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Promise&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;resolve&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; reject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fulfilled&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;generator&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;token function&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rejected&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;generator&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;throw&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;token function&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;done
-          &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-          &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;adopt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fulfilled&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; rejected&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;generator &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;generator&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;thisArg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; _arguments &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; __generator &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__generator&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;thisArg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; _ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        label&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token function-variable function&quot;&gt;sent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-          &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        trys&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        ops&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      f&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      y&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      t&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      g
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;g &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; next&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;verb&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;verb&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;verb&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; Symbol &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;g&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Symbol&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;iterator&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      g
-    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;verb&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; v&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;op&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TypeError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Generator is already executing.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
-            &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-            y &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
-              &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
-                op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
-                  &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;return&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-                  &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-                  &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;throw&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;return&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;y&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-                  &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;next&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
-              &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;y&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;done&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-          &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; t
-          &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-          &lt;span class=&quot;token keyword&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-              t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; op
-              &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;
-            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-              _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;
-              &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; done&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-              _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;
-              y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-              op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-              &lt;span class=&quot;token keyword&quot;&gt;continue&lt;/span&gt;
-            &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-              op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ops&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-              _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;trys&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-              &lt;span class=&quot;token keyword&quot;&gt;continue&lt;/span&gt;
-            &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;trys&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
-                &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-              &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-                _ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
-                &lt;span class=&quot;token keyword&quot;&gt;continue&lt;/span&gt;
-              &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-                _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-                &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;
-              &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-                _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-                t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; op
-                &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;
-              &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-                _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-                _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ops&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;token keyword&quot;&gt;break&lt;/span&gt;
-              &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-              &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ops&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-              _&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;trys&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-              &lt;span class=&quot;token keyword&quot;&gt;continue&lt;/span&gt;
-          &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-          op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;thisArg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; _&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;e&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          op &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-          y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;finally&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          f &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; t &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; op&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; done&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;__awaiter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;__generator&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;_a&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;/*return*/&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;bar&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I’m sure if I stepped through it, I could figure out what’s going on …
-but rest assured, we won’t be doing anything remotely as complicated as that.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Becoming Telstra Purple]]></title><description><![CDATA[I started at Readify in 2017,
+&lt;p&gt;So that’s NDC Sydney! I learned a lot, had a ball, and hope to be back in the future!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Draft testing]]></title><description><![CDATA[This should never appear]]></description><link>https://bplowry.github.io/draft/</link><guid isPermaLink="false">https://bplowry.github.io/draft/</guid><pubDate>Tue, 01 Oct 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This should never appear&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Becoming Telstra Purple]]></title><description><![CDATA[I started at Readify in 2017,
 after my previous employer closed their Perth office.
 I’d been a developer for just under a year
 and in the…]]></description><link>https://bplowry.github.io/becoming-telstra-purple/</link><guid isPermaLink="false">https://bplowry.github.io/becoming-telstra-purple/</guid><pubDate>Sat, 14 Sep 2019 11:47:03 GMT</pubDate><content:encoded>&lt;p&gt;I started at Readify in 2017,
