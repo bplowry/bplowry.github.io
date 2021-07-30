@@ -253,7 +253,9 @@ The steps along the way:
 
 - `<script src="scripts/jQuery.js" />`
   We added a reference to the file we'd downloaded and put on the web server
-- `<script src="node_modules/jQuery/dist/jQuery.min.js" />`
+- <code class="language-text" style="word-break: break-all;">
+    &lt;script src="node_modules/jQuery/dist/jQuery.min.js" /&gt;
+  </code>
   We could install dependencies with NPM
 - `require("jQuery")`
   CommonJS came around and we could install dependencies using `require`
@@ -728,6 +730,8 @@ A few notable bits:
 
 And the results?
 
+<div style="max-width: 100%; overflow-x: auto;">
+
 | Category                    | Driving | Cycling | Public transport |
 | --------------------------- | ------- | ------- | ---------------- |
 | Time                        | 🏆      |         |                  |
@@ -738,6 +742,8 @@ And the results?
 | View                        |         | 🏆      |                  |
 | Environment                 |         | 🏆      | 🏆               |
 | Safety (no judgements made) |         |         |                  |
+
+</div>
 
 So what does Anton do now? (Mostly) cycling or public transport.
 

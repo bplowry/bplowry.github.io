@@ -25,7 +25,7 @@ You can [try it out for yourself](https://webauth.io) if you have an authenticat
 (remember: if you're using a phone there's a good chance you're holding one).
 If you don't have an authenticator, I've recorded a video showing how easy it is to register and login.
 
-<video width="630" controls>
+<video width="630" controls style="max-width: 100%;">
   <source src="../register-login-demo.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>

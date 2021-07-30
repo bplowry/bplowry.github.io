@@ -63,7 +63,7 @@ module.exports = {
         description: `Personal website and blog for Ben Lowry`,
         lang: `en-AU`,
         start_url: `/`,
-        background_color: `#ffffff`,
+        background_color: `#fafafa`,
         theme_color: `#191919`,
         display: `minimal-ui`,
         icon: `content/assets/six-of-one.png`,
