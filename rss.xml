@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Six of one]]></title><description><![CDATA[Thoughts on programming and perhaps other things.]]></description><link>https://bplowry.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 23 Jul 2021 05:37:33 GMT</lastBuildDate><item><title><![CDATA[MBT with @xstate/test]]></title><description><![CDATA[run through syntax boilerplate show generation failed test: how does that appear]]></description><link>https://bplowry.github.io/mbt-with-xstate/</link><guid isPermaLink="false">https://bplowry.github.io/mbt-with-xstate/</guid><pubDate>Fri, 23 Jul 2021 09:34:12 GMT</pubDate><content:encoded>&lt;ul&gt;
-&lt;li&gt;run through syntax&lt;/li&gt;
-&lt;li&gt;boilerplate&lt;/li&gt;
-&lt;li&gt;show generation&lt;/li&gt;
-&lt;li&gt;failed test: how does that appear&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Modeling for model-based testing]]></title><description><![CDATA[modelling is the hardest part it depends how much you want to test art not a science techniques walk through the login example]]></description><link>https://bplowry.github.io/mbt-modelling/</link><guid isPermaLink="false">https://bplowry.github.io/mbt-modelling/</guid><pubDate>Fri, 23 Jul 2021 09:34:12 GMT</pubDate><content:encoded>&lt;ul&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Six of one]]></title><description><![CDATA[Thoughts on programming and perhaps other things.]]></description><link>https://bplowry.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 30 Jul 2021 02:56:29 GMT</lastBuildDate><item><title><![CDATA[Modeling for model-based testing]]></title><description><![CDATA[modelling is the hardest part it depends how much you want to test art not a science techniques walk through the login example]]></description><link>https://bplowry.github.io/mbt-modelling/</link><guid isPermaLink="false">https://bplowry.github.io/mbt-modelling/</guid><pubDate>Fri, 23 Jul 2021 09:34:12 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;modelling is the hardest part&lt;/li&gt;
 &lt;li&gt;it depends how much you want to test&lt;/li&gt;
 &lt;li&gt;art not a science&lt;/li&gt;
 &lt;li&gt;techniques&lt;/li&gt;
 &lt;li&gt;walk through the login example&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[MBT with @xstate/test]]></title><description><![CDATA[run through syntax boilerplate show generation failed test: how does that appear]]></description><link>https://bplowry.github.io/mbt-with-xstate/</link><guid isPermaLink="false">https://bplowry.github.io/mbt-with-xstate/</guid><pubDate>Fri, 23 Jul 2021 09:34:12 GMT</pubDate><content:encoded>&lt;ul&gt;
+&lt;li&gt;run through syntax&lt;/li&gt;
+&lt;li&gt;boilerplate&lt;/li&gt;
+&lt;li&gt;show generation&lt;/li&gt;
+&lt;li&gt;failed test: how does that appear&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Level up your testing with Finite State Machines]]></title><description><![CDATA[In my previous post I mentioned how finite state machines (FSMs) could be used to generate test cases. From here, they could be hooked up to…]]></description><link>https://bplowry.github.io/testing-with-mbt/</link><guid isPermaLink="false">https://bplowry.github.io/testing-with-mbt/</guid><pubDate>Fri, 23 Jul 2021 05:09:12 GMT</pubDate><content:encoded>&lt;p&gt;In my &lt;a href=&quot;../fsm-all-stages&quot;&gt;previous post&lt;/a&gt; I mentioned how finite state machines (FSMs) could be used to generate test cases. From here, they could be hooked up to a test engine to give you automated tests, and voila! You’re doing Model Based Testing.&lt;/p&gt;
 &lt;p&gt;For this post, consider the FSM below:&lt;/p&gt;
 &lt;p&gt;&lt;span
