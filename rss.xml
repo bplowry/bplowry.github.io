@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Six of one]]></title><description><![CDATA[Thoughts on programming and perhaps other things.]]></description><link>https://bplowry.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 30 Jul 2021 02:56:29 GMT</lastBuildDate><item><title><![CDATA[Modeling for model-based testing]]></title><description><![CDATA[modelling is the hardest part it depends how much you want to test art not a science techniques walk through the login example]]></description><link>https://bplowry.github.io/mbt-modelling/</link><guid isPermaLink="false">https://bplowry.github.io/mbt-modelling/</guid><pubDate>Fri, 23 Jul 2021 09:34:12 GMT</pubDate><content:encoded>&lt;ul&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Six of one]]></title><description><![CDATA[Thoughts on programming and perhaps other things.]]></description><link>https://bplowry.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 30 Jul 2021 06:25:35 GMT</lastBuildDate><item><title><![CDATA[Modeling for model-based testing]]></title><description><![CDATA[modelling is the hardest part it depends how much you want to test art not a science techniques walk through the login example]]></description><link>https://bplowry.github.io/mbt-modelling/</link><guid isPermaLink="false">https://bplowry.github.io/mbt-modelling/</guid><pubDate>Fri, 23 Jul 2021 09:34:12 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;modelling is the hardest part&lt;/li&gt;
 &lt;li&gt;it depends how much you want to test&lt;/li&gt;
 &lt;li&gt;art not a science&lt;/li&gt;
@@ -210,7 +210,7 @@ Those should do the trick!&lt;/p&gt;
 &lt;p&gt;You can &lt;a href=&quot;https://webauth.io&quot;&gt;try it out for yourself&lt;/a&gt; if you have an authenticator
 (remember: if you’re using a phone there’s a good chance you’re holding one).
 If you don’t have an authenticator, I’ve recorded a video showing how easy it is to register and login.&lt;/p&gt;
-&lt;video width=&quot;630&quot; controls&gt;
+&lt;video width=&quot;630&quot; controls style=&quot;max-width: 100%;&quot;&gt;
   &lt;source src=&quot;/af29446d2127747f7b276eb881fe67d8/register-login-demo.mp4&quot; type=&quot;video/mp4&quot;&gt;
 Your browser does not support the video tag.
 &lt;/video&gt;
@@ -892,8 +892,12 @@ Restarting a single killed pod with a ReplicaSet is a useful feature.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;script src=&amp;quot;scripts/jQuery.js&amp;quot; /&amp;gt;&lt;/code&gt;
 We added a reference to the file we’d downloaded and put on the web server&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;script src=&amp;quot;node_modules/jQuery/dist/jQuery.min.js&amp;quot; /&amp;gt;&lt;/code&gt;
-We could install dependencies with NPM&lt;/li&gt;
+&lt;li&gt;
+&lt;code class=&quot;language-text&quot; style=&quot;word-break: break-all;&quot;&gt;
+&amp;lt;script src=&quot;node_modules/jQuery/dist/jQuery.min.js&quot; /&amp;gt;
+&lt;/code&gt;
+We could install dependencies with NPM
+&lt;/li&gt;
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;require(&amp;quot;jQuery&amp;quot;)&lt;/code&gt;
 CommonJS came around and we could install dependencies using &lt;code class=&quot;language-text&quot;&gt;require&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;2011: The first bundlers started appearing. Browserify was the main player.&lt;/li&gt;
@@ -1386,6 +1390,7 @@ The other modes allow stopping and looking around. Being in your body.&lt;/li&gt
 &lt;li&gt;Bike paths often go through parks, and are usually nicer to look at than roads.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;And the results?&lt;/p&gt;
+&lt;div style=&quot;max-width: 100%; overflow-x: auto;&quot;&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -1446,6 +1451,7 @@ The other modes allow stopping and looking around. Being in your body.&lt;/li&gt
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;/div&gt;
 &lt;p&gt;So what does Anton do now? (Mostly) cycling or public transport.&lt;/p&gt;
 &lt;p&gt;What’s next?&lt;/p&gt;
 &lt;ul&gt;
