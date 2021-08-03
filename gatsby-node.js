@@ -10,7 +10,6 @@ exports.createPages = async ({ graphql, actions }) => {
       {
         allMarkdownRemark(
           sort: { fields: [frontmatter___date], order: DESC }
-          filter: { frontmatter: { draft: { ne: true } } }
           limit: 1000
         ) {
           edges {
@@ -20,6 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                draft
               }
             }
           }
@@ -32,8 +32,14 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors
   }
 
+  function isDraft(post) {
+    return !!post.node.frontmatter.draft
+  }
+
   // Create blog posts pages.
-  const posts = result.data.allMarkdownRemark.edges
+  const all = result.data.allMarkdownRemark.edges
+  const posts = all.filter(post => !isDraft(post))
+  const drafts = all.filter(isDraft)
 
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
@@ -46,6 +52,18 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: post.node.fields.slug,
         previous,
         next,
+      },
+    })
+  })
+
+  drafts.forEach(post => {
+    createPage({
+      path: post.node.fields.slug,
+      component: blogPost,
+      context: {
+        slug: post.node.fields.slug,
+        previous: null,
+        next: null,
       },
     })
   })
